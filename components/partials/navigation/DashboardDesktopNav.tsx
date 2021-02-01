@@ -1,9 +1,12 @@
+import styles from './../../../styles/DashboardDesktopNav.module.scss';
 interface Props {
 
 }
 
 const DashboardDesktopNav: React.FunctionComponent<Props> = (props) => {
-	return null;
+	return <div className={styles.navbar}>
+
+	</div>
 };
 
 export default DashboardDesktopNav;

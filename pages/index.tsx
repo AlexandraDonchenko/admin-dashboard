@@ -3,20 +3,19 @@
 import Head from 'next/head';
 import { createStore } from 'redux';
 import React from 'react';
-import {Provider} from 'react-redux';
+import {useSelector} from 'react-redux'
 import App from './_app';
 import styles from '../styles/Home.module.css';
-import themeReducer from './../redux/reducers/index';
 import Login from './Login'
 import DashboardLayout from './../components/partials/layouts/DashboardLayout'
+import DefaultLayout from './../components/partials/layouts/DefaultLayout'
  
 interface Props {
 }
 
 const Home: React.FunctionComponent<Props> = (props) => {
-  const store = createStore(themeReducer);
-  console.log(store)
-  return <Provider store={store}><Login /></Provider>;
+  const logged = useSelector((state) => state.loginReducer.logged)
+  return <Login></Login>
 };
 
 export default Home;
