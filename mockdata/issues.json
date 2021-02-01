@@ -1,0 +1,20 @@
+[
+	{
+		"id": 1,
+		"type": "door",
+		"isActive": true,
+		"createdOn": "Mon, 1 Feb 2020 23:15:30 GMT"
+	},
+	{
+		"id": 2,
+		"type": "door",
+		"isActive": true,
+		"createdOn": "Mon, 1 Feb 2020 06:45:30 GMT"
+	},
+	{
+		"id": 3,
+		"type": "camera",
+		"isActive": true,
+		"createdOn": "Mon, 1 Feb 2020 20:00:30 GMT"
+	}
+]
