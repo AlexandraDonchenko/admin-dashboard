@@ -1,19 +1,5 @@
-import { Reducer } from 'react';
-import { Theme } from '../types';
+import { combineReducers } from 'redux'
+import loginReducer from './is-logged-reducer';
+import themeReducer from './theme-reducer';
 
-interface Action {
-    type:string
-}
-
-let originalState: Theme = { theme: 'light' };
-
-const themeReducer: Reducer<Theme, Action> = (state = originalState, action: Action) => {
-  switch (action.type) {
-    case 'DARK': originalState = { theme: 'dark' };
-      return originalState;
-    case 'LIGHT': originalState = { theme: 'light' };
-      return originalState;
-    default: return state;
-  }
-};
-export default themeReducer;
+export default combineReducers({loginReducer, themeReducer});
