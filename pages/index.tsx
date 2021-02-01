@@ -14,9 +14,13 @@ interface Props {
 }
 
 const Home: React.FunctionComponent<Props> = (props) => {
-  const store = createStore(themeReducer);
-  console.log(store)
-  return <Provider store={store}><Login /></Provider>;
+  return (
+		<div>
+
+		<h1>Home</h1>
+		<Login />
+		</div>
+	) 
 };
 
 export default Home;
