@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"groupName": "Teacher",
+		"description": "Teacher who gives Lessons in the morning",
+		"access_from_hour": 0,
+		"access_to_hour": 24	
+	},
+	{
+		"id": 2,
+		"groupName": "Teacher Assistant",
+		"description": "Assistant of the teachers",
+		"access_from_hour": 0,
+		"access_to_hour": 24	
+	},
+	{
+		"id": 3,
+		"groupName": "Students",
+		"description": "Juniors and Senior Students of all Cohorts",
+		"access_from_hour": 9,
+		"access_to_hour": 20	
+	}
+]
