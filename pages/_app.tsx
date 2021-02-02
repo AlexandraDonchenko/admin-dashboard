@@ -5,10 +5,23 @@ import { createStore } from 'redux';
 import themeReducer from '../redux/reducers/';
 import {Provider} from 'react-redux';
 import Home from './index';
+import Head from 'next/head';
+import { createStore } from 'redux';
+import {Provider} from 'react-redux';
+import App from './_app';
+import styles from '../styles/Home.module.css';
+import rootReducer from './../redux/reducers/index';
+import Login from './Login'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const store = createStore(themeReducer);
-  return <Provider store={store}><Component{...pageProps}/></Provider>
+
+  const store = createStore(rootReducer);
+	return (
+		<Provider store={store}>
+		<Component {...pageProps} />
+		</Provider>
+
+	)
 }
 
 export default MyApp;

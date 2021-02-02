@@ -14,8 +14,14 @@ interface Props {
 }
 
 const Home: React.FunctionComponent<Props> = (props) => {
-  const logged = useSelector((state) => state.loginReducer.logged)
-  return <Login></Login>
+
+  return (
+		<div>
+
+		<h1>Home</h1>
+		<Login />
+		</div>
+	) 
 };
 
 export default Home;
