@@ -1,13 +1,16 @@
-import { Children, useState } from "react";
-import styles from './../../../styles/DashboardLayout.module.scss';
-import DashboardDesktopNav from './../navigation/DashboardDesktopNav';
+import React from 'react';
+import styles from '../../../styles/DashboardLayout.module.scss';
+import DashboardDesktopNav from '../navigation/DashboardDesktopNav';
 
 interface Props {
-	children: any
+  children: any
 }
 
-const DashboardLayout: React.FunctionComponent<Props> = ({children}) => {
-	return <div className={styles.wrapper}><DashboardDesktopNav ></DashboardDesktopNav><div className="dashboard-content">{children}</div></div>;
-};
+const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => (
+  <div className={styles.wrapper}>
+    <DashboardDesktopNav />
+    <div className="dashboard-content">{children}</div>
+  </div>
+);
 
 export default DashboardLayout;

@@ -1,9 +1,7 @@
-interface Props {
+import React from 'react';
 
-}
+interface Props { }
 
-const SearchBar: React.FunctionComponent<Props> = (props) => {
-	return null;
-};
+const SearchBar: React.FunctionComponent<Props> = () => null;
 
 export default SearchBar;

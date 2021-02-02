@@ -1,9 +1,7 @@
-interface Props {
+import React from 'react';
 
-}
+interface Props { }
 
-const IssueDialog: React.FunctionComponent<Props> = (props) => {
-	return null;
-};
+const IssueDialog: React.FunctionComponent<Props> = () => null;
 
 export default IssueDialog;

@@ -1,11 +1,10 @@
-import { Children } from "react";
-
+import React from 'react';
 
 interface Props {
 }
 
-const DefaultLayout: React.FunctionComponent<Props> = (props) => {
-	return <div>{Children}</div>;
-};
+const DefaultLayout: React.FunctionComponent<Props> = ({ children }) => (
+  <div>{children}</div>
+);
 
 export default DefaultLayout;

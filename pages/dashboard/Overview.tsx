@@ -1,9 +1,12 @@
-import DashboardLayout from './../../components/partials/layouts/DashboardLayout'
-interface Props {
-}
+import React from 'react';
+import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 
-const Overview: React.FunctionComponent<Props> = (props) => {
-	return (<DashboardLayout><div className="foo">I am your lord overview</div></DashboardLayout>)
-};
+interface Props { }
+
+const Overview: React.FunctionComponent<Props> = () => (
+  <DashboardLayout>
+    <div className="foo">I am your lord overview</div>
+  </DashboardLayout>
+);
 
 export default Overview;

@@ -1,9 +1,7 @@
-interface Props {
+import React from 'react';
 
-}
+interface Props { }
 
-const DefaultMobileNav: React.FunctionComponent<Props> = (props) => {
-	return null;
-};
+const DefaultMobileNav: React.FunctionComponent<Props> = () => null;
 
 export default DefaultMobileNav;

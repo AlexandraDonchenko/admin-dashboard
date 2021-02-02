@@ -1,10 +1,12 @@
-import DashboardLayout from './../../components/partials/layouts/DashboardLayout';
+import React from 'react';
+import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 
-interface Props {
-}
+interface Props { }
 
-const Groups: React.FunctionComponent<Props> = (props) => {
-	return (<DashboardLayout><div className="foo">I am your lord groups</div></DashboardLayout>);
-};
+const Groups: React.FunctionComponent<Props> = () => (
+  <DashboardLayout>
+    <div className="foo">I am your lord groups</div>
+  </DashboardLayout>
+);
 
 export default Groups;

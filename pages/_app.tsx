@@ -2,26 +2,17 @@
 import type { AppProps } from 'next/app';
 import React from 'react';
 import { createStore } from 'redux';
-import themeReducer from '../redux/reducers/';
-import {Provider} from 'react-redux';
-import Home from './index';
-import Head from 'next/head';
-import { createStore } from 'redux';
-import {Provider} from 'react-redux';
-import App from './_app';
-import styles from '../styles/Home.module.css';
-import rootReducer from './../redux/reducers/index';
-import Login from './Login'
+import { Provider } from 'react-redux';
+import rootReducer from '../redux/reducers/index';
 
 function MyApp({ Component, pageProps }: AppProps) {
-
   const store = createStore(rootReducer);
-	return (
-		<Provider store={store}>
-		<Component {...pageProps} />
-		</Provider>
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
 
-	)
+  );
 }
 
 export default MyApp;

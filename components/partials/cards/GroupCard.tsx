@@ -1,8 +1,7 @@
-interface Props {
-}
+import React from 'react';
 
-const GroupCard: React.FunctionComponent<Props> = (props) => {
-	return null;
-};
+interface Props { }
 
-export default GroupCard
+const GroupCard: React.FunctionComponent<Props> = () => null;
+
+export default GroupCard;
