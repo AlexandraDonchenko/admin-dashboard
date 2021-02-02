@@ -32,6 +32,7 @@
         "@typescript-eslint"
     ],
     "rules": {  
+<<<<<<< HEAD
         "react/prop-types": "off",
         "no-use-before-define": "off",
         "react/jsx-props-no-spreading": "off",
@@ -68,6 +69,9 @@
             "tsx": "never"
           }
         ],
+=======
+        "import/extensions": 1,
+>>>>>>> Implementing: loginpage and landingpage
         "import/no-unresolved": [
             2, 
             {
@@ -85,7 +89,10 @@
             ]
           }
         ]
+<<<<<<< HEAD
         
+=======
+>>>>>>> Implementing: loginpage and landingpage
 
     }
 }
