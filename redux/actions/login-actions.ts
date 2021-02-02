@@ -1,5 +1,4 @@
 export const logins = () => ({
-    type: 'LOGIN',
-  });
-  export const logout = () => ({ type: 'LOGOUT' });
-  
+  type: 'LOGIN',
+});
+export const logout = () => ({ type: 'LOGOUT' });

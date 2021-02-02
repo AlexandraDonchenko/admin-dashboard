@@ -1,9 +1,7 @@
-interface Props {
+import React from 'react';
 
-}
+interface Props { }
 
-const DefaultDesktopNav: React.FunctionComponent<Props> = (props) => {
-	return null;
-};
+const DefaultDesktopNav: React.FunctionComponent<Props> = () => null;
 
 export default DefaultDesktopNav;

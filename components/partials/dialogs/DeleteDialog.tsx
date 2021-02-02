@@ -1,9 +1,7 @@
-interface Props {
+import React from 'react';
 
-}
+interface Props { }
 
-const DeleteDialog: React.FunctionComponent<Props> = (props) => {
-	return null;
-};
+const DeleteDialog: React.FunctionComponent<Props> = () => null;
 
 export default DeleteDialog;

@@ -1,9 +1,12 @@
-interface Props {
-}
-import DashboardLayout from './../../components/partials/layouts/DashboardLayout';
+import React from 'react';
+import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 
-const Doors: React.FunctionComponent<Props> = (props) => {
-	return (<DashboardLayout><div className="foo">I am your lord doors</div></DashboardLayout>);
-};
+interface Props { }
+
+const Doors: React.FunctionComponent<Props> = () => (
+  <DashboardLayout>
+    <div className="foo">I am your lord doors</div>
+  </DashboardLayout>
+);
 
 export default Doors;

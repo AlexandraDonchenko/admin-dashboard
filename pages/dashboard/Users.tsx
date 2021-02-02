@@ -1,10 +1,12 @@
-import DashboardLayout from './../../components/partials/layouts/DashboardLayout';
+import React from 'react';
+import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 
-interface Props {
-}
+interface Props { }
 
-const Users: React.FunctionComponent<Props> = (props) => {
-	return (<DashboardLayout><div className="foo">I am your lord Users</div></DashboardLayout>);
-};
+const Users: React.FunctionComponent<Props> = () => (
+  <DashboardLayout>
+    <div className="foo">I am your lord Users</div>
+  </DashboardLayout>
+);
 
 export default Users;
