@@ -1,6 +1,9 @@
 /* eslint-disable no-use-before-define */
 import type { AppProps } from 'next/app';
 import React from 'react';
+import { createStore } from 'redux';
+import themeReducer from '../redux/reducers/';
+import {Provider} from 'react-redux';
 import Home from './index';
 import Head from 'next/head';
 import { createStore } from 'redux';
@@ -11,6 +14,7 @@ import rootReducer from './../redux/reducers/index';
 import Login from './Login'
 
 function MyApp({ Component, pageProps }: AppProps) {
+
   const store = createStore(rootReducer);
 	return (
 		<Provider store={store}>

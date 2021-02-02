@@ -8,6 +8,7 @@ import {logins} from '../redux/actions/login-actions'
 import Overview from './dashboard/Overview'
 import { Router } from 'next/dist/client/router';
 import { useRouter } from 'next/router'
+import DefaultLayout from '../components/partials/layouts/DefaultLayout';
 
 interface Props {
 
@@ -33,8 +34,6 @@ const Login: React.FunctionComponent <Props> = (props) => {
         <input type= "text"/> 
         <input type="submit" onSubmit={login}/>
       </form>
-        
-        {logged}
       </div>
     );
 
