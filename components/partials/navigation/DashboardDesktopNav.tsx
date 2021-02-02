@@ -20,34 +20,34 @@ const DashboardDesktopNav: React.FunctionComponent<Props> = () => {
   return (
     <div className={styles.navbar}>
       <div id={styles.logoPlaceHolder}><div className={styles.text}>sesame</div></div>
-      <div className={styles.navlink} id={clicked === 'OVERVIEW' ? styles.clicked : null} onClick={() => dispatch(clickedOnOverview())} aria-hidden="true">
+      <div className={styles.navlink}  aria-hidden="true">
         <Link href="/dashboard/Overview">
-          <button type="button">Overview</button>
+          <button id={clicked === 'OVERVIEW' ? styles.clicked : null} onClick={() => dispatch(clickedOnOverview())} type="button">Overview</button>
         </Link>
       </div>
-      <div className={styles.navlink} id={clicked === 'USERS' ? styles.clicked : null} onClick={() => dispatch(clickedOnUsers())} aria-hidden="true">
+      <div className={styles.navlink}  aria-hidden="true">
         <Link href="/dashboard/Users">
-          <button type="button">Users</button>
+          <button id={clicked === 'USERS' ? styles.clicked : null} onClick={() => dispatch(clickedOnUsers())} type="button">Users</button>
         </Link>
       </div>
-      <div className={styles.navlink} id={clicked === 'DOORS' ? styles.clicked : null} onClick={() => dispatch(clickedOnDoors())} aria-hidden="true">
+      <div className={styles.navlink} aria-hidden="true">
         <Link href="/dashboard/Doors">
-          <button type="button">Doors</button>
+          <button id={clicked === 'DOORS' ? styles.clicked : null} onClick={() => dispatch(clickedOnDoors())} type="button">Doors</button>
         </Link>
       </div>
-      <div className={styles.navlink} id={clicked === 'GROUPS' ? styles.clicked : null} onClick={() => dispatch(clickedOnGroups())} aria-hidden="true">
+      <div className={styles.navlink} aria-hidden="true">
         <Link href="/dashboard/Groups">
-          <button type="button">Groups</button>
+          <button id={clicked === 'GROUPS' ? styles.clicked : null} onClick={() => dispatch(clickedOnGroups())} type="button">Groups</button>
         </Link>
       </div>
-      <div className={styles.navlink} id={clicked === 'ISSUES' ? styles.clicked : null} onClick={() => dispatch(clickedOnIssues())} aria-hidden="true">
+      <div className={styles.navlink} aria-hidden="true">
         <Link href="/dashboard/Issues">
-          <button type="button">Issues</button>
+          <button id={clicked === 'ISSUES' ? styles.clicked : null} onClick={() => dispatch(clickedOnIssues())} type="button">Issues</button>
         </Link>
       </div>
-      <div className={styles.navlink} id={clicked === 'LOGS' ? styles.clicked : null} onClick={() => dispatch(clickedOnLogs())} aria-hidden="true">
+      <div className={styles.navlink} aria-hidden="true">
         <Link href="/dashboard/Logs">
-          <button type="button">Logs</button>
+          <button  id={clicked === 'LOGS' ? styles.clicked : null} onClick={() => dispatch(clickedOnLogs())} type="button">Logs</button>
         </Link>
       </div>
 
