@@ -2,6 +2,7 @@ import Link from 'next/Link';
 import Image from 'next/image';
 import styles from '../../../styles/DefaultDesktopNav.module.scss';
 
+
 interface Props { }
 
 const DefaultDesktopNav: React.FunctionComponent<Props> = (props) => (
@@ -21,5 +22,6 @@ const DefaultDesktopNav: React.FunctionComponent<Props> = (props) => (
     </nav>
   </div>
 );
+
 
 export default DefaultDesktopNav;

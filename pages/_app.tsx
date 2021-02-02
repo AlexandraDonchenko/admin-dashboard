@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 
 import rootReducer from '../redux/reducers/index';
 
+
 import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {

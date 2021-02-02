@@ -1,4 +1,5 @@
 import DefaultDesktopNav from '../navigation/DefaultDesktopNav';
+
 import styles from '../../../styles/DefaultLayout.module.scss';
 
 interface Props {
@@ -13,5 +14,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({ children }) => (
   </div>
 
 );
+
 
 export default DefaultLayout;

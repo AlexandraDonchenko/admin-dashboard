@@ -2,10 +2,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+
 import { useRouter } from 'next/router';
 import { logins } from '../redux/actions/login-actions';
 import DefaultLayout from '../components/partials/layouts/DefaultLayout';
 import styles from '../styles/Login.module.scss';
+
 
 interface Props { }
 
@@ -20,6 +22,7 @@ const Login: React.FunctionComponent <Props> = (props) => {
     dispatch(logins());
     router.push(href);
   }
+
 
   return (
     <DefaultLayout>

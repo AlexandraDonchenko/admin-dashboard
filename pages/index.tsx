@@ -10,7 +10,7 @@ import DefaultLayout from '../components/partials/layouts/DefaultLayout';
 interface Props {
 }
 
-<<<<<<< HEAD
+
 const Home: React.FunctionComponent<Props> = (props) => (
   <div>
     <DefaultLayout>
@@ -28,21 +28,6 @@ const Home: React.FunctionComponent<Props> = (props) => (
     </DefaultLayout>
   </div>
 );
-=======
-const Home: React.FunctionComponent<Props> = (props) => {
-  return (
-		<div>
-			<DefaultLayout>
-				<div id={styles.wrapper}>
-					<img id={styles.spinner}  src='/media/graphics/spinner.png' />
-					      <div id={styles.teaser}>
-						<h2 id={styles.teaser}>Easy <span class={styles.highlight}>access management</span> for your organisation or household</h2>
-					</div>
-				</div>
-			</DefaultLayout>
-		</div>
-	) 
-};
->>>>>>> Implementing: loginpage and landingpage
+
 
 export default Home;
