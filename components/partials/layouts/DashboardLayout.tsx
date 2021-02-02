@@ -1,3 +1,4 @@
+
 import { Children, useEffect, useState } from "react";
 import styles from './../../../styles/DashboardLayout.module.scss';
 import {useDispatch, useSelector} from 'react-redux';
@@ -6,9 +7,11 @@ import { useRouter } from 'next/router'
 
 
 
+
 interface Props {
-	children: any
+  children: any
 }
+
 
 const DashboardLayout: React.FunctionComponent<Props> = ({children}) => {
   const logged = useSelector((state) => state.loginReducer.logged)

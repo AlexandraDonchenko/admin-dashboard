@@ -1,8 +1,6 @@
 import { Reducer } from 'react';
 import { Theme, Action } from '../types';
 
-
-
 let originalState: Theme = { theme: 'light' };
 
 const themeReducer: Reducer<Theme, Action> = (state = originalState, action: Action) => {
