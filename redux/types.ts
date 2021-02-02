@@ -7,3 +7,6 @@ export interface Action {
 export interface Logged {
     logged: boolean;
 }
+export interface Clicked {
+    clicked: string;
+}
