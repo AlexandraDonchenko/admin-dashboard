@@ -1,41 +1,47 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Link from 'next/Link';
-import DashboardLayout from './../components/partials/layouts/DashboardLayout'
-import { changeToDark, changeToLight } from '../redux/actions/theme-actions';
-import {logins} from '../redux/actions/login-actions'
-import Overview from './dashboard/Overview'
-import { Router } from 'next/dist/client/router';
-import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux';
+import { logins} from '../redux/actions/login-actions'
+import { useRouter } from 'next/router';
+import DefaultLayout from '../components/partials/layouts/DefaultLayout';
+import styles from '../styles/Login.module.scss';
 
-interface Props {
-
-}
+interface Props { }
 
 const Login: React.FunctionComponent <Props> = (props) => {
-  const theme = useSelector((state) => state.themeReducer.theme);
-  const logged = useSelector((state) => state.loginReducer.logged)
   const dispatch = useDispatch();
   const router = useRouter();
-  const href ='./dashboard/Overview';
-  function login(e) {
-    e.preventDefault();
-    console.log(e)
+	const href ='./dashboard/Overview';
+	
+  function login(event) {
+    event.preventDefault();
+    console.log(event)
     dispatch(logins());
     router.push(href);
-  }
+	}
+
     return (
-      <div><form onSubmit={login}>
-        <label>Email</label>
-        <input type= "text"/> 
-        <label>Password</label>
-        <input type= "text"/> 
-        <input type="submit" onSubmit={login}/>
-      </form>
-        
-        {logged}
-      </div>
+			<DefaultLayout>
+				<div id={styles.wrapper}>
+						<form id={styles.form} onSubmit={login}>
+							<table>
+								<tr>
+									<td><label>Email</label></td>
+									<td><input type="text"/><span></span></td>
+								</tr>
+								<tr>
+									<td><label>Password</label></td>
+									<td><input type="password"/><span></span></td>
+								</tr>
+								<tr>
+									<td colspan='2'>
+        						<input type="submit" onSubmit={login}/>
+									</td>
+								</tr>
+							</table>
+        	  </form>
+				</div>
+			</DefaultLayout>
     );
 
 };

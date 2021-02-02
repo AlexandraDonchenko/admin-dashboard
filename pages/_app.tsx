@@ -8,7 +8,8 @@ import {Provider} from 'react-redux';
 import App from './_app';
 import styles from '../styles/Home.module.css';
 import rootReducer from './../redux/reducers/index';
-import Login from './Login'
+import Login from './Login';
+import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const store = createStore(rootReducer);
