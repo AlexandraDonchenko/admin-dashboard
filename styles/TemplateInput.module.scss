@@ -45,7 +45,7 @@
   background-image: url('../public/media/graphics/radio-circle.svg');
   background-size: 0px;
   background-position: center;
-  transition: background-size 150ms ease;
+  transition: background-size 200ms ease;
   background-repeat: no-repeat;
   outline: none;
   border: 1px solid $light-grey;
@@ -87,8 +87,35 @@ color: $white;
   background-size: 15px;
   outline: none;
 }
+.fileWrapper {
+  position: relative;
+}
 
-.red {
-  border: 5px solid red;
+.file {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  border: none;
+  font-size: $font-medium;
+  outline: none;
+}
+
+.fileButton {
+  position:relative;;
+	border-radius: 5px;
+	border: 1px solid $light-grey;
+	font-size: $font-medium;
+	padding: 5px 10px;
+	outline: none;
+  position: relative;
+  background-color: $white;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: #000;
+;
+  z-index: 2;
+
 }
 
