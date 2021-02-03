@@ -14,10 +14,15 @@ const TemplateInput: React.FunctionComponent<Props> = ({
     switch (type) {
       case 'text':
         return <input className={cx(styles.input, styles.text)} type="text" />;
-
       case 'password':
         return <input className={cx(styles.input, styles.password)} type="password" />;
-
+      case 'file':
+        return (
+          <span className={styles.fileWrapper}>
+            <label htmlFor={labelText} className={styles.fileButton}>Choose Image</label>
+            <input id={labelText} className={cx(styles.file)} type="file" />
+          </span>
+        );
       case 'radio':
         return (
           radioOptions.map((option) => (
@@ -26,7 +31,6 @@ const TemplateInput: React.FunctionComponent<Props> = ({
               <label className={styles.radioLabel} key={`${option}-label`} htmlFor={labelText}>{option}</label>
             </span>
           ))
-
         );
       case 'dropdown':
         return (
