@@ -7,6 +7,7 @@ import DashboardDesktopNav from '../navigation/DashboardDesktopNav';
 import fetchUsers from '../../../redux/actions/user-actions';
 import fetchGroups from '../../../redux/actions/group-actions';
 import fetchDoors from '../../../redux/actions/door-actions';
+import fetchLogs from '../../../redux/actions/log-actions';
 
 interface Props {
   children: any
@@ -17,6 +18,7 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
   const users = useSelector((state) => state.userReducer.users);
   const groups = useSelector((state) => state.groupReducer.groups);
   const doors = useSelector((state) => state.doorReducer.doors);
+  const logs = useSelector((state) => state.logsReducer.logs);
   const router = useRouter();
   const dispatch = useDispatch();
   const href = '/Login';
@@ -27,8 +29,10 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
     dispatch(fetchDoors());
     dispatch(fetchGroups());
     dispatch(fetchUsers());
+    dispatch(fetchLogs());
   }, []);
   if (logged) {
+    console.log(logs);
     return (
       <div className={styles.wrapper}>
         <DashboardDesktopNav />
