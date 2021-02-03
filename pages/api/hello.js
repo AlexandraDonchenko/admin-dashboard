@@ -1,5 +1,24 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+const baseUrl = 'https://private-bcb07f-sesame2.apiary-mock.com';
 
-export default (req, res) => {
-  res.status(200).json({ name: 'John Doe' });
-};
+export function getUsers() {
+  return fetching(`${baseUrl}/api/users`);
+}
+export function getDoors() {
+  return fetching(`${baseUrl}/api/door`);
+}
+export function getGroups() {
+  return fetching(`${baseUrl}/api/groups`);
+}
+function fetching(url, options) {
+  return fetch(url, options)
+    .then((res) => {
+      if (res.status < 400) return res;
+      return Promise.reject(res);
+    })
+    .then((res) => {
+      if (res.status !== 204) return res.json();
+      return res;
+    })
+    .catch((err) => console.log(err));
+}

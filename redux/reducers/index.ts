@@ -2,5 +2,10 @@ import { combineReducers } from 'redux';
 import loginReducer from './is-logged-reducer';
 import themeReducer from './theme-reducer';
 import clickedReducer from './clicked-reducer';
+import userReducer from './user-list-reducer';
+import groupReducer from './group-reducer';
+import doorReducer from './door-reducer';
 
-export default combineReducers({ loginReducer, themeReducer, clickedReducer });
+export default combineReducers({
+  loginReducer, themeReducer, clickedReducer, userReducer, groupReducer, doorReducer,
+});
