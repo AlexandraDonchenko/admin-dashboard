@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import TemplateInput from '../components/partials/inputFields/TemplateInput';
+import TemplateForm from '../components/partials/inputFields/TemplateForm';
 
 import { logins } from '../redux/actions/login-actions';
 import DefaultLayout from '../components/partials/layouts/DefaultLayout';
@@ -25,18 +26,10 @@ const Login: React.FunctionComponent <Props> = (props) => {
   return (
     <DefaultLayout>
       <div id={styles.wrapper}>
-        <form id={styles.form} onSubmit={login}>
-          <table>
-            <tbody>
-              <TemplateInput labelText="Text" type="text" />
-              <TemplateInput labelText="Password" type="password" />
-              <TemplateInput labelText="Group" type="dropdown" dropdownOptions={['hello', 'World', 'Mars']} />
-              <TemplateInput labelText="Status" type="radio" radioOptions={['this', 'is', 'very', 'nice']} />
-              <TemplateInput labelText="Status" type="submit" radioOptions={['this', 'is', 'very', 'nice']} />
-
-            </tbody>
-          </table>
-        </form>
+        <TemplateForm onSubmitAction={login} buttonText="Sign In">
+          <TemplateInput labelText="Email" type="text" />
+          <TemplateInput labelText="Password" type="password" />
+        </TemplateForm>
       </div>
     </DefaultLayout>
   );
