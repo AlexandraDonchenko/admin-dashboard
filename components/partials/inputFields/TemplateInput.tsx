@@ -21,10 +21,10 @@ const TemplateInput: React.FunctionComponent<Props> = ({
       case 'radio':
         return (
           radioOptions.map((option) => (
-            <>
-              <input className={styles.radio} name={labelText} type="radio" />
-              <label className={styles.radioLabel} htmlFor="#">{option}</label>
-            </>
+            <span key={option}>
+              <input className={styles.radio} key={option} name={labelText} type="radio" />
+              <label className={styles.radioLabel} key={`${option}-label`} htmlFor={labelText}>{option}</label>
+            </span>
           ))
 
         );

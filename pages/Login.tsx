@@ -27,8 +27,10 @@ const Login: React.FunctionComponent <Props> = (props) => {
     <DefaultLayout>
       <div id={styles.wrapper}>
         <TemplateForm onSubmitAction={login} buttonText="Sign In">
-          <TemplateInput labelText="Email" type="text" />
+          <TemplateInput labelText="Text" type="text" />
           <TemplateInput labelText="Password" type="password" />
+          <TemplateInput labelText="Group" type="dropdown" dropdownOptions={['Saturn', 'Earth', 'Mars']} />
+          <TemplateInput labelText="Status" type="radio" radioOptions={['Male', 'Female']} />
         </TemplateForm>
       </div>
     </DefaultLayout>
