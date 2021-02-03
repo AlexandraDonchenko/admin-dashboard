@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 export interface Theme {
     theme: String
 }
@@ -21,4 +23,22 @@ export interface User {
 }
 export interface Users {
     users: User[];
+}
+export interface Group {
+    id: number,
+    groupName: string,
+    description, string,
+    access_from_hour: number,
+    access_to_hour: number
+}
+export interface Groups {
+    groups: Group[];
+}
+export interface Door {
+    id: number,
+    name:string,
+    endPoint: string
+}
+export interface Doors{
+    doors: Door[]
 }

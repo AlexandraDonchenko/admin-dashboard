@@ -1,4 +1,4 @@
-import getUsers from '../../pages/api/hello';
+import { getUsers } from '../../pages/api/hello';
 
 const fetchUsers = () => (dispatch) => {
   getUsers()
