@@ -39,13 +39,14 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
   if (logged) {
     console.log(logs);
     return (
-      <div className={styles.wrapper}>
-        <DashboardDesktopNav />
+      <div id={styles.pageWrapper}>
+        <div id={styles.dashboard}>
+          <DashboardDesktopNav />
 
-        <div className={styles.content}>
-          {children}
+          <div className={styles.content}>
+            {children}
+          </div>
         </div>
-
       </div>
     );
   }
