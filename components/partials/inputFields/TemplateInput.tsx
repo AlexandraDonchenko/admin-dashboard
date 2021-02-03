@@ -14,19 +14,23 @@ const TemplateInput: React.FunctionComponent<Props> = ({
     switch (type) {
       case 'text':
         return <input className={cx(styles.input, styles.text)} type="text" />;
-
       case 'password':
         return <input className={cx(styles.input, styles.password)} type="password" />;
-
+      case 'file':
+        return (
+          <span className={styles.fileWrapper}>
+            <label htmlFor={labelText} className={styles.fileButton}>Choose Image</label>
+            <input id={labelText} className={cx(styles.file)} type="file" />
+          </span>
+        );
       case 'radio':
         return (
           radioOptions.map((option) => (
-            <>
-              <input className={styles.radio} name={labelText} type="radio" />
-              <label className={styles.radioLabel} htmlFor="#">{option}</label>
-            </>
+            <span key={option}>
+              <input className={styles.radio} key={option} name={labelText} type="radio" />
+              <label className={styles.radioLabel} key={`${option}-label`} htmlFor={labelText}>{option}</label>
+            </span>
           ))
-
         );
       case 'dropdown':
         return (
