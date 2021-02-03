@@ -2,7 +2,7 @@ export interface Theme {
     theme: String
 }
 export interface Action {
-    type:string, 
+    type:string,
     payload:any
 }
 export interface Logged {
@@ -11,6 +11,14 @@ export interface Logged {
 export interface Clicked {
     clicked: string;
 }
+export interface User {
+    id: number,
+    firstname: string,
+    lastname: string,
+    email: string,
+    isActive: Boolean,
+    group: string
+}
 export interface Users {
-    users: string[]; 
+    users: User[];
 }

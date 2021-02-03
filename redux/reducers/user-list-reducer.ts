@@ -5,10 +5,10 @@ let originalState: Users = { users: [] };
 
 const userReducer: Reducer<Users, Action> = (state = originalState, action) => {
   switch (action.type) {
-    case 'GET-USERS':
-      originalState = action.payload;
+    case 'GET_USERS':
+      originalState = { users: action.payload };
       return originalState;
-    default: return originalState;
+    default: return state;
   }
 };
 export default userReducer;

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import styles from '../../../styles/DashboardLayout.module.scss';
 import DashboardDesktopNav from '../navigation/DashboardDesktopNav';
 import fetchUsers from '../../../redux/actions/user-actions';
+import userReducer from '../../../redux/reducers/user-list-reducer';
 
 interface Props {
   children: any

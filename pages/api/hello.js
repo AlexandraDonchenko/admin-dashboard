@@ -7,10 +7,10 @@ function fetchUsers(url, options) {
   return fetch(url, options)
     .then((res) => {
       if (res.status < 400) return res;
-      Promise.reject(res);
+      return Promise.reject(res);
     })
     .then((res) => {
-      console.log(res);
+      console.log('this is res', res.status);
       if (res.status !== 204) return res.json();
       return res;
     })
