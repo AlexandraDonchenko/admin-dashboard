@@ -1,0 +1,94 @@
+@import './variables';
+
+#wrapper {
+  width: 500px;
+}
+
+.labelCell {
+  max-width: 70px;
+}
+
+#label {
+	width: 100%;
+  padding-right: 15px;
+	font-size: $font-big;
+}
+
+.input {
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid $light-grey;
+	font-size: $font-medium;
+	padding: 5px 10px;
+	outline: none;
+  position: relative;
+  background-color: $white;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.text { }
+
+.password { }
+
+
+.radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  appearance: none;
+  -webkit-appearance: none;
+  vertical-align: bottom;
+  margin-right: 10px;
+  background-image: url('../public/media/graphics/radio-circle.svg');
+  background-size: 0px;
+  background-position: center;
+  transition: background-size 150ms ease;
+  background-repeat: no-repeat;
+  outline: none;
+  border: 1px solid $light-grey;
+}
+
+.radio:checked {
+  background-size: 10px;
+  height: 20px;
+  width: 20px;
+  box-shadow: 0 0 0 2.5px #e8e8e8;
+}
+
+.radioLabel {
+  margin-right: 15px;
+  font-size: $font-medium;
+}
+
+.submit {
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid $light-grey;
+	font-size: $font-medium;
+	padding: 5px 10px;
+	outline: none;
+  position: relative;
+  background-color: $red;
+  outline: none;
+color: $white;
+}
+
+.select {
+  width: 100%;
+	padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid $light-grey;
+
+  appearance: none;
+  background: url('../public/media/graphics/dropdown-arrow.svg') 96% / 15% no-repeat #FFF;
+  background-size: 15px;
+  outline: none;
+}
+
+.red {
+  border: 5px solid red;
+}
+
