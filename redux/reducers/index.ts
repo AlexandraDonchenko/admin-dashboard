@@ -5,7 +5,8 @@ import clickedReducer from './clicked-reducer';
 import userReducer from './user-list-reducer';
 import groupReducer from './group-reducer';
 import doorReducer from './door-reducer';
+import logsReducer from './logs-reducers';
 
 export default combineReducers({
-  loginReducer, themeReducer, clickedReducer, userReducer, groupReducer, doorReducer,
+  loginReducer, themeReducer, clickedReducer, userReducer, groupReducer, doorReducer, logsReducer,
 });

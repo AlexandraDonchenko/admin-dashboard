@@ -42,3 +42,12 @@ export interface Door {
 export interface Doors{
     doors: Door[]
 }
+export interface Log{
+    id:number,
+    enteredBy: number,
+    enteredDoor: number,
+    date: Date
+}
+export interface Logs {
+    logs: Log[];
+}

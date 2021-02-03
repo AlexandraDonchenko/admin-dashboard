@@ -10,6 +10,9 @@ export function getDoors() {
 export function getGroups() {
   return fetching(`${baseUrl}/api/groups`);
 }
+export function getLogs() {
+  return fetching(`${baseUrl}/api/logs`);
+}
 function fetching(url, options) {
   return fetch(url, options)
     .then((res) => {
