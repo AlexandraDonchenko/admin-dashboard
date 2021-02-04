@@ -14,6 +14,7 @@ const Users: React.FunctionComponent<Props> = () => {
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
   const updateInput = (inputName) => {
+    console.log(input);
     const filtered = users.filter((user) => {
       const fullName = `${user.firstname}${user.lastname}`;
       return fullName.toLowerCase().includes(inputName.toLowerCase());
