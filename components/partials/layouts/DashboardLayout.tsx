@@ -37,7 +37,6 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
     dispatch(fetchLogs());
   }, []);
   if (logged) {
-    console.log(logs);
     return (
       <div id={styles.pageWrapper}>
         <div id={styles.dashboard}>
