@@ -12,7 +12,7 @@ const Groups: React.FunctionComponent<Props> = () => {
   const groups = useSelector((store) => store.groupReducer.groups);
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
   const [input, setInput] = useState<string>('');
-  console.log(groups);
+
   const filterGroups = (inputName) => {
     const filtered = groups.filter((group) => {
       const { name } = group;
