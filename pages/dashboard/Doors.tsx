@@ -44,8 +44,8 @@ const Doors: React.FunctionComponent<Props> = () => {
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
-        <button onClick={addDoor}>Add Door</button>
-        <SearchBar updateInput={updateDoors} input={input} />
+
+        <SearchBar updateInput={updateDoors} input={input} addButtonAction={addDoor} />
         <CardWrapper>
           {filteredDoors.map((door) => <DoorCard doorName={door.name} />)}
         </CardWrapper>
