@@ -13,7 +13,6 @@ const Doors: React.FunctionComponent<Props> = () => {
   const [filteredDoors, setFilteredDoors] = useState<Door[]>(doors);
   const [input, setInput] = useState<string>('');
   const updateDoors = (inputName) => {
-    console.log(filteredDoors);
     const filtered = doors.filter((door) => {
       const { name } = door;
       return name.toLowerCase().includes(inputName.toLowerCase());
