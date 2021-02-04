@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
