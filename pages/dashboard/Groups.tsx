@@ -5,7 +5,7 @@ import GroupCard from '../../components/partials/cards/GroupCard';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
 import Group from '../../redux/types';
 import SearchBar from '../../components/partials/searchBar/searchBar';
-import { activateBlur, deactivateBlur } from '../../redux/actions/dialogblur-actions';
+import { activateBlur } from '../../redux/actions/dialogblur-actions';
 import Dialog from '../../components/partials/dialogs/Dialog';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
@@ -15,9 +15,7 @@ interface Props { }
 
 const Groups: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
-  const dialogblur = useSelector((state) => state.dialogblurReducer);
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
-
   const groups = useSelector((store) => store.groupReducer.groups);
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
   const [input, setInput] = useState<string>('');
