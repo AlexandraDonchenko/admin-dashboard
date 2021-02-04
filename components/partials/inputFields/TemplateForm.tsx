@@ -23,10 +23,9 @@ const TemplateForm: React.FunctionComponent<Props> = ({
         <tbody>
           {children}
           <tr>
-
             <td colSpan="2">
-              <input className={styles.submit} type="submit" value={buttonText} />
-              <button onClick={() => cancelDialog(event)}>Cancel</button>
+              <button className={styles.buttonWhite} onClick={() => cancelDialog(event)}>Cancel</button>
+              <input className={styles.buttonRed} type="submit" value={buttonText} />
             </td>
           </tr>
         </tbody>

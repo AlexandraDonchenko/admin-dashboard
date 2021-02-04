@@ -22,7 +22,6 @@ const Groups: React.FunctionComponent<Props> = ({ groupName }) => {
     dispatch(showDialog('GROUPS_DIALOG'));
     console.log('hello');
   };
-  const cancelDialoger = () => { dispatch(deactivateBlur()); };
 
   console.log(dialogStatus);
 
@@ -30,14 +29,15 @@ const Groups: React.FunctionComponent<Props> = ({ groupName }) => {
     <>
       <Dialog active={dialogStatus.groups === 'active'}>
         <TemplateForm buttonText="Add User">
-          <TemplateInput labelText="Hello" type="text" />
-          <TemplateInput labelText="Hello" type="text" />
-          <TemplateInput labelText="Hello" type="text" />
+          <TemplateInput labelText="Name of Group" type="text" />
+          <TemplateInput labelText="Description" type="text" />
+          <TemplateInput labelText="Access from" type="dropdown" dropdownOptions={['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']} />
+          <TemplateInput labelText="Access to" type="dropdown" dropdownOptions={['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']} />
+          <TemplateInput labelText="Allowed doors" type="radio" radioOptions={['Main Entry', 'Cafeteria', 'Leo\'s Office', 'Berta\'s Office']} />
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
         <button onClick={addGroup}>Add Group</button>
-
         <CardWrapper>
           <GroupCard groupName="Teacher" />
           <GroupCard groupName="Teacher Assistant" />

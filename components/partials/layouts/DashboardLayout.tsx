@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import styles from '../../../styles/DashboardLayout.module.scss';
 import DashboardDesktopNav from '../navigation/DashboardDesktopNav';
+import { showDialog } from '../../../redux/actions/dialogstatus-actions';
 
 import fetchUsers from '../../../redux/actions/user-actions';
 import fetchGroups from '../../../redux/actions/group-actions';
@@ -40,20 +41,21 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
   }, []);
 
   if (logged) {
-    console.log(logs);
+    const cancelDialog = (event) => {
+      event.preventDefault();
+      dispatch(showDialog('RESET'));
+      dispatch(deactivateBlur());
+    };
+
     return (
       <div id={styles.pageWrapper}>
         <div id={styles.dashboard}>
           <DashboardDesktopNav />
-
           <div className={styles.content}>
             {children}
           </div>
         </div>
-        <div id={styles.dialogBlur} className={dialogblur.status === 'active' ? styles.active : ''}>
-          <button onClick={activateDialogerBlur}>activate blur</button>
-          <button onClick={deactivateDialogerBlur}>deactivate blur</button>
-        </div>
+        <div onClick={cancelDialog} id={styles.dialogBlur} className={dialogblur.status === 'active' ? styles.active : ''} />
       </div>
     );
   }
