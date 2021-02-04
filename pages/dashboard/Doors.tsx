@@ -30,7 +30,7 @@ const Doors: React.FunctionComponent<Props> = () => {
     setFilteredDoors(filtered);
   };
 
-  const addGroup = () => {
+  const addDoor = () => {
     dispatch(activateBlur());
     dispatch(showDialog('GROUPS_DIALOG'));
   };
@@ -44,7 +44,7 @@ const Doors: React.FunctionComponent<Props> = () => {
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
-        <button onClick={addGroup}>Add Group</button>
+        <button onClick={addDoor}>Add Door</button>
         <SearchBar updateInput={updateDoors} input={input} />
         <CardWrapper>
           {filteredDoors.map((door) => <DoorCard doorName={door.name} />)}
