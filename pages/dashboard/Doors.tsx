@@ -9,7 +9,7 @@ import Dialog from '../../components/partials/dialogs/Dialog';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
 import { showDialog } from '../../redux/actions/dialogstatus-actions';
-import { activateBlur, deactivateBlur } from '../../redux/actions/dialogblur-actions';
+import { activateBlur } from '../../redux/actions/dialogblur-actions';
 
 interface Props { }
 
@@ -32,12 +32,12 @@ const Doors: React.FunctionComponent<Props> = () => {
 
   const addDoor = () => {
     dispatch(activateBlur());
-    dispatch(showDialog('GROUPS_DIALOG'));
+    dispatch(showDialog('DOORS_DIALOG'));
   };
 
   return (
     <>
-      <Dialog active={dialogStatus.groups === 'active'}>
+      <Dialog active={dialogStatus.doors === 'active'}>
         <TemplateForm buttonText="Add Door">
           <TemplateInput labelText="Name of Door" type="text" />
           <TemplateInput labelText="Endpoint" type="text" />

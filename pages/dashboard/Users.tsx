@@ -7,7 +7,7 @@ import UserCard from '../../components/partials/cards/UserCard';
 import { User } from '../../redux/types';
 
 import SearchBar from '../../components/partials/searchBar/searchBar';
-import { activateBlur, deactivateBlur } from '../../redux/actions/dialogblur-actions';
+import { activateBlur } from '../../redux/actions/dialogblur-actions';
 import Dialog from '../../components/partials/dialogs/Dialog';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
@@ -17,13 +17,11 @@ interface Props { }
 
 const Users: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
-  const dialogblur = useSelector((state) => state.dialogblurReducer);
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
   const users = useSelector((state) => state.userReducer.users);
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
   const updateInput = (inputName) => {
-    console.log(input);
     const filtered = users.filter((user) => {
       const fullName = `${user.firstname}${user.lastname}`;
       return fullName.toLowerCase().includes(inputName.toLowerCase());
@@ -34,12 +32,12 @@ const Users: React.FunctionComponent<Props> = () => {
 
   const addUser = () => {
     dispatch(activateBlur());
-    dispatch(showDialog('GROUPS_DIALOG'));
+    dispatch(showDialog('USERS_DIALOG'));
   };
 
   return (
     <>
-      <Dialog active={dialogStatus.groups === 'active'}>
+      <Dialog active={dialogStatus.users === 'active'}>
         <TemplateForm buttonText="Add User">
           <TemplateInput labelText="Firstname" type="text" />
           <TemplateInput labelText="Lastname" type="text" />
