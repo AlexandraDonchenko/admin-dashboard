@@ -29,6 +29,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
             <span key={option}>
               <input className={styles.radio} key={option} name={labelText} type="radio" />
               <label className={styles.radioLabel} key={`${option}-label`} htmlFor={labelText}>{option}</label>
+              <br />
             </span>
           ))
         );
