@@ -29,18 +29,15 @@ const Overview: React.FunctionComponent<Props> = () => {
           {' '}
         </div>
         <CardWrapper>
-          {logs.map((log) => {
-            console.log(log.date);
-            return (
-              <LogCard
-                key={log._id}
-                firstname={users.find(({ id }) => id === log.enteredBy).firstname}
-                lastname={users.find(({ id }) => id === log.enteredBy).lastname}
-                doorName={doors.find(({ id }) => id === log.enteredDoor).name}
-                createdOn={moment(log.date).format('MMM Do YY')}
-              />
-            );
-          })}
+          {logs.map((log) => (
+            <LogCard
+              key={log._id}
+              firstname={users.find(({ id }) => id === log.enteredBy).firstname}
+              lastname={users.find(({ id }) => id === log.enteredBy).lastname}
+              doorName={doors.find(({ id }) => id === log.enteredDoor).name}
+              createdOn={moment(log.date).format('MMM Do YY')}
+            />
+          ))}
 
         </CardWrapper>
       </div>

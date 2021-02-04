@@ -3,6 +3,11 @@ import defaultStyles from '../../../styles/cardWrapper.module.scss';
 import logStyles from '../../../styles/LogCard.module.scss';
 
 interface Props {
+  firstname:string,
+  lastname: string,
+  doorName:string,
+  createdOn:string
+
 }
 
 const LogCard: React.FunctionComponent<Props> = ({
