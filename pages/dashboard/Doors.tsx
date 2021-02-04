@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import DoorCard from '../../components/partials/cards/DoorCard';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
 import Door from '../../redux/types';
 import SearchBar from '../../components/partials/searchBar/searchBar';
+import Dialog from '../../components/partials/dialogs/Dialog';
+import TemplateForm from '../../components/partials/inputFields/TemplateForm';
+import TemplateInput from '../../components/partials/inputFields/TemplateInput';
+import { showDialog } from '../../redux/actions/dialogstatus-actions';
+import { activateBlur, deactivateBlur } from '../../redux/actions/dialogblur-actions';
 
 interface Props { }
 
 const Doors: React.FunctionComponent<Props> = () => {
+  const dispatch = useDispatch();
+  const dialogblur = useSelector((state) => state.dialogblurReducer);
+  const dialogStatus = useSelector((state) => state.dialogStatusReducer);
+
   const doors = useSelector((state) => state.doorReducer.doors);
   const [filteredDoors, setFilteredDoors] = useState<Door[]>(doors);
   const [input, setInput] = useState<string>('');
@@ -20,13 +29,28 @@ const Doors: React.FunctionComponent<Props> = () => {
     setInput(inputName);
     setFilteredDoors(filtered);
   };
+
+  const addGroup = () => {
+    dispatch(activateBlur());
+    dispatch(showDialog('GROUPS_DIALOG'));
+  };
+
   return (
-    <DashboardLayout>
-      <SearchBar updateInput={updateDoors} input={input} />
-      <CardWrapper>
-        {filteredDoors.map((door) => <DoorCard doorName={door.name} />)}
-      </CardWrapper>
-    </DashboardLayout>
+    <>
+      <Dialog active={dialogStatus.groups === 'active'}>
+        <TemplateForm buttonText="Add Door">
+          <TemplateInput labelText="Name of Door" type="text" />
+          <TemplateInput labelText="Endpoint" type="text" />
+        </TemplateForm>
+      </Dialog>
+      <DashboardLayout>
+        <button onClick={addGroup}>Add Group</button>
+        <SearchBar updateInput={updateDoors} input={input} />
+        <CardWrapper>
+          {filteredDoors.map((door) => <DoorCard doorName={door.name} />)}
+        </CardWrapper>
+      </DashboardLayout>
+    </>
   );
 };
 
