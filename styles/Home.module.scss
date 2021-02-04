@@ -12,11 +12,51 @@
 	 width: 500px;
 }
 
+#spinnerAnimation {
+  width: 500px;
+  height: 500px;
+  position: relative;
+}
+
+#spinnerAnimation i {
+  position: absolute;
+}
+
+#spinner2 { 
+  animation: spin 80s infinite linear;
+}
+#spinner3 { 
+  animation: spin2 60s infinite linear;
+}
+#spinner4 { 
+  animation: spin 120s infinite linear;
+}
+
+
 #teaser {
-	font-size: 40px;
-	max-width: 600px;
+	font-size: 60px;
+  max-width: 600px;
+  margin-left: 120px;
 }
 
 .highlight {
-	color: $red
+	color: $red;
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+@keyframes spin2 {
+  from {transform:rotate(360deg);}
+  to {transform:rotate(0deg);}
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }
