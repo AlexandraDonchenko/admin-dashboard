@@ -3,7 +3,7 @@
 #pageWrapper {
   width: 100%;
   height: 100vh;
-  background-color: $white;
+  background-color: #212429;
 }
 
 #dashboard {
@@ -28,14 +28,16 @@
 #dialogBlur {
   width: 0%;
   height: 0vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px) brightness(1.2);
-  transition: backdrop-filter 0.3s ease;
+  // background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(0px) brightness(1) opacity(0);
+  transition: all 1.5s ease, width 0s ease 2s, height 0s ease 2s;
 }
 
 #dialogBlur.active {
   width: 100%;
   height: 100vh;
+  backdrop-filter: blur(2px) brightness(0.30) opacity(1);
+  transition: backdrop-filter 1s ease;
 }
 
 .content {

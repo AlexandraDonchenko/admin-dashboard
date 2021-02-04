@@ -10,13 +10,13 @@ import fetchGroups from '../../../redux/actions/group-actions';
 import fetchDoors from '../../../redux/actions/door-actions';
 import fetchLogs from '../../../redux/actions/log-actions';
 
+import { activateBlur, deactivateBlur } from '../../../redux/actions/dialogblur-actions';
+
 interface Props {
   children: any
 }
 
 const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
-  const logged = useSelector((state) => state.loginReducer.logged);
-
   const users = useSelector((state) => state.userReducer.users);
   const groups = useSelector((state) => state.groupReducer.groups);
   const doors = useSelector((state) => state.doorReducer.doors);
@@ -24,18 +24,21 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const logged = useSelector((state) => state.loginReducer.logged);
+  const dialogblur = useSelector((state) => state.dialogblurReducer);
+
+  const activateDialogerBlur = () => { dispatch(activateBlur()); };
+  const deactivateDialogerBlur = () => { dispatch(deactivateBlur()); };
+
   const href = '/Login';
   useEffect(() => {
-    if (!logged) {
-      router.push(href);
-    }
-
+    if (!logged) { router.push(href); }
     dispatch(fetchDoors());
     dispatch(fetchGroups());
     dispatch(fetchUsers());
-
     dispatch(fetchLogs());
   }, []);
+
   if (logged) {
     console.log(logs);
     return (
@@ -47,8 +50,9 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
             {children}
           </div>
         </div>
-        <div id={styles.dialogBlur} className={styles.active}>
-          <button>blur-effect</button>
+        <div id={styles.dialogBlur} className={dialogblur.status === 'active' ? styles.active : ''}>
+          <button onClick={activateDialogerBlur}>activate blur</button>
+          <button onClick={deactivateDialogerBlur}>deactivate blur</button>
         </div>
       </div>
     );

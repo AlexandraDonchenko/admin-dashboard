@@ -1,9 +1,9 @@
 import { Reducer } from 'react';
 import { DialogBlur, Action } from '../types';
 
-let originalState: DialogBlur = { status: 'active' };
+let originalState: DialogBlur = { status: 'inactive' };
 
-const dialogReducer: Reducer<DialogBlur, Action> = (state = originalState, action: Action) => {
+const dialogblurReducer: Reducer<DialogBlur, Action> = (state = originalState, action: Action) => {
   switch (action.type) {
     case 'ACTIVE': originalState = { status: 'active' };
       return originalState;
@@ -13,4 +13,4 @@ const dialogReducer: Reducer<DialogBlur, Action> = (state = originalState, actio
   }
 };
 
-export default dialogReducer;
+export default dialogblurReducer;
