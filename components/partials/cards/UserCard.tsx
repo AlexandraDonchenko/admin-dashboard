@@ -3,6 +3,10 @@ import defaultStyles from '../../../styles/cardWrapper.module.scss';
 import userStyles from '../../../styles/UserCard.module.scss';
 
 interface Props {
+  firstname:string;
+  lastname:string;
+  email:string;
+  group:string;
 }
 
 const UserCard: React.FunctionComponent<Props> = ({

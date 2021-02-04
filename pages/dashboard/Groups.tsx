@@ -1,8 +1,10 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import GroupCard from '../../components/partials/cards/GroupCard';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
+import Group from '../../redux/types';
+import SearchBar from '../../components/partials/searchBar/searchBar';
 import { activateBlur, deactivateBlur } from '../../redux/actions/dialogblur-actions';
 import Dialog from '../../components/partials/dialogs/Dialog';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
@@ -11,19 +13,28 @@ import { showDialog } from '../../redux/actions/dialogstatus-actions';
 
 interface Props { }
 
-const Groups: React.FunctionComponent<Props> = ({ groupName }) => {
+const Groups: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
   const dialogblur = useSelector((state) => state.dialogblurReducer);
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
 
-  const addGroup = () => {
-    console.log('add users');
-    dispatch(activateBlur());
-    dispatch(showDialog('GROUPS_DIALOG'));
-    console.log('hello');
+  const groups = useSelector((store) => store.groupReducer.groups);
+  const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
+  const [input, setInput] = useState<string>('');
+
+  const filterGroups = (inputName) => {
+    const filtered = groups.filter((group) => {
+      const { name } = group;
+      return name.toLowerCase().includes(inputName.toLowerCase());
+    });
+    setFilteredGroups(filtered);
+    setInput(inputName);
   };
 
-  console.log(dialogStatus);
+  const addGroup = () => {
+    dispatch(activateBlur());
+    dispatch(showDialog('GROUPS_DIALOG'));
+  };
 
   return (
     <>
@@ -38,11 +49,9 @@ const Groups: React.FunctionComponent<Props> = ({ groupName }) => {
       </Dialog>
       <DashboardLayout>
         <button onClick={addGroup}>Add Group</button>
+        <SearchBar updateInput={filterGroups} input={input} />
         <CardWrapper>
-          <GroupCard groupName="Teacher" />
-          <GroupCard groupName="Teacher Assistant" />
-          <GroupCard groupName="Student" />
-          <GroupCard groupName="Service Personal" />
+          {filteredGroups.map((group) => <GroupCard groupName={group.groupName} />)}
         </CardWrapper>
       </DashboardLayout>
     </>

@@ -3,6 +3,7 @@ import defaultStyles from '../../../styles/cardWrapper.module.scss';
 import doorStyles from '../../../styles/UserCard.module.scss';
 
 interface Props {
+  doorName: string;
 }
 
 const UserCard: React.FunctionComponent<Props> = ({
