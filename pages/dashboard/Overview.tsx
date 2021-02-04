@@ -1,20 +1,50 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
 import LogCard from '../../components/partials/cards/LogCard';
+import InfoCard from '../../components/partials/cards/InfoCard';
+import Styles from '../../styles/Overview.module.scss';
 
 interface Props { }
 
-const Overview: React.FunctionComponent<Props> = () => (
-  <DashboardLayout>
-    <CardWrapper>
-      <LogCard firstname="Berta" lastname="Cumellas" doorName={'Leo\'s Office'} createdOn="3 hours ago" />
-      <LogCard firstname="Leo" lastname="Vittorio" doorName={'Leo\'s Office'} createdOn="3 hours ago" />
-      <LogCard firstname="Alba" lastname="Garcia Mollá" doorName={'Leo\'s Office'} createdOn="3 hours ago" />
-      <LogCard firstname="Francesco" lastname="Fagnani" doorName={'Leo\'s Office'} createdOn="3 hours ago" />
-      <LogCard firstname="Matthieu" lastname="Bonnardot" doorName={'Leo\'s Office'} createdOn="3 hours ago" />
-    </CardWrapper>
-  </DashboardLayout>
-);
+const Overview: React.FunctionComponent<Props> = () => {
+  const users = useSelector((store) => store.userReducer.users);
+  const logs = useSelector((store) => store.logsReducer.logs);
+  const doors = useSelector((store) => store.doorReducer.doors);
+  // const logsForPage = logs.map((log) => {
+  //   return {
+  //     firstname: users.find((user) )
+  //   }
+  // })
+  return (
+    <DashboardLayout>
+      <div>
+        <div className={Styles.cardBox}>
+          <InfoCard number={users.length} text="active users" />
+          <InfoCard number={0} text="open invitations" />
+          <InfoCard number={logs.length} text="daily openings" />
+          <InfoCard number={0} text="open issues" />
+          {' '}
+        </div>
+        <CardWrapper>
+          {logs.map((log) => {
+            console.log(log.date);
+            return (
+              <LogCard
+                key={log._id}
+                firstname={users.find(({ id }) => id === log.enteredBy).firstname}
+                lastname={users.find(({ id }) => id === log.enteredBy).lastname}
+                doorName={doors.find(({ id }) => id === log.enteredDoor).name}
+                createdOn={moment(log.date).format('MMM Do YY')}
+              />
+            );
+          })}
 
+        </CardWrapper>
+      </div>
+    </DashboardLayout>
+  );
+};
 export default Overview;
