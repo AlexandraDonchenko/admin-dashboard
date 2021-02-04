@@ -51,3 +51,7 @@ export interface Log{
 export interface Logs {
     logs: Log[];
 }
+
+export interface DialogBlur {
+  status: String;
+}

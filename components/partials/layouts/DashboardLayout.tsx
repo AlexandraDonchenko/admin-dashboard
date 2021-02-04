@@ -47,6 +47,9 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
             {children}
           </div>
         </div>
+        <div id={styles.dialogBlur} className={styles.active}>
+          <button>blur-effect</button>
+        </div>
       </div>
     );
   }
