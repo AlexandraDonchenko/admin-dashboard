@@ -3,6 +3,7 @@ import defaultStyles from '../../../styles/cardWrapper.module.scss';
 import groupStyles from '../../../styles/GroupCard.module.scss';
 
 interface Props {
+  groupName: string
 }
 
 const GroupCard: React.FunctionComponent<Props> = ({

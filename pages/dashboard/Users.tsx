@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { fileURLToPath } from 'url';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
 import UserCard from '../../components/partials/cards/UserCard';
@@ -15,6 +14,7 @@ const Users: React.FunctionComponent<Props> = () => {
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
   const updateInput = (inputName) => {
+    console.log(input);
     const filtered = users.filter((user) => {
       const fullName = `${user.firstname}${user.lastname}`;
       return fullName.toLowerCase().includes(inputName.toLowerCase());
