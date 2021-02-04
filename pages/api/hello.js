@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+
 const baseUrl = 'https://private-bcb07f-sesame2.apiary-mock.com';
 
 export function getUsers() {
@@ -12,6 +13,16 @@ export function getGroups() {
 }
 export function getLogs() {
   return fetching(`${baseUrl}/api/logs`);
+}
+export function postUser(userObj) {
+  return fetching(`${baseUrl}/api/users`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userObj),
+
+  });
 }
 function fetching(url, options) {
   return fetch(url, options)

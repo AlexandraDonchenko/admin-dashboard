@@ -1,4 +1,4 @@
-import { getUsers } from '../../pages/api/hello';
+import { getUsers, postUser } from '../../pages/api/hello';
 
 const fetchUsers = () => (dispatch) => {
   getUsers()
@@ -6,5 +6,8 @@ const fetchUsers = () => (dispatch) => {
       dispatch({ type: 'GET_USERS', payload: data });
     });
 };
-
-export default fetchUsers;
+const createUser = (userObj) => (dispatch) {
+  postUser(userObj)
+    .then((data) => dispatch({ type: 'POST_USER', payload: data.json() }));
+};
+export { fetchUsers, createUser };
