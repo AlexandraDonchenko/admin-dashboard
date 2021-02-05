@@ -18,6 +18,7 @@ interface Props {
 }
 
 const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
+  const [loaded, setLoaded] = useState(false);
   const users = useSelector((state) => state.userReducer.users);
   const groups = useSelector((state) => state.groupReducer.groups);
   const doors = useSelector((state) => state.doorReducer.doors);
@@ -38,6 +39,7 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
     dispatch(fetchGroups());
     dispatch(fetchUsers());
     dispatch(fetchLogs());
+    setLoaded(true);
   }, []);
 
   if (logged) {
