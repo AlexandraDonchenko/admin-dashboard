@@ -8,11 +8,10 @@ import LogCard from '../../components/partials/cards/LogCard';
 import InfoCard from '../../components/partials/cards/InfoCard';
 import Styles from '../../styles/Overview.module.scss';
 
-import fetchUsers from '../../redux/actions/user-actions';
+import { fetchUsers, createUser } from '../../redux/actions/user-actions';
 import fetchGroups from '../../redux/actions/group-actions';
 import fetchDoors from '../../redux/actions/door-actions';
 import fetchLogs from '../../redux/actions/log-actions';
-import Issues from './Issues';
 
 interface Props { }
 

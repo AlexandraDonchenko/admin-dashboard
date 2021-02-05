@@ -12,6 +12,7 @@ import Dialog from '../../components/partials/dialogs/Dialog';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
 import { showDialog } from '../../redux/actions/dialogstatus-actions';
+import { createUser } from '../../redux/actions/user-actions';
 
 interface Props { }
 
@@ -41,27 +42,47 @@ const Users: React.FunctionComponent<Props> = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [group, setGroup] = useState('');
+  const [group, setGroupName] = useState<Number>();
 
-  const handleFirstName = (event) => {
-    event.target.value;
+  const handleFirstName = (event) => { setFirstName(event.target.value); };
+  const handleLasttName = (event) => { setLastName(event.target.value); };
+  const handleEmail = (event) => { setEmail(event.target.value); };
+  const handleGroup = (event) => {
+    console.log(event.target.value);
+
+    setGroupName(Number(event.target.value));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(createUser({
+      firstName,
+      lastName,
+      email,
+      group,
+    }));
+
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setGroupName('');
   };
 
   return (
 
     <>
       <Dialog active={dialogStatus.users === 'active'}>
-        <TemplateForm buttonText="Add User">
-          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} />
-          <TemplateInput labelText="Lastname" type="text" />
-          <TemplateInput labelText="Email" type="text" />
-          <TemplateInput labelText="Group" type="dropdown" dropdownOptions={['Student', 'Teacher', 'Teacher Assistant']} />
+        <TemplateForm buttonText="Add User" onSubmitAction={handleSubmit}>
+          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} />
+          <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} />
+          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} />
+          <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ groupName: 'Teacher Assistant', gid: 21 }, { groupName: 'Teacher', gid: 22 }, { groupName: 'Student', gid: 23 }]} onChangeAction={handleGroup} value={group} />
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
         <SearchBar updateInput={updateInput} input={input} addButtonAction={addUser} />
         <CardWrapper>
-          {usersToDisplay.map((user) => <UserCard firstname={user.firstName} lastname={user.lastName} email={user.email} group={user.groupName} />)}
+          {usersToDisplay.map((user) => <UserCard firstname={user.firstName} lastname={user.lastName} email={user.email} group={user.group} />)}
         </CardWrapper>
       </DashboardLayout>
     </>

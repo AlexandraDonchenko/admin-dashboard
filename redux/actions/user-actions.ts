@@ -7,8 +7,10 @@ const fetchUsers = () => (dispatch) => {
       dispatch({ type: 'GET_USERS', payload: data });
     });
 };
-// const createUser = (userObj) => (dispatch) => {
-//   postUser(userObj)
-//     .then((data) => dispatch({ type: 'POST_USER', payload: data.json() }));
-// };
-export default fetchUsers;
+const createUser = (userObj) => (dispatch) => {
+  console.log(userObj);
+
+  postUser(userObj)
+    .then((data) => dispatch({ type: 'POST_USER', payload: data }));
+};
+export { fetchUsers, createUser };
