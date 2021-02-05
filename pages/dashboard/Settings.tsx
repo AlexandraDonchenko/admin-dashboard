@@ -5,7 +5,7 @@ interface Props { }
 
 const Settings: React.FunctionComponent<Props> = () => (
   <DashboardLayout>
-    <div className="foo">I am your lord settings</div>
+    <div className="foo" />
   </DashboardLayout>
 );
 
