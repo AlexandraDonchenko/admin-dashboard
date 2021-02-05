@@ -8,7 +8,7 @@ const userReducer: Reducer<Users, Action> = (state = originalState, action) => {
     case 'GET_USERS':
       originalState = { users: action.payload };
       return originalState;
-    case 'POST_USERS': originalState = { users: [...state.users, action.payload] };
+    case 'POST_USER': originalState = { users: [...state.users, action.payload] };
       return originalState;
     default: return state;
   }

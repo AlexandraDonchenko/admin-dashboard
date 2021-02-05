@@ -11,6 +11,7 @@ interface Props { }
 
 const Overview: React.FunctionComponent<Props> = () => {
   const users = useSelector((store) => store.userReducer.users);
+  console.log(users);
   const logs = useSelector((store) => store.logsReducer.logs);
   const doors = useSelector((store) => store.doorReducer.doors);
   // const logsForPage = logs.map((log) => {

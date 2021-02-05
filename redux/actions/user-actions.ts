@@ -6,7 +6,7 @@ const fetchUsers = () => (dispatch) => {
       dispatch({ type: 'GET_USERS', payload: data });
     });
 };
-const createUser = (userObj) => (dispatch) {
+const createUser = (userObj) => (dispatch) => {
   postUser(userObj)
     .then((data) => dispatch({ type: 'POST_USER', payload: data.json() }));
 };
