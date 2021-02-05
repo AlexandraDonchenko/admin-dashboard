@@ -15,7 +15,7 @@ const Issues: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
 
-  const deleteIssue = () => {
+  const addIssue = () => {
     dispatch(activateBlur());
     dispatch(showDialog('ISSUES_DIALOG'));
   };
@@ -30,7 +30,7 @@ const Issues: React.FunctionComponent<Props> = () => {
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
-        <button onClick={deleteIssue}>Create Issue</button>
+
         <CardWrapper>
           <IssueCard type="Camera" createdOn="3 hours ago" reportedBy="Leonardo Vittorio" />
           <IssueCard type="Door" createdOn="2 days ago" reportedBy="Berta Cummelas" />

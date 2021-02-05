@@ -46,8 +46,7 @@ const Groups: React.FunctionComponent<Props> = () => {
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
-        <button onClick={addGroup}>Add Group</button>
-        <SearchBar updateInput={filterGroups} input={input} />
+        <SearchBar updateInput={filterGroups} input={input} addButtonAction={addGroup} />
         <CardWrapper>
           {filteredGroups.map((group) => <GroupCard groupName={group.groupName} />)}
         </CardWrapper>

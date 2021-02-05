@@ -36,6 +36,7 @@ const Users: React.FunctionComponent<Props> = () => {
   };
 
   return (
+
     <>
       <Dialog active={dialogStatus.users === 'active'}>
         <TemplateForm buttonText="Add User">
@@ -46,13 +47,14 @@ const Users: React.FunctionComponent<Props> = () => {
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
-        <button onClick={addUser}>Add User</button>
-        <SearchBar updateInput={updateInput} input={input} />
+
+        <SearchBar updateInput={updateInput} input={input} addButtonAction={addUser} />
         <CardWrapper>
           {usersToDisplay.map((user) => <UserCard firstname={user.firstname} lastname={user.lastname} email={user.email} group={user.group} />)}
         </CardWrapper>
       </DashboardLayout>
     </>
+
   );
 };
 
