@@ -21,7 +21,7 @@ const UserCard: React.FunctionComponent<Props> = ({
       <p className={userStyles.firstname}>{firstname}</p>
       <p className={userStyles.lastname}>{lastname}</p>
       <a href={`mailto:${{ email }}`} className={userStyles.email}>{email}</a>
-      <p className={userStyles.group}>{group}</p>
+      {/* <p className={userStyles.group}>{group}</p> */}
     </div>
     <div className={defaultStyles.actionsWrapper}>
       <img className={defaultStyles.action} src="/media/icons/cardOptions/deactivate.svg" />

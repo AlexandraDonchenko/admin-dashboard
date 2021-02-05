@@ -1,4 +1,4 @@
-import { getGroups } from '../../pages/api/hello';
+import { getGroups, postGroup } from '../../pages/api/hello';
 
 const fetchGroups = () => (dispatch) => {
   getGroups()
@@ -6,4 +6,10 @@ const fetchGroups = () => (dispatch) => {
       dispatch({ type: 'GET_GROUPS', payload: data });
     });
 };
+// const postGroups = () => {
+//   postGroups()
+//     .then((data) => {
+//       dispatch({ type: 'POST_GROUP', payload: data });
+//     });
+// };
 export default fetchGroups;

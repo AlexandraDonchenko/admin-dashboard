@@ -50,7 +50,7 @@ const Users: React.FunctionComponent<Props> = () => {
 
         <SearchBar updateInput={updateInput} input={input} addButtonAction={addUser} />
         <CardWrapper>
-          {usersToDisplay.map((user) => <UserCard firstname={user.firstname} lastname={user.lastname} email={user.email} group={user.group} />)}
+          {usersToDisplay.map((user) => <UserCard firstname={user.firstName} lastname={user.lastName} email={user.email} group={user.groupName} />)}
         </CardWrapper>
       </DashboardLayout>
     </>

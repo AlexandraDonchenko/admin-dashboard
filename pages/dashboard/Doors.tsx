@@ -18,7 +18,33 @@ const Doors: React.FunctionComponent<Props> = () => {
   const dialogblur = useSelector((state) => state.dialogblurReducer);
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
 
-  const doors = useSelector((state) => state.doorReducer.doors);
+  // const doors = useSelector((state) => state.doorReducer.doors);
+  const doors = [
+    {
+      did: 12,
+      doorName: 'Main Entry',
+      endPoint: '/mainEntry',
+      doorUrl: null,
+    },
+    {
+      did: 13,
+      doorName: "Leo's Office",
+      endPoint: '/LeosOffice',
+      doorUrl: null,
+    },
+    {
+      did: 14,
+      doorName: "Bertas's Office",
+      endPoint: '/BertasOffice',
+      doorUrl: null,
+    },
+    {
+      did: 15,
+      doorName: 'Supply loset',
+      endPoint: '/SupplyCloser',
+      doorUrl: null,
+    },
+  ];
   const [filteredDoors, setFilteredDoors] = useState<Door[]>(doors);
   const [input, setInput] = useState<string>('');
   const updateDoors = (inputName) => {
@@ -47,7 +73,7 @@ const Doors: React.FunctionComponent<Props> = () => {
 
         <SearchBar updateInput={updateDoors} input={input} addButtonAction={addDoor} />
         <CardWrapper>
-          {filteredDoors.map((door) => <DoorCard doorName={door.name} />)}
+          {filteredDoors.map((door) => <DoorCard doorName={door.doorName} />)}
         </CardWrapper>
       </DashboardLayout>
     </>
