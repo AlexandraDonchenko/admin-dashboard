@@ -12,6 +12,7 @@ import fetchUsers from '../../redux/actions/user-actions';
 import fetchGroups from '../../redux/actions/group-actions';
 import fetchDoors from '../../redux/actions/door-actions';
 import fetchLogs from '../../redux/actions/log-actions';
+import Issues from './Issues';
 
 interface Props { }
 
@@ -39,7 +40,8 @@ const Overview: React.FunctionComponent<Props> = () => {
 
   return (
     <>
-      { users && users.length && (
+      {console.log(doors)}
+      { users && users.length && doors && doors.length && logs && logs.length && (
         <DashboardLayout>
           <div>
             <div className={Styles.cardBox}>

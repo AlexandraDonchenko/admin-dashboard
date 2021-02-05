@@ -38,12 +38,21 @@ const Users: React.FunctionComponent<Props> = () => {
     dispatch(showDialog('USERS_DIALOG'));
   };
 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [group, setGroup] = useState('');
+
+  const handleFirstName = (event) => {
+    event.target.value;
+  };
+
   return (
 
     <>
       <Dialog active={dialogStatus.users === 'active'}>
         <TemplateForm buttonText="Add User">
-          <TemplateInput labelText="Firstname" type="text" />
+          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} />
           <TemplateInput labelText="Lastname" type="text" />
           <TemplateInput labelText="Email" type="text" />
           <TemplateInput labelText="Group" type="dropdown" dropdownOptions={['Student', 'Teacher', 'Teacher Assistant']} />
