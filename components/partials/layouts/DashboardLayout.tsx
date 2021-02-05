@@ -33,14 +33,14 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
   const deactivateDialogerBlur = () => { dispatch(deactivateBlur()); };
 
   const href = '/Login';
-  useEffect(() => {
-    if (!logged) { router.push(href); }
-    dispatch(fetchDoors());
-    dispatch(fetchGroups());
-    dispatch(fetchUsers());
-    dispatch(fetchLogs());
-    setLoaded(true);
-  }, []);
+  // useEffect(() => {
+  //   if (!logged) { router.push(href); }
+  //   dispatch(fetchDoors());
+  //   dispatch(fetchGroups());
+  //   dispatch(fetchUsers());
+  //   dispatch(fetchLogs());
+  //   setLoaded(true);
+  // }, []);
 
   if (logged) {
     const cancelDialog = (event) => {
@@ -50,15 +50,21 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
     };
 
     return (
-      <div id={styles.pageWrapper}>
-        <div id={styles.dashboard}>
-          <DashboardDesktopNav />
-          <div className={styles.content}>
-            {children}
+      <>
+        {/* { users && users.length */}
+        {/* && ( */}
+        <div id={styles.pageWrapper}>
+          <div id={styles.dashboard}>
+            <DashboardDesktopNav />
+            <div className={styles.content}>
+              {children}
+            </div>
           </div>
+          <div onClick={cancelDialog} id={styles.dialogBlur} className={dialogblur.status === 'active' ? styles.active : ''} />
         </div>
-        <div onClick={cancelDialog} id={styles.dialogBlur} className={dialogblur.status === 'active' ? styles.active : ''} />
-      </div>
+        {/* ) */}
+        {/* } */}
+      </>
     );
   }
   return null;

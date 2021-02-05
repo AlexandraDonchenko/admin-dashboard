@@ -15,8 +15,10 @@ interface Props { }
 
 const Groups: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
+
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
   const groups = useSelector((store) => store.groupReducer.groups);
+
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
   const [input, setInput] = useState<string>('');
 

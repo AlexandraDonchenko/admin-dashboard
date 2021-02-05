@@ -17,10 +17,13 @@ interface Props { }
 
 const Users: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
+
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
   const users = useSelector((state) => state.userReducer.users);
+
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
+
   const updateInput = (inputName) => {
     const filtered = users.filter((user) => {
       const fullName = `${user.firstname}${user.lastname}`;
@@ -47,7 +50,6 @@ const Users: React.FunctionComponent<Props> = () => {
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
-
         <SearchBar updateInput={updateInput} input={input} addButtonAction={addUser} />
         <CardWrapper>
           {usersToDisplay.map((user) => <UserCard firstname={user.firstName} lastname={user.lastName} email={user.email} group={user.groupName} />)}
