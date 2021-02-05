@@ -1,8 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 // const baseUrl = 'https://private-bcb07f-sesame2.apiary-mock.com';
-const baseUrl = '192.168.1.169:5001';
+const baseUrl = 'http://192.168.1.171:5000';
 
+// export function getUsers() {
+//   return fetching(`${baseUrl}/api/users`);
+// }
 export function getUsers() {
   return fetching(`${baseUrl}/user/list`);
 }
@@ -37,6 +40,7 @@ export function postGroup(groupObj) {
 function fetching(url, options) {
   return fetch(url, options)
     .then((res) => {
+      console.log(url);
       if (res.status < 400) return res;
       return Promise.reject(res);
     })

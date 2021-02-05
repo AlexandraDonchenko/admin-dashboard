@@ -6,7 +6,7 @@ import styles from '../../../styles/DashboardLayout.module.scss';
 import DashboardDesktopNav from '../navigation/DashboardDesktopNav';
 import { showDialog } from '../../../redux/actions/dialogstatus-actions';
 
-import { fetchUsers } from '../../../redux/actions/user-actions';
+import fetchUsers from '../../../redux/actions/user-actions';
 import fetchGroups from '../../../redux/actions/group-actions';
 import fetchDoors from '../../../redux/actions/door-actions';
 import fetchLogs from '../../../redux/actions/log-actions';

@@ -11,8 +11,8 @@ interface Props { }
 
 const Overview: React.FunctionComponent<Props> = () => {
   const users = useSelector((store) => store.userReducer.users);
-  console.log(users);
   const logs = useSelector((store) => store.logsReducer.logs);
+  console.log(logs, 'This is logs');
   const doors = useSelector((store) => store.doorReducer.doors);
   // const logsForPage = logs.map((log) => {
   //   return {
@@ -33,9 +33,9 @@ const Overview: React.FunctionComponent<Props> = () => {
           {logs.map((log) => (
             <LogCard
               key={log._id}
-              firstname={users.find(({ id }) => id === log.enteredBy).firstname}
-              lastname={users.find(({ id }) => id === log.enteredBy).lastname}
-              doorName={doors.find(({ id }) => id === log.enteredDoor).name}
+              firstname={users.find(({ aid }) => aid === log.enteredBy).firstName}
+              lastname={users.find(({ aid }) => aid === log.enteredBy).lastName}
+              doorName={doors.find(({ did }) => did === log.enteredDoor).name}
               createdOn={moment(log.date).format('MMM Do YY')}
             />
           ))}
