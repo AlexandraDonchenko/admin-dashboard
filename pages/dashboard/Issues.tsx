@@ -8,6 +8,7 @@ import Dialog from '../../components/partials/dialogs/Dialog';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
 import { showDialog } from '../../redux/actions/dialogstatus-actions';
+import SearchBar from '../../components/partials/searchBar/searchBar';
 
 interface Props { }
 
@@ -23,14 +24,15 @@ const Issues: React.FunctionComponent<Props> = () => {
   return (
     <>
       <Dialog active={dialogStatus.issues === 'active'}>
-        <TemplateForm buttonText="Add Issue">
+
+        <TemplateForm buttonText="Add Issue" addButtonAction="addIssue">
           <TemplateInput labelText="Type" type="dropdown" dropdownOptions={['Door', 'Camera', 'App']} />
           <TemplateInput labelText="Door" type="dropdown" dropdownOptions={['Leo\'s Office', 'Main Entry']} />
           <TemplateInput labelText="Reported by" type="dropdown" dropdownOptions={['Leo', 'Berta', 'Vic']} />
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
-
+        <SearchBar addButtonAction={addIssue} />
         <CardWrapper>
           <IssueCard type="Camera" createdOn="3 hours ago" reportedBy="Leonardo Vittorio" />
           <IssueCard type="Door" createdOn="2 days ago" reportedBy="Berta Cummelas" />

@@ -17,10 +17,13 @@ interface Props { }
 
 const Users: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
+
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
   const users = useSelector((state) => state.userReducer.users);
+
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
+
   const updateInput = (inputName) => {
     const filtered = users.filter((user) => {
       const fullName = `${user.firstname}${user.lastname}`;
@@ -35,19 +38,27 @@ const Users: React.FunctionComponent<Props> = () => {
     dispatch(showDialog('USERS_DIALOG'));
   };
 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [group, setGroup] = useState('');
+
+  const handleFirstName = (event) => {
+    event.target.value;
+  };
+
   return (
 
     <>
       <Dialog active={dialogStatus.users === 'active'}>
         <TemplateForm buttonText="Add User">
-          <TemplateInput labelText="Firstname" type="text" />
+          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} />
           <TemplateInput labelText="Lastname" type="text" />
           <TemplateInput labelText="Email" type="text" />
           <TemplateInput labelText="Group" type="dropdown" dropdownOptions={['Student', 'Teacher', 'Teacher Assistant']} />
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
-
         <SearchBar updateInput={updateInput} input={input} addButtonAction={addUser} />
         <CardWrapper>
           {usersToDisplay.map((user) => <UserCard firstname={user.firstName} lastname={user.lastName} email={user.email} group={user.groupName} />)}

@@ -2,18 +2,25 @@ import React from 'react';
 import cx from 'classnames';
 import styles from '../../../styles/TemplateInput.module.scss';
 
-interface Props { }
+interface Props {
+  type: string,
+  labelText: string,
+  dropdownOptions?: [],
+  radioOptions?: [],
+  onChangeAction: Function,
+}
 
 const TemplateInput: React.FunctionComponent<Props> = ({
   type,
   labelText,
   dropdownOptions,
   radioOptions,
+  onChangeAction,
 }) => {
   const renderType = (type) => {
     switch (type) {
       case 'text':
-        return <input className={cx(styles.input, styles.text)} type="text" />;
+        return <input className={cx(styles.input, styles.text)} type="text" onChangeAction={ } />;
       case 'password':
         return <input className={cx(styles.input, styles.password)} type="password" />;
       case 'file':
