@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from '../../../styles/TemplateForm.module.scss';
 
-interface Props { }
+interface Props {
+}
 
-const Button: React.FunctionComponent<Props> = ({ buttonText }) => (
+const Button: React.FunctionComponent<Props> = ({ buttonText, onSubmitAction }) => (
   <form className={styles.form} onSubmit={onSubmitAction}>
     <table>
       <tbody>
