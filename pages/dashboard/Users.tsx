@@ -12,8 +12,7 @@ import Dialog from '../../components/partials/dialogs/Dialog';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
 import { showDialog } from '../../redux/actions/dialogstatus-actions';
-import { createUser } from '../../redux/actions/user-actions';
-import { chooseUser } from '../../redux/actions/choose';
+import { createUser, chooseUser } from '../../redux/actions/user-actions';
 
 interface Props { }
 
@@ -41,22 +40,23 @@ const Users: React.FunctionComponent<Props> = () => {
     dispatch(showDialog('USERS_DIALOG_ADD'));
   };
 
-  const showUpdateUserDialog = (user) => {
+  const showUpdateUserDialog = (event, user) => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_UPDATE'));
-    dispatch(pickedUser(user));
+    dispatch(chooseUser(user));
+    console.log('showUpdateDunction', user);
   };
 
-  const showDeleteUserDialog = (user) => {
+  const showDeleteUserDialog = (event, user) => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_DELETE'));
-    dispatch(pickedUser(user));
+    dispatch(chooseUser(user));
   };
 
-  const showDeactivateUserDialog = (user) => {
+  const showDeactivateUserDialog = (event, user) => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_DEACTIVATE'));
-    dispatch(pickedUser(user));
+    dispatch(chooseUser(user));
   };
 
   const [firstName, setFirstName] = useState('');
@@ -74,7 +74,6 @@ const Users: React.FunctionComponent<Props> = () => {
 
   const handleSubmit = (event, id) => {
     event.preventDefault();
-    console.log(test);
 
     dispatch(createUser({
       firstName,
