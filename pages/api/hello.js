@@ -29,7 +29,7 @@ export function postUser(userObj) {
   });
 }
 export function postGroup(groupObj) {
-  return fetching(`${baseUrl}/api/users`, {
+  return fetching(`${baseUrl}/group/create`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -37,6 +37,16 @@ export function postGroup(groupObj) {
     body: JSON.stringify(groupObj),
   });
 }
+export function postDoor(doorObj) {
+  return fetching(`${baseUrl}/door/create`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(doorObj),
+  });
+}
+
 function fetching(url, options) {
   return fetch(url, options)
     .then((res) => {

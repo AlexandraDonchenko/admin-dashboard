@@ -6,10 +6,10 @@ const fetchGroups = () => (dispatch) => {
       dispatch({ type: 'GET_GROUPS', payload: data });
     });
 };
-// const postGroups = () => {
-//   postGroups()
-//     .then((data) => {
-//       dispatch({ type: 'POST_GROUP', payload: data });
-//     });
-// };
-export default fetchGroups;
+const createGroup = (groupObj) => (dispatch) => {
+  postGroup(groupObj)
+    .then((data) => {
+      dispatch({ type: 'POST_GROUP', payload: data });
+    });
+};
+export { fetchGroups, createGroup };

@@ -8,8 +8,6 @@ const fetchUsers = () => (dispatch) => {
     });
 };
 const createUser = (userObj) => (dispatch) => {
-  console.log(userObj);
-
   postUser(userObj)
     .then((data) => dispatch({ type: 'POST_USER', payload: data }));
 };
