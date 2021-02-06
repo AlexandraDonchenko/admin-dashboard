@@ -7,12 +7,14 @@ import UserCard from '../../components/partials/cards/UserCard';
 import { User } from '../../redux/types';
 
 import SearchBar from '../../components/partials/searchBar/searchBar';
-import { activateBlur } from '../../redux/actions/dialogblur-actions';
+import { activateBlur, deactivateBlur } from '../../redux/actions/dialogblur-actions';
 import Dialog from '../../components/partials/dialogs/Dialog';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
 import { showDialog } from '../../redux/actions/dialogstatus-actions';
-import { createUser, chooseUser, updateUser } from '../../redux/actions/user-actions';
+import {
+  createUser, chooseUser, updateUser, removeUser,
+} from '../../redux/actions/user-actions';
 
 interface Props { }
 
@@ -24,6 +26,12 @@ const Users: React.FunctionComponent<Props> = () => {
 
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
+
+  const cancelDialog = (event) => {
+    event.preventDefault();
+    dispatch(showDialog('RESET'));
+    dispatch(deactivateBlur());
+  };
 
   const updateInput = (inputName) => {
     const filtered = users.filter((user) => {
@@ -54,7 +62,7 @@ const Users: React.FunctionComponent<Props> = () => {
   const showDeleteUserDialog = (event) => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_DELETE'));
-    dispatch(chooseUser(user));
+    // dispatch(chooseUser(user));
   };
 
   const showDeactivateUserDialog = (event, user) => {
@@ -75,7 +83,10 @@ const Users: React.FunctionComponent<Props> = () => {
     setGroupName(Number(event.target.value));
   };
 
+  const pickedUser = useSelector((state) => state.choosenUserReducer.user);
+
   const handleAddSubmit = (event, id) => {
+    event.preventDefault();
     dispatch(createUser({
       firstName,
       lastName,
@@ -86,12 +97,23 @@ const Users: React.FunctionComponent<Props> = () => {
     setLastName('');
     setEmail('');
     setGroupName('');
+
+    cancelDialog(event);
   };
 
-  const pickedUser = useSelector((state) => state.choosenUserReducer.user);
-  const handleUpdateSubmit = (event, aid) => {
+  const handleDeleteSubmit = (event) => {
     event.preventDefault();
+    dispatch(removeUser(pickedUser.aid));
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setGroupName('');
+    cancelDialog(event);
+  };
+
+  const handleUpdateSubmit = (event, aid) => {
     console.log('Here we go:', pickedUser);
+    event.preventDefault();
 
     dispatch(updateUser(pickedUser.aid, {
       firstName,
@@ -103,6 +125,7 @@ const Users: React.FunctionComponent<Props> = () => {
     setLastName('');
     setEmail('');
     setGroupName('');
+    cancelDialog(event);
   };
 
   return (
@@ -126,7 +149,7 @@ const Users: React.FunctionComponent<Props> = () => {
         </TemplateForm>
       </Dialog>
       <Dialog active={dialogStatus.users_delete === 'active'}>
-        <TemplateForm buttonText="Delete User" onSubmitAction={handleUpdateSubmit} />
+        <TemplateForm buttonText="Delete User" onSubmitAction={(event) => handleDeleteSubmit(event)} />
       </Dialog>
       <Dialog active={dialogStatus.users_deactivate === 'active'}>
         <TemplateForm buttonText="Deactivete User" onSubmitAction={handleAddSubmit}>

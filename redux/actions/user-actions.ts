@@ -1,4 +1,6 @@
-import { getUsers, postUser, putUser } from '../../pages/api/hello';
+import {
+  getUsers, postUser, putUser, deleteUser,
+} from '../../pages/api/hello';
 
 const fetchUsers = () => (dispatch) => {
   getUsers()
@@ -12,10 +14,17 @@ const createUser = (userObj) => (dispatch) => {
 };
 
 const chooseUser = (userObj) => ({ type: 'CHOOSE_USER', payload: userObj });
+
 const updateUser = (aid, userObj) => (dispatch) => {
   putUser(aid, userObj)
     .then((data) => dispatch({ type: 'UPDATE_USER', payload: { data, aid } }));
 };
+
+const removeUser = (aid) => (dispatch) => {
+  deleteUser(aid)
+    .then((data) => dispatch({ type: 'DELETE_USER', payload: { data, aid } }));
+};
+
 export {
-  fetchUsers, createUser, chooseUser, updateUser,
+  fetchUsers, createUser, chooseUser, updateUser, removeUser,
 };

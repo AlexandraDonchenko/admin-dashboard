@@ -56,6 +56,15 @@ export function putUser(aid, userObj) {
   });
 }
 
+export function deleteUser(aid) {
+  return fetch(`${baseUrl}/user/delete/${aid}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
 function fetching(url, options) {
   return fetch(url, options)
     .then((res) => {
