@@ -21,7 +21,6 @@ const Users: React.FunctionComponent<Props> = () => {
 
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
   const users = useSelector((state) => state.userReducer.users);
-  const pickedUser = useSelector((state) => state.choosenUserReducer.user);
 
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
@@ -40,14 +39,14 @@ const Users: React.FunctionComponent<Props> = () => {
     dispatch(showDialog('USERS_DIALOG_ADD'));
   };
 
-  const showUpdateUserDialog = (event, user) => {
+  const showUpdateUserDialog = (event) => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_UPDATE'));
-    dispatch(chooseUser(user));
-    console.log('showUpdateDunction', user);
+    dispatch(chooseUser(event.target.value));
+    // console.log(pickedUser);
   };
 
-  const showDeleteUserDialog = (event, user) => {
+  const showDeleteUserDialog = (event) => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_DELETE'));
     dispatch(chooseUser(user));
