@@ -14,6 +14,8 @@ const UserCard: React.FunctionComponent<Props> = ({
   lastname,
   email,
   group,
+  options,
+  aid,
 }) => (
   <div className={defaultStyles.cardWrapper}>
     <div className={defaultStyles.infoWrapper}>
@@ -24,9 +26,9 @@ const UserCard: React.FunctionComponent<Props> = ({
       {/* <p className={userStyles.group}>{group}</p> */}
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/deactivate.svg" />
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" />
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/delete.svg" />
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/deactivate.svg" onClick={() => options.deactivate(aid)} />
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" onClick={() => options.update(aid)} />
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/delete.svg" onClick={() => options.delete(aid)} />
     </div>
   </div>
 );

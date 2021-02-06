@@ -50,7 +50,7 @@ export function postDoor(doorObj) {
 function fetching(url, options) {
   return fetch(url, options)
     .then((res) => {
-      console.log(url);
+      // console.log(url);
       if (res.status < 400) return res;
       return Promise.reject(res);
     })

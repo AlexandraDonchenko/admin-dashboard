@@ -29,9 +29,11 @@ const Overview: React.FunctionComponent<Props> = () => {
 
   return (
     <>
-      {console.log(doors)}
       { users && users.length && doors && doors.length && logs && logs.length && (
         <DashboardLayout>
+          { console.log('Users:', users)}
+          { console.log('LOGS:', logs)}
+
           <div>
             <div className={Styles.cardBox}>
               <InfoCard number={users.length} text="active users" />
@@ -41,16 +43,22 @@ const Overview: React.FunctionComponent<Props> = () => {
               {' '}
             </div>
             <CardWrapper>
-              {logs.map((log) => (
-                <LogCard
+              {logs.map((log) => {
+                console.log(users.find(({ aid }) => aid === log.enteredBy));
+                console.log(log);
 
-                  key={log._id}
-                  firstname={users.find(({ aid }) => aid === log.enteredBy).firstName}
-                  lastname={users.find(({ aid }) => aid === log.enteredBy).lastName}
-                  doorName={doors.find(({ did }) => did === log.enteredDoor).doorName}
-                  createdOn={moment(log.date).format('MMM Do YY')}
-                />
-              ))}
+                return (
+                  <LogCard
+                    key={log._id}
+
+                    firstname={users.find(({ aid }) => aid === log.enteredBy).firstName}
+                    lastname={users.find(({ aid }) => aid === log.enteredBy).lastName}
+                    doorName={doors.find(({ did }) => did === log.enteredDoor).doorName}
+                    createdOn={moment(log.date).format('MMM Do YY')}
+                  />
+
+                );
+              })}
 
             </CardWrapper>
           </div>

@@ -2,7 +2,10 @@ import { Reducer } from 'react';
 import { Action } from '../types';
 
 let originalState: DialogStatus = {
-  users: 'inactive',
+  users_add: 'inactive',
+  users_update: 'inactive',
+  users_delete: 'inactive',
+  users_deactivate: 'inative',
   groups: 'inactive',
   doors: 'inactive',
   logs: 'inactive',
@@ -12,9 +15,46 @@ let originalState: DialogStatus = {
 
 const dialogStatusReducer: Reducer<DialogStatus> = (state = originalState, action: Action) => {
   switch (action.type) {
-    case 'USERS_DIALOG':
+    case 'USERS_DIALOG_ADD':
       originalState = {
-        users: 'active',
+        users_add: 'active',
+        users_update: 'inactive',
+        groups: 'inactive',
+        doors: 'inavctive',
+        logs: 'inactive',
+        issues: 'inactive',
+        settings: 'inactive',
+      };
+      return originalState;
+    case 'USERS_DIALOG_UPDATE':
+      originalState = {
+        users_add: 'inactive',
+        users_update: 'active',
+        groups: 'inactive',
+        doors: 'inavctive',
+        logs: 'inactive',
+        issues: 'inactive',
+        settings: 'inactive',
+      };
+      return originalState;
+    case 'USERS_DIALOG_DELETE':
+      originalState = {
+        users_add: 'inactive',
+        users_update: 'inactive',
+        users_delete: 'active',
+        groups: 'inactive',
+        doors: 'inavctive',
+        logs: 'inactive',
+        issues: 'inactive',
+        settings: 'inactive',
+      };
+      return originalState;
+    case 'USERS_DIALOG_DEACTIVATE':
+      originalState = {
+        users_add: 'inactive',
+        users_update: 'inactive',
+        users_delete: 'inactive',
+        users_deactivate: 'active',
         groups: 'inactive',
         doors: 'inavctive',
         logs: 'inactive',
