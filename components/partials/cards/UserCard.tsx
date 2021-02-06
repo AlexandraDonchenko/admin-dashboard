@@ -26,11 +26,9 @@ const UserCard: React.FunctionComponent<Props> = ({
       <p className={userStyles.group}>{user.group.groupName}</p>
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/deactivate.svg" onClick={options.deactivate} value={user} />
-
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/deactivate.svg" onClick={(event) => options.deactivate(event, user)} />
       <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" onClick={(event) => options.update(event, user)} />
-
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/delete.svg" onClick={options.delete} value={user} />
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/delete.svg" onClick={(event) => options.delete(event, user)} />
     </div>
   </div>
 );

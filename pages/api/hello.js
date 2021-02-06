@@ -47,7 +47,7 @@ export function postDoor(doorObj) {
   });
 }
 export function putUser(aid, userObj) {
-  return fetch(`${baseUrl}user/update/:${aid}`, {
+  return fetch(`${baseUrl}/user/update/${aid}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

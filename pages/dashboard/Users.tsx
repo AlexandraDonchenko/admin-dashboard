@@ -12,7 +12,7 @@ import Dialog from '../../components/partials/dialogs/Dialog';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
 import { showDialog } from '../../redux/actions/dialogstatus-actions';
-import { createUser, chooseUser } from '../../redux/actions/user-actions';
+import { createUser, chooseUser, updateUser } from '../../redux/actions/user-actions';
 
 interface Props { }
 
@@ -41,7 +41,11 @@ const Users: React.FunctionComponent<Props> = () => {
 
   const showUpdateUserDialog = (event, user) => {
     dispatch(activateBlur());
-    console.log('user from shouwupdate', user);
+    dispatch(updateUser(user.aid, {
+      firstName,
+      lastName,
+      email,
+    }));
 
     dispatch(showDialog('USERS_DIALOG_UPDATE'));
     dispatch(chooseUser(user));
@@ -71,16 +75,30 @@ const Users: React.FunctionComponent<Props> = () => {
     setGroupName(Number(event.target.value));
   };
 
-  const handleSubmit = (event, id) => {
-    event.preventDefault();
-
+  const handleAddSubmit = (event, id) => {
     dispatch(createUser({
       firstName,
       lastName,
       email,
       group,
     }));
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setGroupName('');
+  };
 
+  const pickedUser = useSelector((state) => state.choosenUserReducer.user);
+  const handleUpdateSubmit = (event, aid) => {
+    event.preventDefault();
+    console.log('Here we go:', pickedUser);
+
+    dispatch(updateUser(pickedUser.aid, {
+      firstName,
+      lastName,
+      email,
+      group,
+    }));
     setFirstName('');
     setLastName('');
     setEmail('');
@@ -91,7 +109,7 @@ const Users: React.FunctionComponent<Props> = () => {
 
     <>
       <Dialog active={dialogStatus.users_add === 'active'}>
-        <TemplateForm buttonText="Add User" onSubmitAction={(event) => handleSubmit(event, 'its working!')}>
+        <TemplateForm buttonText="Add User" onSubmitAction={(event) => handleAddSubmit(event, 'its working!')}>
           <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} />
           <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} />
           <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} />
@@ -99,7 +117,7 @@ const Users: React.FunctionComponent<Props> = () => {
         </TemplateForm>
       </Dialog>
       <Dialog active={dialogStatus.users_update === 'active'}>
-        <TemplateForm buttonText="Update User" onSubmitAction={(event) => handleSubmit(event, aid)}>
+        <TemplateForm buttonText="Update User" onSubmitAction={(event) => handleUpdateSubmit(event)}>
           <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} />
           <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} />
           <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} />
@@ -108,13 +126,11 @@ const Users: React.FunctionComponent<Props> = () => {
         </TemplateForm>
       </Dialog>
       <Dialog active={dialogStatus.users_delete === 'active'}>
-        <TemplateForm buttonText="Delete User" onSubmitAction={handleSubmit}>
-          Are you sure you want to delete this user?
-        </TemplateForm>
+        <TemplateForm buttonText="Delete User" onSubmitAction={handleUpdateSubmit} />
       </Dialog>
       <Dialog active={dialogStatus.users_deactivate === 'active'}>
-        <TemplateForm buttonText="Deactivete User" onSubmitAction={handleSubmit}>
-          Are you sure you want to deactivete this user?
+        <TemplateForm buttonText="Deactivete User" onSubmitAction={handleAddSubmit}>
+          <TemplateInput labelText="Status" type="question" question="Are you sure to delete this user?" />
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
@@ -128,5 +144,4 @@ const Users: React.FunctionComponent<Props> = () => {
 
   );
 };
-
 export default Users;
