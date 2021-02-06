@@ -8,6 +8,7 @@ import doorReducer from './door-reducer';
 import logsReducer from './logs-reducers';
 import dialogblurReducer from './dialogblur-reducers';
 import dialogStatusReducer from './dialogstatus-reducers';
+import choosenUserReducer from './choosen-user-reducer';
 
 export default combineReducers({
   loginReducer,
@@ -19,4 +20,5 @@ export default combineReducers({
   logsReducer,
   dialogblurReducer,
   dialogStatusReducer,
+  choosenUserReducer,
 });
