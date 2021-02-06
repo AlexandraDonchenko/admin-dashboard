@@ -46,6 +46,15 @@ export function postDoor(doorObj) {
     body: JSON.stringify(doorObj),
   });
 }
+export function putUser(aid, userObj) {
+  return fetch(`${baseUrl}user/update/:${aid}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userObj),
+  });
+}
 
 function fetching(url, options) {
   return fetch(url, options)
