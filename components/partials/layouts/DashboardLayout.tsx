@@ -16,7 +16,6 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const dialogblur = useSelector((state) => state.dialogblurReducer);
-
   const activateDialogerBlur = () => { dispatch(activateBlur()); };
   const deactivateDialogerBlur = () => { dispatch(deactivateBlur()); };
   const logged = useSelector((state) => state.loginReducer.logged);
