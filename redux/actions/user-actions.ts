@@ -11,6 +11,7 @@ const createUser = (userObj) => (dispatch) => {
   postUser(userObj)
     .then((data) => dispatch({ type: 'POST_USER', payload: data }));
 };
+
 const chooseUser = (userObj) => ({ type: 'CHOOSE_USER', payload: userObj });
 const updateUser = (aid, userObj) => (dispatch) => {
   putUser(aid, userObj)

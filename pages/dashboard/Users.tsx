@@ -12,7 +12,7 @@ import Dialog from '../../components/partials/dialogs/Dialog';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
 import { showDialog } from '../../redux/actions/dialogstatus-actions';
-import { createUser } from '../../redux/actions/user-actions';
+import { createUser, chooseUser } from '../../redux/actions/user-actions';
 
 interface Props { }
 
@@ -38,17 +38,24 @@ const Users: React.FunctionComponent<Props> = () => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_ADD'));
   };
-  const showUpdateUserDialog = (aid) => {
+
+  const showUpdateUserDialog = (event) => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_UPDATE'));
+    dispatch(chooseUser(event.target.value));
+    // console.log(pickedUser);
   };
-  const showDeleteUserDialog = (aid) => {
+
+  const showDeleteUserDialog = (event) => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_DELETE'));
+    dispatch(chooseUser(user));
   };
-  const showDeactivateUserDialog = (aid) => {
+
+  const showDeactivateUserDialog = (event, user) => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_DEACTIVATE'));
+    dispatch(chooseUser(user));
   };
 
   const [firstName, setFirstName] = useState('');
@@ -66,7 +73,6 @@ const Users: React.FunctionComponent<Props> = () => {
 
   const handleSubmit = (event, id) => {
     event.preventDefault();
-    console.log(test);
 
     dispatch(createUser({
       firstName,
@@ -114,7 +120,8 @@ const Users: React.FunctionComponent<Props> = () => {
       <DashboardLayout>
         <SearchBar updateInput={updateInput} input={input} addButtonAction={showAddUserDialog} />
         <CardWrapper>
-          {usersToDisplay.map((user) => <UserCard aid={user.aid} firstname={user.firstName} lastname={user.lastName} email={user.email} group={user.group} options={{ update: showUpdateUserDialog, delete: showDeleteUserDialog, deactivate: showDeactivateUserDialog }} />)}
+          {/* {usersToDisplay.map((user) => <UserCard aid={user.aid} firstname={user.firstName} lastname={user.lastName} email={user.email} group={user.group} options={{ update: showUpdateUserDialog, delete: showDeleteUserDialog, deactivate: showDeactivateUserDialog }} />)} */}
+          {usersToDisplay.map((user) => <UserCard user={user} key={user.aid} options={{ update: showUpdateUserDialog, delete: showDeleteUserDialog, deactivate: showDeactivateUserDialog }} />)}
         </CardWrapper>
       </DashboardLayout>
     </>

@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import defaultStyles from '../../../styles/cardWrapper.module.scss';
 import userStyles from '../../../styles/UserCard.module.scss';
+
+import { createUser, chooseUser } from '../../../redux/actions/user-actions';
 
 interface Props {
   firstname:string;
@@ -10,27 +13,29 @@ interface Props {
 }
 
 const UserCard: React.FunctionComponent<Props> = ({
-  firstname,
-  lastname,
-  email,
-  group,
+  user,
   options,
-  aid,
-}) => (
-  <div className={defaultStyles.cardWrapper}>
-    <div className={defaultStyles.infoWrapper}>
-      <img className={defaultStyles.image} src="https://avatars.githubusercontent.com/u/12762609?s=400&u=0bef9502b9abf3237338056e4e325344dca451ad&v=4" alt="" />
-      <p className={userStyles.firstname}>{firstname}</p>
-      <p className={userStyles.lastname}>{lastname}</p>
-      <a href={`mailto:${{ email }}`} className={userStyles.email}>{email}</a>
-      {/* <p className={userStyles.group}>{group}</p> */}
-    </div>
-    <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/deactivate.svg" onClick={() => options.deactivate(aid)} />
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" onClick={() => options.update(aid)} />
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/delete.svg" onClick={() => options.delete(aid)} />
-    </div>
-  </div>
-);
+}) => {
+  const dispatch = useDispatch();
 
+  return (
+
+    <div className={defaultStyles.cardWrapper}>
+      <div className={defaultStyles.infoWrapper}>
+        <img className={defaultStyles.image} src="https://avatars.githubusercontent.com/u/12762609?s=400&u=0bef9502b9abf3237338056e4e325344dca451ad&v=4" alt="" />
+        <p className={userStyles.firstname}>{user.firstName}</p>
+        <p className={userStyles.lastname}>{user.lastName}</p>
+        <a href="mailto:hello@world.com}" className={userStyles.email}>{user.email}</a>
+        <p className={userStyles.group}>{user.group.groupName}</p>
+      </div>
+      <div className={defaultStyles.actionsWrapper}>
+        <img className={defaultStyles.action} src="/media/icons/cardOptions/deactivate.svg" onClick={options.deactivate} value={user} />
+        <button onClick={options.update} value={user}>
+          <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" />
+        </button>
+        <img className={defaultStyles.action} src="/media/icons/cardOptions/delete.svg" onClick={options.delete} value={user} />
+      </div>
+    </div>
+  );
+};
 export default UserCard;
