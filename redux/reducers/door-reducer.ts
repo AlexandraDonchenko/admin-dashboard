@@ -6,6 +6,8 @@ const doorReducer:Reducer<Doors, Action> = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_DOORS': initialState = { doors: action.payload };
       return initialState;
+    case 'POST_DOORS': initialState = { doors: [...state.doors, action.payload] };
+      return initialState;
     default: return state;
   }
 };
