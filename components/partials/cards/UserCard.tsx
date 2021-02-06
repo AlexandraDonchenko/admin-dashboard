@@ -10,25 +10,21 @@ interface Props {
 }
 
 const UserCard: React.FunctionComponent<Props> = ({
-  firstname,
-  lastname,
-  email,
-  group,
+  user,
   options,
-  aid,
 }) => (
   <div className={defaultStyles.cardWrapper}>
     <div className={defaultStyles.infoWrapper}>
       <img className={defaultStyles.image} src="https://avatars.githubusercontent.com/u/12762609?s=400&u=0bef9502b9abf3237338056e4e325344dca451ad&v=4" alt="" />
-      <p className={userStyles.firstname}>{firstname}</p>
-      <p className={userStyles.lastname}>{lastname}</p>
-      <a href={`mailto:${{ email }}`} className={userStyles.email}>{email}</a>
-      {/* <p className={userStyles.group}>{group}</p> */}
+      <p className={userStyles.firstname}>{user.firstName}</p>
+      <p className={userStyles.lastname}>{user.lastName}</p>
+      <a href="mailto:hello@world.com}" className={userStyles.email}>{user.email}</a>
+      <p className={userStyles.group}>{user.group.groupName}</p>
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/deactivate.svg" onClick={() => options.deactivate(aid)} />
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" onClick={() => options.update(aid)} />
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/delete.svg" onClick={() => options.delete(aid)} />
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/deactivate.svg" onClick={(user) => options.deactivate(user)} />
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" onClick={(user) => options.update(user)} />
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/delete.svg" onClick={(user) => options.delete(user)} />
     </div>
   </div>
 );
