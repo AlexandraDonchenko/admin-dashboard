@@ -11,4 +11,5 @@ const createUser = (userObj) => (dispatch) => {
   postUser(userObj)
     .then((data) => dispatch({ type: 'POST_USER', payload: data }));
 };
-export { fetchUsers, createUser };
+const chooseUser = (userObj) => ({ type: 'CHOOSE-USER', payload: userObj });
+export { fetchUsers, createUser, chooseUser };
