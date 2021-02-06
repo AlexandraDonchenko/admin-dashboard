@@ -6,7 +6,6 @@ interface Props { }
 
 const Dialog: React.FunctionComponent<Props> = ({ children, active }) => {
   const pickedUser = useSelector((state) => state.choosenUserReducer.user);
-  console.log('frompickedUser', pickedUser);
 
   return (
     <div id={styles.dialog} className={active === true ? styles.active : ''}>

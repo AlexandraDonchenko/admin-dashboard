@@ -39,11 +39,12 @@ const Users: React.FunctionComponent<Props> = () => {
     dispatch(showDialog('USERS_DIALOG_ADD'));
   };
 
-  const showUpdateUserDialog = (event) => {
+  const showUpdateUserDialog = (event, user) => {
     dispatch(activateBlur());
+    console.log('user from shouwupdate', user);
+
     dispatch(showDialog('USERS_DIALOG_UPDATE'));
-    dispatch(chooseUser(event.target.value));
-    // console.log(pickedUser);
+    dispatch(chooseUser(user));
   };
 
   const showDeleteUserDialog = (event) => {
@@ -67,7 +68,6 @@ const Users: React.FunctionComponent<Props> = () => {
   const handleLasttName = (event) => { setLastName(event.target.value); };
   const handleEmail = (event) => { setEmail(event.target.value); };
   const handleGroup = (event) => {
-    console.log(event.target.value);
     setGroupName(Number(event.target.value));
   };
 

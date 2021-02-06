@@ -3,7 +3,6 @@ import { getUsers, postUser, putUser } from '../../pages/api/hello';
 const fetchUsers = () => (dispatch) => {
   getUsers()
     .then((data) => {
-      console.log(data);
       dispatch({ type: 'GET_USERS', payload: data });
     });
 };

@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { Users, Action } from '../types';
 
 let originalState: Users = { users: [] };
-const users = useSelector(((state) => state.userReducer.users));
 
 const userReducer: Reducer<Users, Action> = (state = originalState, action) => {
   switch (action.type) {
