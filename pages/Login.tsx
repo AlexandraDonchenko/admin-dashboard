@@ -18,7 +18,6 @@ const Login: React.FunctionComponent <Props> = (props) => {
 
   function login(event) {
     event.preventDefault();
-    console.log(event);
     dispatch(logins());
     router.push(href);
   }

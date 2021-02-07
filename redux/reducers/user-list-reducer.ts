@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { Users, Action } from '../types';
 
 let originalState: Users = { users: [] };
-const users = useSelector(((state) => state.userReducer.users));
 
 const userReducer: Reducer<Users, Action> = (state = originalState, action) => {
   switch (action.type) {
@@ -12,10 +11,9 @@ const userReducer: Reducer<Users, Action> = (state = originalState, action) => {
       return originalState;
     case 'POST_USER': originalState = { users: [...state.users, action.payload] };
       return originalState;
-    case 'UPDATE_USER':
-      originalState = {
-        users: [...users.filter((user) => (user.aid !== action.payload.aid), action.payload.data)],
-      };
+    case 'UPDATE_USER': originalState = { users: [...state.users.filter((user) => (user.aid !== action.payload.aid), action.payload.data)] };
+      return originalState;
+    case 'DELETE_USER': originalState = { users: [...state.users.filter((user) => (user.aid !== action.payload.aid), action.payload.data)] };
       return originalState;
 
     default: return state;
