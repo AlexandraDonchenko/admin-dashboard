@@ -3,8 +3,9 @@ import cx from 'classnames';
 import styles from '../../../styles/TemplateInput.module.scss';
 
 interface Props {
-  type: string,
-  labelText: string,
+  type?: string,
+  labelText?: string,
+  question?: string,
   dropdownOptions?: [],
   radioOptions?: [],
   onChangeAction: Function,
@@ -13,6 +14,7 @@ interface Props {
 const TemplateInput: React.FunctionComponent<Props> = ({
   type,
   labelText,
+  question,
   dropdownOptions,
   radioOptions,
   onChangeAction,
@@ -21,6 +23,8 @@ const TemplateInput: React.FunctionComponent<Props> = ({
 }) => {
   const renderType = (type) => {
     switch (type) {
+      case 'question':
+        return <p>{question}</p>;
       case 'text':
         return <input className={cx(styles.input, styles.text)} type="text" onChange={onChangeAction} value={value} />;
       case 'password':

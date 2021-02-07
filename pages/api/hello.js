@@ -47,7 +47,7 @@ export function postDoor(doorObj) {
   });
 }
 export function putUser(aid, userObj) {
-  return fetch(`${baseUrl}user/update/:${aid}`, {
+  return fetch(`${baseUrl}/user/update/${aid}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -56,10 +56,18 @@ export function putUser(aid, userObj) {
   });
 }
 
+export function deleteUser(aid) {
+  return fetch(`${baseUrl}/user/delete/${aid}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
 function fetching(url, options) {
   return fetch(url, options)
     .then((res) => {
-      // console.log(url);
       if (res.status < 400) return res;
       return Promise.reject(res);
     })
