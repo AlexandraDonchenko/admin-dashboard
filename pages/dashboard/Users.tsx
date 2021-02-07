@@ -48,11 +48,6 @@ const Users: React.FunctionComponent<Props> = () => {
 
   const showUpdateUserDialog = (event, user) => {
     dispatch(activateBlur());
-    dispatch(updateUser(user.aid, {
-      firstName,
-      lastName,
-      email,
-    }));
     dispatch(showDialog('USERS_DIALOG_UPDATE'));
     dispatch(chooseUser(user));
   };
@@ -72,7 +67,7 @@ const Users: React.FunctionComponent<Props> = () => {
     setGroupName(Number(event.target.value));
   };
 
-  const pickedUser = useSelector((state) => state.choosenUserReducer.user);
+  const pickedUser = useSelector((state) => state.choosenCardReducer.picked);
 
   const handleCreateSubmit = (event, id) => {
     event.preventDefault();

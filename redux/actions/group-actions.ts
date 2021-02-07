@@ -12,10 +12,13 @@ const createGroup = (groupObj) => (dispatch) => {
       dispatch({ type: 'POST_GROUP', payload: data });
     });
 };
-const updateGroup = (groupObj) => (dispatch) => {
-  putGroup(groupObj)
+const updateGroup = (gid, groupObj) => (dispatch) => {
+  putGroup(gid, groupObj)
     .then((data) => {
       dispatch({ type: 'UPDATE_GROUP', payload: data });
     });
 };
-export { fetchGroups, createGroup, updateGroup };
+const chooseGroup = (groupObj) => ({ type: 'CHOOSE_GROUP', payload: groupObj });
+export {
+  fetchGroups, createGroup, updateGroup, chooseGroup,
+};

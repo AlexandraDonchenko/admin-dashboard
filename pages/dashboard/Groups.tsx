@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import GroupCard from '../../components/partials/cards/GroupCard';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
-import Group from '../../redux/types';
+import { Group } from '../../redux/types';
 import SearchBar from '../../components/partials/searchBar/searchBar';
 import { activateBlur } from '../../redux/actions/dialogblur-actions';
 import Dialog from '../../components/partials/dialogs/Dialog';
@@ -11,8 +11,8 @@ import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
 import { showDialog } from '../../redux/actions/dialogstatus-actions';
 import {
-  createUser, chooseUser, updateUser, removeUser,
-} from '../../redux/actions/user-actions';
+  createGroup, chooseGroup, updateGroup,
+} from '../../redux/actions/group-actions';
 
 interface Props { }
 
@@ -37,8 +37,9 @@ const Groups: React.FunctionComponent<Props> = () => {
   // INITIALIZE STATE FOR INPUT FIELDS
   const [groupName, setGroupName] = useState('');
   const [description, setDescription] = useState('');
-  const [accessFromHour, setAccessFromHour] = useState('');
-  const [accessToHour, setAccessToHour] = useState('');
+  const [accessFromHour, setAccessFromHour] = useState(0);
+  const [accessToHour, setAccessToHour] = useState(0);
+  const [doors, setDoors] = useState([]);
 
   // INITIALIZE STATE FOR REFRESH
   const [refresh, setRefresh] = useState<String>('');
@@ -46,80 +47,72 @@ const Groups: React.FunctionComponent<Props> = () => {
   // FUNCTION TO UPDATE INPUT FIELDS
   const handleGroupName = (event) => { setGroupName(event.target.value); };
   const handleDescription = (event) => { setDescription(event.target.value); };
-  const handleAccessFromHour = (event) => { setAccesFromHour(event.target.value); };
-  const handleAccessToHour = (event) => { setAccesToHour(event.target.value); };
-
-  const handleGroup = (event) => {
-    setGroupName(Number(event.target.value));
-  };
-
+  const handleAccessFromHour = (event) => { setAccessFromHour(event.target.value); };
+  const handleAccessToHour = (event) => { setAccessToHour(event.target.value); };
+  const handleDoors = (event) => { setDoors(event.targer.value); };
+  const pickedGroup = useSelector((state) => state.choosenCardReducer.picked);
   const showCreateGroupDialog = () => {
     dispatch(activateBlur());
     dispatch(showDialog('GROUPS_DIALOG_CREATE'));
   };
 
-  const showUpdateGroupDialog = (event, user) => {
+  const showUpdateGroupDialog = (event, group) => {
     dispatch(activateBlur());
-    // dispatch(updateUser(user.aid, {
-    //   firstName,
-    //   lastName,
-    //   email,
-    // }));
     dispatch(showDialog('GROUPS_DIALOG_UPDATE'));
+    dispatch(chooseGroup(group));
   };
 
   const handleCreateSubmit = (event, id) => {
     event.preventDefault();
-    dispatch(createUser({
-      firstName,
-      lastName,
-      email,
-      group,
+    dispatch(createGroup({
+      groupName,
+      description,
+      accessFromHour,
+      accessToHour,
+      doors,
     }));
     setGroupName('');
     setDescription('');
-    setAccessFromHour('');
-    setAccessToHour(event);
+    setAccessFromHour(0);
+    setAccessToHour(0);
+    setDoors([]);
     setRefresh('Refresh');
   };
 
   const handleUpdateSubmit = (event, aid) => {
     event.preventDefault();
-    // dispatch(updateUser(pickedUser.aid, {
-    //   firstName,
-    //   lastName,
-    //   email,
-    //   group,
-    // }));
+    dispatch(updateGroup(pickedGroup.gid, {
+      groupName,
+      description,
+      accessFromHour,
+      accessToHour,
+      doors,
+    }));
     setGroupName('');
     setDescription('');
-    setAccessFromHour('');
-    setAccessToHour(event);
+    setAccessFromHour(0);
+    setAccessToHour(0);
+    setDoors([]);
     setRefresh('Refresh');
   };
-
-  // const handleGroupName = (event) => { setGroupName(event.target.value); };
-  // const handleDescription = (event) => { setDescription(event.target.value); };
-  // const handleAccessFromHour = (event) => { setAccesFromHour(event.target.value); };
-  // const handleAccessToHour = (event) => { setAccesToHour(event.target.value); };
 
   return (
     <>
       <Dialog active={dialogStatus.groups_create === 'active'}>
-        <TemplateForm buttonText="Create Group">
-          <TemplateInput labelText="Name of Group" type="text" />
-          <TemplateInput labelText="Description" type="text" />
-          <TemplateInput labelText="Access from" type="dropdown" dropdownOptions={['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']} />
-          <TemplateInput labelText="Access to" type="dropdown" dropdownOptions={['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']} />
-          <TemplateInput labelText="Allowed doors" type="radio" radioOptions={['Main Entry', 'Cafeteria', 'Leo\'s Office', 'Berta\'s Office']} />
+        <TemplateForm buttonText="Create Group" onSubmitAction={(event) => handleCreateSubmit(event, 'its working')}>
+          <TemplateInput labelText="Name of Group" type="text" onChangeAction={handleGroupName} />
+          <TemplateInput labelText="Description" type="text" onChangeAction={handleDescription} />
+          <TemplateInput labelText="Access from" type="dropdown" onChangeAction={handleAccessFromHour} dropdownOptions={[{ display: '00:00', value: 0 }, { display: '01:00', value: 1 }, { display: '02:00', value: 2 }, { display: '03:00', value: 3 }, { display: '04:00', value: 4 }, { display: '05:00', value: 5 }, { display: '06:00', value: 6 }, { display: '07:00', value: 7 }, { display: '08:00', value: 8 }, { display: '09:00', value: 9 }, { display: '10:00', value: 10 }, { display: '11:00', value: 11 }, { display: '12:00', value: 12 }, { display: '13:00', value: 13 }, { display: '14:00', value: 14 }, { display: '15:00', value: 15 }, { display: '16:00', value: 16 }, { display: '17:00', value: 17 }, { display: '18:00', value: 18 }, { display: '19:00', value: 19 }, { display: '20:00', value: 20 }, { display: '21:00', value: 21 }, { display: '22:00', value: 22 }, { display: '23:00', value: 23 }, { display: '24:00', value: 24 }]} />
+          <TemplateInput labelText="Access to" type="dropdown" onChangeAction={handleAccessToHour} dropdownOptions={[{ display: '00:00', value: 0 }, { display: '01:00', value: 1 }, { display: '02:00', value: 2 }, { display: '03:00', value: 3 }, { display: '04:00', value: 4 }, { display: '05:00', value: 5 }, { display: '06:00', value: 6 }, { display: '07:00', value: 7 }, { display: '08:00', value: 8 }, { display: '09:00', value: 9 }, { display: '10:00', value: 10 }, { display: '11:00', value: 11 }, { display: '12:00', value: 12 }, { display: '13:00', value: 13 }, { display: '14:00', value: 14 }, { display: '15:00', value: 15 }, { display: '16:00', value: 16 }, { display: '17:00', value: 17 }, { display: '18:00', value: 18 }, { display: '19:00', value: 19 }, { display: '20:00', value: 20 }, { display: '21:00', value: 21 }, { display: '22:00', value: 22 }, { display: '23:00', value: 23 }, { display: '24:00', value: 24 }]} />
+          <TemplateInput labelText="Allowed doors" type="radio" onChangeAction={handleDoors} radioOptions={['Main Entry', 'Cafeteria', 'Leo\'s Office', 'Berta\'s Office']} />
         </TemplateForm>
       </Dialog>
       <Dialog active={dialogStatus.groups_update === 'active'}>
         <TemplateForm buttonText="Update Group">
           <TemplateInput labelText="Name of Group" type="text" />
           <TemplateInput labelText="Description" type="text" />
-          <TemplateInput labelText="Access from" type="dropdown" dropdownOptions={[{ value: '00:00' }, { value: '01:00' }, { value: '02:00' }, { value: '03:00' }, { value: '04:00' }, { value: '05:00' }, { value: '06:00' }, { value: '07:00' }, { value: '08:00' }, { value: '10:00' }, { value: '11:00' }, { value: '12:00' }, { value: '13:00' }, { value: '14:00' }, { value: '15:00' }, { value: '16:00' }, { value: '17:00' }, { value: '18:00' }, { value: '19:00' }, { value: '20:00' }, { value: '21:00' }, { value: '22:00' }, { value: '23:00' }, { value: '24:00' }]} />
-          <TemplateInput labelText="Access to" type="dropdown" dropdownOptions={[{ value: '00:00' }, { value: '01:00' }, { value: '02:00' }, { value: '03:00' }, { value: '04:00' }, { value: '05:00' }, { value: '06:00' }, { value: '07:00' }, { value: '08:00' }, { value: '10:00' }, { value: '11:00' }, { value: '12:00' }, { value: '13:00' }, { value: '14:00' }, { value: '15:00' }, { value: '16:00' }, { value: '17:00' }, { value: '18:00' }, { value: '19:00' }, { value: '20:00' }, { value: '21:00' }, { value: '22:00' }, { value: '23:00' }, { value: '24:00' }]} />
+          <TemplateInput labelText="Access from" type="dropdown" dropdownOptions={[{ display: '00:00', value: 0 }, { display: '01:00', value: 1 }, { display: '02:00', value: 2 }, { display: '03:00', value: 3 }, { display: '04:00', value: 4 }, { display: '05:00', value: 5 }, { display: '06:00', value: 6 }, { display: '07:00', value: 7 }, { display: '08:00', value: 8 }, { display: '09:00', value: 9 }, { display: '10:00', value: 10 }, { display: '11:00', value: 11 }, { display: '12:00', value: 12 }, { display: '13:00', value: 13 }, { display: '14:00', value: 14 }, { display: '15:00', value: 15 }, { display: '16:00', value: 16 }, { display: '17:00', value: 17 }, { display: '18:00', value: 18 }, { display: '19:00', value: 19 }, { display: '20:00', value: 20 }, { display: '21:00', value: 21 }, { display: '22:00', value: 22 }, { display: '23:00', value: 23 }, { display: '24:00', value: 24 }]} />
+          <TemplateInput labelText="Access to" type="dropdown" dropdownOptions={[{ display: '00:00', value: 0 }, { display: '01:00', value: 1 }, { display: '02:00', value: 2 }, { display: '03:00', value: 3 }, { display: '04:00', value: 4 }, { display: '05:00', value: 5 }, { display: '06:00', value: 6 }, { display: '07:00', value: 7 }, { display: '08:00', value: 8 }, { display: '09:00', value: 9 }, { display: '10:00', value: 10 }, { display: '11:00', value: 11 }, { display: '12:00', value: 12 }, { display: '13:00', value: 13 }, { display: '14:00', value: 14 }, { display: '15:00', value: 15 }, { display: '16:00', value: 16 }, { display: '17:00', value: 17 }, { display: '18:00', value: 18 }, { display: '19:00', value: 19 }, { display: '20:00', value: 20 }, { display: '21:00', value: 21 }, { display: '22:00', value: 22 }, { display: '23:00', value: 23 }, { display: '24:00', value: 24 }]} />
           <TemplateInput labelText="Allowed doors" type="radio" radioOptions={['Main Entry', 'Cafeteria', 'Leo\'s Office', 'Berta\'s Office']} />
         </TemplateForm>
       </Dialog>
