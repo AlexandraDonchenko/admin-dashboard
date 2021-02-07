@@ -16,27 +16,22 @@ const Issues: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
 
-  const addIssue = () => {
+  const solveIssue = () => {
     dispatch(activateBlur());
-    dispatch(showDialog('ISSUES_DIALOG'));
+    dispatch(showDialog('ISSUES_DIALOG_UPDATE'));
   };
 
   return (
     <>
-      <Dialog active={dialogStatus.issues === 'active'}>
-
-        <TemplateForm buttonText="Add Issue" addButtonAction="addIssue">
-          <TemplateInput labelText="Type" type="dropdown" dropdownOptions={['Door', 'Camera', 'App']} />
-          <TemplateInput labelText="Door" type="dropdown" dropdownOptions={['Leo\'s Office', 'Main Entry']} />
-          <TemplateInput labelText="Reported by" type="dropdown" dropdownOptions={['Leo', 'Berta', 'Vic']} />
+      <Dialog active={dialogStatus.issues_update === 'active'}>
+        <TemplateForm buttonText="Solve" addButtonAction="addIssue">
+          <TemplateInput labelText="" type="question" question="Are you sure?" />
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
-        <SearchBar addButtonAction={addIssue} />
+        <SearchBar />
         <CardWrapper>
-          <IssueCard type="Camera" createdOn="3 hours ago" reportedBy="Leonardo Vittorio" />
-          <IssueCard type="Door" createdOn="2 days ago" reportedBy="Berta Cummelas" />
-          <IssueCard type="Camera" createdOn="25 Jan 2021" reportedBy="Leonardo Vittorio" />
+          <IssueCard type="Camera" createdOn="3 hours ago" reportedBy="Leonardo Vittorio" options={{ solve: solveIssue }} />
         </CardWrapper>
       </DashboardLayout>
     </>
@@ -44,3 +39,9 @@ const Issues: React.FunctionComponent<Props> = () => {
 };
 
 export default Issues;
+
+{ /* <TemplateInput labelText="Name of Group" type="text" />
+<TemplateInput labelText="Description" type="text" />
+<TemplateInput labelText="Access from" type="dropdown" dropdownOptions={[{ value: '00:00' }, { value: '01:00' }, { value: '02:00' }, { value: '03:00' }, { value: '04:00' }, { value: '05:00' }, { value: '06:00' }, { value: '07:00' }, { value: '08:00' }, { value: '10:00' }, { value: '11:00' }, { value: '12:00' }, { value: '13:00' }, { value: '14:00' }, { value: '15:00' }, { value: '16:00' }, { value: '17:00' }, { value: '18:00' }, { value: '19:00' }, { value: '20:00' }, { value: '21:00' }, { value: '22:00' }, { value: '23:00' }, { value: '24:00' }]} />
+<TemplateInput labelText="Access to" type="dropdown" dropdownOptions={[{ value: '00:00' }, { value: '01:00' }, { value: '02:00' }, { value: '03:00' }, { value: '04:00' }, { value: '05:00' }, { value: '06:00' }, { value: '07:00' }, { value: '08:00' }, { value: '10:00' }, { value: '11:00' }, { value: '12:00' }, { value: '13:00' }, { value: '14:00' }, { value: '15:00' }, { value: '16:00' }, { value: '17:00' }, { value: '18:00' }, { value: '19:00' }, { value: '20:00' }, { value: '21:00' }, { value: '22:00' }, { value: '23:00' }, { value: '24:00' }]} />
+<TemplateInput labelText="Allowed doors" type="radio" radioOptions={['Main Entry', 'Cafeteria', 'Leo\'s Office', 'Berta\'s Office']} /> */ }
