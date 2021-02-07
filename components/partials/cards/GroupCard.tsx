@@ -8,6 +8,7 @@ interface Props {
 
 const GroupCard: React.FunctionComponent<Props> = ({
   groupName,
+  options,
 }) => (
   <div className={defaultStyles.cardWrapper}>
     <div className={defaultStyles.infoWrapper}>
@@ -15,8 +16,7 @@ const GroupCard: React.FunctionComponent<Props> = ({
       <p className={groupStyles.groupName}>{groupName}</p>
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/delete.svg" />
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" />
+      <img className={defaultStyles.action} onClick={options.update} src="/media/icons/cardOptions/edit.svg" />
     </div>
   </div>
 );

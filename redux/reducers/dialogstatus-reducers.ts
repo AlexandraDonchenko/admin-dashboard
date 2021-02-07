@@ -47,7 +47,7 @@ const dialogStatusReducer: Reducer<DialogStatus> = (state = originalState, actio
         users_create: 'inactive',
         users_update: 'inactive',
         groups_create: 'inactive',
-        groups_update: 'actice',
+        groups_update: 'active',
         issues_update: 'inactive',
         settings_update: 'inactive',
       };
