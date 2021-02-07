@@ -22,21 +22,20 @@ const Users: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
 
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
-  let users = useSelector((state) => state.userReducer.users);
+  const users = useSelector((state) => state.userReducer.users);
+  const [refresh, setRefresh] = useState<String>('');
 
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
-
-  // useEffect(() => {
-
-  // }, [users]);
-
+  console.log(refresh);
   const cancelDialog = (event) => {
     event.preventDefault();
     dispatch(showDialog('RESET'));
     dispatch(deactivateBlur());
   };
-
+  useEffect(() => {
+    setUsersToDisplay(users);
+  }, [refresh]);
   const updateInput = (inputName) => {
     const filtered = users.filter((user) => {
       const fullName = `${user.firstname}${user.lastname}`;
@@ -116,7 +115,6 @@ const Users: React.FunctionComponent<Props> = () => {
   };
 
   const handleUpdateSubmit = (event, aid) => {
-    console.log('Here we go:', pickedUser);
     event.preventDefault();
 
     dispatch(updateUser(pickedUser.aid, {
@@ -129,8 +127,8 @@ const Users: React.FunctionComponent<Props> = () => {
     setLastName('');
     setEmail('');
     setGroupName('');
-    users = useSelector((state) => state.userReducer.users);
     cancelDialog(event);
+    setRefresh('Refresh');
   };
 
   return (
