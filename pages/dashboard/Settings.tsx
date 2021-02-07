@@ -3,16 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
-import UserCard from '../../components/partials/cards/UserCard';
+import AdminCard from '../../components/partials/cards/AdminCard';
 import { showDialog } from '../../redux/actions/dialogstatus-actions';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import SearchBar from '../../components/partials/searchBar/searchBar';
 import Dialog from '../../components/partials/dialogs/Dialog';
-import { User } from '../../redux/types';
-import {
-  createUser, chooseUser, updateUser, removeUser,
-} from '../../redux/actions/user-actions';
 import { activateBlur, deactivateBlur } from '../../redux/actions/dialogblur-actions';
 
 interface Props { }
@@ -20,76 +16,41 @@ interface Props { }
 const Settings: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
-  const users = useSelector((state) => state.userReducer.users);
-  const [refresh, setRefresh] = useState<String>('');
-  const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
-  const [input, setInput] = useState<string>('');
+
+  // ACTION WHEN PRESSING THE CANCEL BUTTON IN THE DIALOG
   const cancelDialog = (event) => {
     event.preventDefault();
     dispatch(showDialog('RESET'));
     dispatch(deactivateBlur());
   };
-  useEffect(() => {
-    setUsersToDisplay(users);
-  }, [refresh]);
-  const updateInput = (inputName) => {
-    const filtered = users.filter((user) => {
-      const fullName = `${user.firstname}${user.lastname}`;
-      return fullName.toLowerCase().includes(inputName.toLowerCase());
-    });
-    setInput(inputName);
-    setUsersToDisplay(filtered);
-  };
 
-  const showCreateUserDialog = () => {
+  // SHOWS THE DIALOG
+  const showUpdateAdminDialog = (event, user) => {
     dispatch(activateBlur());
-    dispatch(showDialog('USERS_DIALOG_CREATE'));
-  };
-
-  const showUpdateUserDialog = (event, user) => {
-    dispatch(activateBlur());
-    dispatch(updateUser(user.aid, {
-      firstName,
-      lastName,
-      email,
-    }));
-    dispatch(showDialog('USERS_DIALOG_UPDATE'));
-    dispatch(chooseUser(user));
+    // dispatch(updateUser(user.aid, {
+    //   firstName,
+    //   lastName,
+    //   email,
+    // }));
+    dispatch(showDialog('SETTINGS_DIALOG_UPDATE'));
   };
 
   // INITIALIZE STATE FOR INPUT FIELDS
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [group, setGroupName] = useState<Number>();
+  const [password, setPassword] = useState('');
+  const [theme, setTheme] = useState('');
 
   // FUNCTION TO UPDATE INPUT FIELDS
   const handleFirstName = (event) => { setFirstName(event.target.value); };
   const handleLasttName = (event) => { setLastName(event.target.value); };
   const handleEmail = (event) => { setEmail(event.target.value); };
+  const handlePassword = (event) => { setPassword(event.target.value); };
+  const handleTheme = (event) => { setTheme(event.target.value); };
 
-  const handleGroup = (event) => {
-    setGroupName(Number(event.target.value));
-  };
-
-  const pickedUser = useSelector((state) => state.choosenUserReducer.user);
-
-  const handleCreateSubmit = (event, id) => {
-    event.preventDefault();
-    dispatch(createUser({
-      firstName,
-      lastName,
-      email,
-      group,
-    }));
-    setFirstName('');
-    setLastName('');
-    setEmail('');
-    setGroupName('');
-    cancelDialog(event);
-  };
-
-  const handleUpdateSubmit = (event, aid) => {
+  // ACTION AFTER PRESSING THE BUTTON IN THE SUBMIT
+  const handleUpdateSubmit = (event) => {
     event.preventDefault();
     dispatch(updateUser(pickedUser.aid, {
       firstName,
@@ -100,37 +61,32 @@ const Settings: React.FunctionComponent<Props> = () => {
     setFirstName('');
     setLastName('');
     setEmail('');
-    setGroupName('');
     cancelDialog(event);
-    setRefresh('Refresh');
+  };
+
+  // MOCKDATA FOR THE ADMIN
+  const adminData = {
+    firstName: 'Valia',
+    lastName: 'Ampatzi',
+    email: 'valia.ampatzi@gmail.com',
+    password: '1234Password',
+    theme: 'light',
   };
 
   return (
     <>
-      <Dialog active={dialogStatus.users_create === 'active'}>
-        <TemplateForm buttonText="Add User" onSubmitAction={(event) => handleCreateSubmit(event, 'its working!')}>
-          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} />
-          <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} />
-          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} />
-          <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', id: 22 }, { value: 'Student', id: 23 }]} onChangeAction={handleGroup} value={group} />
+      <Dialog active={dialogStatus.settings_update === 'active'}>
+        <TemplateForm buttonText="Update Admin" onSubmitAction={(event) => handleUpdateSubmit(event)}>
+          <TemplateInput labelText="FirstName" type="text" onChangeAction={handleFirstName} value={firstName} placeholder={adminData.firstName} />
+          <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} placeholder={adminData.lastName} />
+          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} placeholder={adminData.email} />
+          <TemplateInput labelText="Password" type="password" onChangeAction={handlePassword} value={password} />
+          <TemplateInput labelText="Theme" type="radio" onChangeAction={handleTheme} radioOptions={['light', 'dark']} value={theme} placeholder={adminData.theme} />
         </TemplateForm>
-      </Dialog>
-      <Dialog active={dialogStatus.users_update === 'active'}>
-        <TemplateForm buttonText="Update User" onSubmitAction={(event) => handleUpdateSubmit(event)}>
-          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} />
-          <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} />
-          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} />
-          <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', gid: 22 }, { value: 'Student', id: 23 }]} onChangeAction={handleGroup} value={group} />
-          <TemplateInput labelText="Status" type="radio" radioOptions={['active', 'inactive']} />
-        </TemplateForm>
-      </Dialog>
-      <Dialog active={dialogStatus.users_delete === 'active'}>
-        <TemplateForm buttonText="Delete User" onSubmitAction={(event) => handleDeleteSubmit(event)} />
       </Dialog>
       <DashboardLayout>
-        <SearchBar updateInput={updateInput} input={input} addButtonAction={showCreateUserDialog} />
         <CardWrapper>
-          {usersToDisplay.map((user) => <UserCard user={user} key={user.aid} options={{ update: showUpdateUserDialog }} />)}
+          <AdminCard admin={adminData} key={adminData.aid} options={{ update: showUpdateAdminDialog }} />
         </CardWrapper>
       </DashboardLayout>
     </>

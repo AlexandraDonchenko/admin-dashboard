@@ -19,6 +19,8 @@ const TemplateInput: React.FunctionComponent<Props> = ({
   radioOptions,
   onChangeAction,
   onSubmitAction,
+  checkboxOptions,
+  placeholder,
   value,
 }) => {
   const renderType = (type) => {
@@ -26,7 +28,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
       case 'question':
         return <p className={styles.question}>{question}</p>;
       case 'text':
-        return <input className={cx(styles.input, styles.text)} type="text" onChange={onChangeAction} value={value} />;
+        return <input className={cx(styles.input, styles.text)} type="text" onChange={onChangeAction} value={value} placeholder={placeholder} />;
       case 'password':
         return <input className={cx(styles.input, styles.password)} type="password" onChange={onChangeAction} value={value} />;
       case 'file':
@@ -52,8 +54,18 @@ const TemplateInput: React.FunctionComponent<Props> = ({
             {dropdownOptions.map((option) => <option className={styles.selectOption} key={option.id} value={option.id}>{option.value}</option>)}
           </select>
         );
+      case 'checkbox':
+        return (
+          checkboxOptions.map((option) => (
+            <span key={option}>
+              <input className={styles.checkbox} key={option} name={labelText} type="checkbox" onChange={onChangeAction} value={value} />
+              <label className={styles.radioLabel} key={`${option}-label`} htmlFor={labelText}>{option}</label>
+              <br />
+            </span>
+          ))
+        );
       default:
-        return <input type="text" onChange={onChangeAction} />;
+        return <input type="text" onChange={onChangeAction} placeholder={placeholder} />;
     }
   };
 
