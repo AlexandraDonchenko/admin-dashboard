@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
@@ -22,10 +22,14 @@ const Users: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
 
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
-  const users = useSelector((state) => state.userReducer.users);
+  let users = useSelector((state) => state.userReducer.users);
 
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
+
+  // useEffect(() => {
+
+  // }, [users]);
 
   const cancelDialog = (event) => {
     event.preventDefault();
@@ -125,6 +129,7 @@ const Users: React.FunctionComponent<Props> = () => {
     setLastName('');
     setEmail('');
     setGroupName('');
+    users = useSelector((state) => state.userReducer.users);
     cancelDialog(event);
   };
 
