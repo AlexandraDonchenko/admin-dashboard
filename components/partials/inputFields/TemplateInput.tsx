@@ -24,7 +24,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
   const renderType = (type) => {
     switch (type) {
       case 'question':
-        return <p>{question}</p>;
+        return <p className={styles.question}>{question}</p>;
       case 'text':
         return <input className={cx(styles.input, styles.text)} type="text" onChange={onChangeAction} value={value} />;
       case 'password':
@@ -49,7 +49,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
       case 'dropdown':
         return (
           <select className={cx(styles.input, styles.select)} onChange={onChangeAction}>
-            {dropdownOptions.map((option) => <option className={styles.selectOption} key={option.gid} value={option.gid}>{option.groupName}</option>)}
+            {dropdownOptions.map((option) => <option className={styles.selectOption} key={option.id} value={option.id}>{option.value}</option>)}
           </select>
         );
       default:
@@ -59,9 +59,12 @@ const TemplateInput: React.FunctionComponent<Props> = ({
 
   return (
     <tr>
+      { labelText && (
+
       <td className={styles.labelCell}>
         <label id={styles.label} htmlFor={labelText}>{labelText}</label>
       </td>
+      )}
       <td>
         {renderType(type)}
       </td>

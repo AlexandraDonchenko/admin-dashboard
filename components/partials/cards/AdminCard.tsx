@@ -6,10 +6,10 @@ import userStyles from '../../../styles/UserCard.module.scss';
 import { createUser, chooseUser } from '../../../redux/actions/user-actions';
 
 interface Props {
-  firstname:string;
-  lastname:string;
-  email:string;
-  group:string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  group: string;
 }
 
 const UserCard: React.FunctionComponent<Props> = ({
@@ -22,8 +22,7 @@ const UserCard: React.FunctionComponent<Props> = ({
       <img className={defaultStyles.image} src="https://avatars.githubusercontent.com/u/12762609?s=400&u=0bef9502b9abf3237338056e4e325344dca451ad&v=4" alt="" />
       <p className={userStyles.firstname}>{user.firstName}</p>
       <p className={userStyles.lastname}>{user.lastName}</p>
-      <a href="mailto:hello@world.com}" className={userStyles.email}>{user.email}</a>
-      {/* <p className={userStyles.group}>{user.group.groupName}</p> */}
+
     </div>
     <div className={defaultStyles.actionsWrapper}>
       {user.isAcitve

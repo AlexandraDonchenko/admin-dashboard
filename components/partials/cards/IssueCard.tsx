@@ -9,6 +9,7 @@ const IssueCard: React.FunctionComponent<Props> = ({
   type,
   createdOn,
   reportedBy,
+  options,
 }) => (
   <div className={defaultStyles.cardWrapper}>
     <div className={defaultStyles.infoWrapper}>
@@ -18,8 +19,8 @@ const IssueCard: React.FunctionComponent<Props> = ({
       <p className={issueStyles.reportedBy}>{reportedBy}</p>
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/check.svg" />
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/profile.svg" />
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/check.svg" onClick={options.solve} />
+
     </div>
   </div>
 );
