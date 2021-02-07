@@ -63,12 +63,6 @@ const Users: React.FunctionComponent<Props> = () => {
     dispatch(chooseUser(user));
   };
 
-  const showDeleteUserDialog = (event) => {
-    dispatch(activateBlur());
-    dispatch(showDialog('USERS_DIALOG_DELETE'));
-    // dispatch(chooseUser(user));
-  };
-
   const showDeactivateUserDialog = (event, user) => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_DEACTIVATE'));
@@ -104,7 +98,6 @@ const Users: React.FunctionComponent<Props> = () => {
     setLastName('');
     setEmail('');
     setGroupName('');
-
     cancelDialog(event);
   };
 
@@ -138,7 +131,7 @@ const Users: React.FunctionComponent<Props> = () => {
   return (
 
     <>
-      <Dialog active={dialogStatus.users_add === 'active'}>
+      <Dialog active={dialogStatus.users_create === 'active'}>
         <TemplateForm buttonText="Add User" onSubmitAction={(event) => handleAddSubmit(event, 'its working!')}>
           <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} />
           <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} />
@@ -158,16 +151,12 @@ const Users: React.FunctionComponent<Props> = () => {
       <Dialog active={dialogStatus.users_delete === 'active'}>
         <TemplateForm buttonText="Delete User" onSubmitAction={(event) => handleDeleteSubmit(event)} />
       </Dialog>
-      <Dialog active={dialogStatus.users_deactivate === 'active'}>
-        <TemplateForm buttonText="Deactivete User" onSubmitAction={handleAddSubmit}>
-          <TemplateInput labelText="Status" type="question" question="Are you sure to delete this user?" />
-        </TemplateForm>
-      </Dialog>
+
       <DashboardLayout>
         <SearchBar updateInput={updateInput} input={input} addButtonAction={showAddUserDialog} />
         <CardWrapper>
           {/* {usersToDisplay.map((user) => <UserCard aid={user.aid} firstname={user.firstName} lastname={user.lastName} email={user.email} group={user.group} options={{ update: showUpdateUserDialog, delete: showDeleteUserDialog, deactivate: showDeactivateUserDialog }} />)} */}
-          {usersToDisplay.map((user) => <UserCard user={user} key={user.aid} options={{ update: showUpdateUserDialog, delete: showDeleteUserDialog, deactivate: showDeactivateUserDialog }} />)}
+          {usersToDisplay.map((user) => <UserCard user={user} key={user.aid} options={{ update: showUpdateUserDialog, deactivate: showDeactivateUserDialog }} />)}
         </CardWrapper>
       </DashboardLayout>
     </>

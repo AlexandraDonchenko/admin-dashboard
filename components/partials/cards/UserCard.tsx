@@ -23,12 +23,11 @@ const UserCard: React.FunctionComponent<Props> = ({
       <p className={userStyles.firstname}>{user.firstName}</p>
       <p className={userStyles.lastname}>{user.lastName}</p>
       <a href="mailto:hello@world.com}" className={userStyles.email}>{user.email}</a>
-      <p className={userStyles.group}>{user.group.groupName}</p>
+      {/* <p className={userStyles.group}>{user.group.groupName}</p> */}
     </div>
     <div className={defaultStyles.actionsWrapper}>
       <img className={defaultStyles.action} src="/media/icons/cardOptions/deactivate.svg" onClick={(event) => options.deactivate(event, user)} />
       <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" onClick={(event) => options.update(event, user)} />
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/delete.svg" onClick={(event) => options.delete(event, user)} />
     </div>
   </div>
 );
