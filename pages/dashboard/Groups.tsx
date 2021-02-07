@@ -124,7 +124,7 @@ const Groups: React.FunctionComponent<Props> = () => {
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
-        <SearchBar updateInput={filterGroups} input={input} />
+        <SearchBar updateInput={filterGroups} input={input} addButtonAction={showCreateGroupDialog} />
         <CardWrapper>
           {filteredGroups.map((group) => <GroupCard groupName={group.groupName} options={{ update: showUpdateGroupDialog }} />)}
         </CardWrapper>
