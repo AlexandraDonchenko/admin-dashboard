@@ -37,6 +37,15 @@ export function postGroup(groupObj) {
     body: JSON.stringify(groupObj),
   });
 }
+export function putGroup(gid, groupObj) {
+  return fetching(`${baseUrl}/group/update/${gid}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(groupObj),
+  });
+}
 export function postDoor(doorObj) {
   return fetching(`${baseUrl}/door/create`, {
     method: 'POST',

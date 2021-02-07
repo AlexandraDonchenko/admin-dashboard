@@ -1,4 +1,4 @@
-import { getGroups, postGroup } from '../../pages/api/hello';
+import { getGroups, postGroup, putGroup } from '../../pages/api/hello';
 
 const fetchGroups = () => (dispatch) => {
   getGroups()
@@ -12,4 +12,10 @@ const createGroup = (groupObj) => (dispatch) => {
       dispatch({ type: 'POST_GROUP', payload: data });
     });
 };
-export { fetchGroups, createGroup };
+const updateGroup = (groupObj) => (dispatch) => {
+  putGroup(groupObj)
+    .then((data) => {
+      dispatch({ type: 'UPDATE_GROUP', payload: data });
+    });
+};
+export { fetchGroups, createGroup, updateGroup };
