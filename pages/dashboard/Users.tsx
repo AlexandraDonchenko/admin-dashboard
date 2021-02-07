@@ -112,7 +112,7 @@ const Users: React.FunctionComponent<Props> = () => {
           <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} />
           <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} />
           <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} />
-          <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ groupName: 'Teacher Assistant', gid: 21 }, { groupName: 'Teacher', gid: 22 }, { groupName: 'Student', gid: 23 }]} onChangeAction={handleGroup} value={group} />
+          <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', id: 22 }, { value: 'Student', id: 23 }]} onChangeAction={handleGroup} value={group} />
         </TemplateForm>
       </Dialog>
       <Dialog active={dialogStatus.users_update === 'active'}>
@@ -120,7 +120,7 @@ const Users: React.FunctionComponent<Props> = () => {
           <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} />
           <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} />
           <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} />
-          <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', gid: 22 }, { value: 'Student', gid: 23 }]} onChangeAction={handleGroup} value={group} />
+          <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', gid: 22 }, { value: 'Student', id: 23 }]} onChangeAction={handleGroup} value={group} />
           <TemplateInput labelText="Status" type="radio" radioOptions={['active', 'inactive']} />
         </TemplateForm>
       </Dialog>
