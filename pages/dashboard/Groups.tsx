@@ -118,13 +118,13 @@ const Groups: React.FunctionComponent<Props> = () => {
         <TemplateForm buttonText="Update Group">
           <TemplateInput labelText="Name of Group" type="text" />
           <TemplateInput labelText="Description" type="text" />
-          <TemplateInput labelText="Access from" type="dropdown" dropdownOptions={['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']} />
-          <TemplateInput labelText="Access to" type="dropdown" dropdownOptions={['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']} />
+          <TemplateInput labelText="Access from" type="dropdown" dropdownOptions={[{ value: '00:00' }, { value: '01:00' }, { value: '02:00' }, { value: '03:00' }, { value: '04:00' }, { value: '05:00' }, { value: '06:00' }, { value: '07:00' }, { value: '08:00' }, { value: '10:00' }, { value: '11:00' }, { value: '12:00' }, { value: '13:00' }, { value: '14:00' }, { value: '15:00' }, { value: '16:00' }, { value: '17:00' }, { value: '18:00' }, { value: '19:00' }, { value: '20:00' }, { value: '21:00' }, { value: '22:00' }, { value: '23:00' }, { value: '24:00' }]} />
+          <TemplateInput labelText="Access to" type="dropdown" dropdownOptions={[{ value: '00:00' }, { value: '01:00' }, { value: '02:00' }, { value: '03:00' }, { value: '04:00' }, { value: '05:00' }, { value: '06:00' }, { value: '07:00' }, { value: '08:00' }, { value: '10:00' }, { value: '11:00' }, { value: '12:00' }, { value: '13:00' }, { value: '14:00' }, { value: '15:00' }, { value: '16:00' }, { value: '17:00' }, { value: '18:00' }, { value: '19:00' }, { value: '20:00' }, { value: '21:00' }, { value: '22:00' }, { value: '23:00' }, { value: '24:00' }]} />
           <TemplateInput labelText="Allowed doors" type="radio" radioOptions={['Main Entry', 'Cafeteria', 'Leo\'s Office', 'Berta\'s Office']} />
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
-        <SearchBar updateInput={filterGroups} input={input} addButtonAction={showCreateGroupDialog} />
+        <SearchBar updateInput={filterGroups} input={input} />
         <CardWrapper>
           {filteredGroups.map((group) => <GroupCard groupName={group.groupName} options={{ update: showUpdateGroupDialog }} />)}
         </CardWrapper>

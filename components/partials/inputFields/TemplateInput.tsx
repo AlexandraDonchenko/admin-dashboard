@@ -49,7 +49,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
       case 'dropdown':
         return (
           <select className={cx(styles.input, styles.select)} onChange={onChangeAction}>
-            {dropdownOptions.map((option) => <option className={styles.selectOption} key={option} value={option}>{option}</option>)}
+            {dropdownOptions.map((option) => <option className={styles.selectOption} key={option.id} value={option.id}>{option.value}</option>)}
           </select>
         );
       default:
