@@ -2,114 +2,84 @@ import { Reducer } from 'react';
 import { Action } from '../types';
 
 let originalState: DialogStatus = {
-  users_add: 'inactive',
+  users_create: 'inactive',
   users_update: 'inactive',
-  users_delete: 'inactive',
-  users_deactivate: 'inative',
-  groups: 'inactive',
-  doors: 'inactive',
-  logs: 'inactive',
-  issues: 'inactive',
-  settings: 'inactive',
+  groups_create: 'inactive',
+  groups_update: 'inactice',
+  issues_update: 'inactive',
+  settings_update: 'inactive',
 };
 
 const dialogStatusReducer: Reducer<DialogStatus> = (state = originalState, action: Action) => {
   switch (action.type) {
-    case 'USERS_DIALOG_ADD':
+    case 'USERS_DIALOG_CREATE':
       originalState = {
-        users_add: 'active',
+        users_create: 'active',
         users_update: 'inactive',
-        groups: 'inactive',
-        doors: 'inavctive',
-        logs: 'inactive',
-        issues: 'inactive',
-        settings: 'inactive',
+        groups_create: 'inactive',
+        groups_update: 'inactice',
+        issues_update: 'inactive',
+        settings_update: 'inactive',
       };
       return originalState;
     case 'USERS_DIALOG_UPDATE':
       originalState = {
-        users_add: 'inactive',
+        users_create: 'inactive',
         users_update: 'active',
-        groups: 'inactive',
-        doors: 'inavctive',
-        logs: 'inactive',
-        issues: 'inactive',
-        settings: 'inactive',
+        groups_create: 'inactive',
+        groups_update: 'inactice',
+        issues_update: 'inactive',
+        settings_update: 'inactive',
       };
       return originalState;
-    case 'USERS_DIALOG_DELETE':
+    case 'GROUPS_DIALOG_CREATE':
       originalState = {
-        users_add: 'inactive',
+        users_create: 'inactive',
         users_update: 'inactive',
-        users_delete: 'active',
-        groups: 'inactive',
-        doors: 'inavctive',
-        logs: 'inactive',
-        issues: 'inactive',
-        settings: 'inactive',
+        groups_create: 'active',
+        groups_update: 'inactice',
+        issues_update: 'inactive',
+        settings_update: 'inactive',
       };
       return originalState;
-    case 'USERS_DIALOG_DEACTIVATE':
+    case 'GROUPS_DIALOG_UPDATE':
       originalState = {
-        users_add: 'inactive',
+        users_create: 'inactive',
         users_update: 'inactive',
-        users_delete: 'inactive',
-        users_deactivate: 'active',
-        groups: 'inactive',
-        doors: 'inavctive',
-        logs: 'inactive',
-        issues: 'inactive',
-        settings: 'inactive',
+        groups_create: 'inactive',
+        groups_update: 'actice',
+        issues_update: 'inactive',
+        settings_update: 'inactive',
       };
       return originalState;
-    case 'GROUPS_DIALOG':
+    case 'ISSUE_DIALOG_UPDATE':
       originalState = {
-        users: 'inactive',
-        groups: 'active',
-        doors: 'inactive',
-        logs: 'inactive',
-        issues: 'inactive',
-        settings: 'inactive',
+        users_create: 'inactive',
+        users_update: 'inactive',
+        groups_create: 'inactive',
+        groups_update: 'inactice',
+        issues_update: 'active',
+        settings_update: 'inactive',
       };
       return originalState;
-    case 'DOORS_DIALOG':
+    case 'SETINGS_DIALOG_UPDATE':
       originalState = {
-        users: 'inactive',
-        groups: 'inactive',
-        doors: 'active',
-        logs: 'inactive',
-        issues: 'inactive',
-        settings: 'inactive',
-      };
-      return originalState;
-    case 'ISSUES_DIALOG':
-      originalState = {
-        users: 'inactive',
-        groups: 'inactive',
-        doors: 'inactive',
-        logs: 'inactive',
-        issues: 'active',
-        settings: 'inactive',
-      };
-      return originalState;
-    case 'SETTINGS_DIALOG':
-      originalState = {
-        users: 'inactive',
-        groups: 'inactive',
-        doors: 'inactive',
-        logs: 'inactive',
-        issues: 'inactive',
-        settings: 'active',
+        users_create: 'inactive',
+        users_update: 'inactive',
+        groups_create: 'inactive',
+        groups_update: 'inactice',
+        issues_update: 'inactive',
+        settings_update: 'active',
       };
       return originalState;
     case 'RESET':
       originalState = {
-        users: 'inactive',
-        groups: 'inactive',
-        doors: 'inactive',
-        logs: 'inactive',
-        issues: 'inactive',
-        settings: 'active',
+        users_create: 'inactive',
+        users_update: 'inactive',
+        groups_create: 'inactive',
+        groups_update: 'inactice',
+        issues_update: 'inactive',
+        settings_update: 'inactive',
       };
       return originalState;
     default:

@@ -36,44 +36,29 @@ const Users: React.FunctionComponent<Props> = () => {
 
   const showAddUserDialog = () => {
     dispatch(activateBlur());
-    dispatch(showDialog('USERS_DIALOG_ADD'));
+    dispatch(showDialog('USERS_DIALOG_CREATE'));
   };
 
   const showUpdateUserDialog = (event) => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_UPDATE'));
     dispatch(chooseUser(event.target.value));
-    // console.log(pickedUser);
   };
 
-  const showDeleteUserDialog = (event) => {
-    dispatch(activateBlur());
-    dispatch(showDialog('USERS_DIALOG_DELETE'));
-    dispatch(chooseUser(user));
-  };
-
-  const showDeactivateUserDialog = (event, user) => {
-    dispatch(activateBlur());
-    dispatch(showDialog('USERS_DIALOG_DEACTIVATE'));
-    dispatch(chooseUser(user));
-  };
-
+  // INITIALIZE STATE FOR INPUT FIELDS
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [group, setGroupName] = useState<Number>();
 
+  // FUNCTION TO UPDATE INPUT FIELDS
   const handleFirstName = (event) => { setFirstName(event.target.value); };
   const handleLasttName = (event) => { setLastName(event.target.value); };
   const handleEmail = (event) => { setEmail(event.target.value); };
-  const handleGroup = (event) => {
-    console.log(event.target.value);
-    setGroupName(Number(event.target.value));
-  };
+  const handleGroup = (event) => { setGroupName(Number(event.target.value)); };
 
   const handleSubmit = (event, id) => {
     event.preventDefault();
-
     dispatch(createUser({
       firstName,
       lastName,
