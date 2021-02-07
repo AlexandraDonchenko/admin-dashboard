@@ -109,17 +109,17 @@ const Users: React.FunctionComponent<Props> = () => {
     <>
       <Dialog active={dialogStatus.users_create === 'active'}>
         <TemplateForm buttonText="Add User" onSubmitAction={(event) => handleCreateSubmit(event, 'its working!')}>
-          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} />
-          <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} />
-          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} />
+          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} placeholder={firstName} />
+          <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} placeholder={lastName} />
+          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} placeholder={email} />
           <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', id: 22 }, { value: 'Student', id: 23 }]} onChangeAction={handleGroup} value={group} />
         </TemplateForm>
       </Dialog>
       <Dialog active={dialogStatus.users_update === 'active'}>
         <TemplateForm buttonText="Update User" onSubmitAction={(event) => handleUpdateSubmit(event)}>
-          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} />
-          <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} />
-          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} />
+          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} placeholder={firstName} />
+          <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} placeholder={lastName} />
+          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} placeholder={email} />
           <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', gid: 22 }, { value: 'Student', id: 23 }]} onChangeAction={handleGroup} value={group} />
           <TemplateInput labelText="Status" type="radio" radioOptions={['active', 'inactive']} />
         </TemplateForm>

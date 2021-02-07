@@ -42,7 +42,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
         return (
           radioOptions.map((option) => (
             <span key={option}>
-              <input className={styles.radio} key={option} name={labelText} type="radio" onChange={onChangeAction} value={value} checked />
+              <input className={styles.radio} key={option} name={labelText} type="radio" onChange={onChangeAction} value={value} />
               <label className={styles.radioLabel} key={`${option}-label`} htmlFor={labelText}>{option}</label>
               <br />
             </span>
