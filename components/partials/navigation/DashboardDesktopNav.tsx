@@ -17,7 +17,7 @@ interface Props { }
 
 const DashboardDesktopNav: React.FunctionComponent<Props> = () => (
   <div className={styles.navbar}>
-    <div id={styles.logoPlaceHolder}><div className={styles.text}>sesame</div></div>
+    <img id={styles.logoPlaceHolder} src="/media/logos/logo.png" alt="sesame" />
     <NavigationItem linkName="Overview" path="/dashboard/Overview" action="OVERVIEW" dispatcher={clickedOnOverview} icon="/media/icons/NavigationIcons/overview.svg" />
     <NavigationItem linkName="Users" path="/dashboard/Users" action="USERS" dispatcher={clickedOnUsers} icon="/media/icons/NavigationIcons/users.svg" />
     <NavigationItem linkName="Groups" path="/dashboard/Groups" action="GROUPS" dispatcher={clickedOnGroups} icon="/media/icons/NavigationIcons/groups.svg" />
