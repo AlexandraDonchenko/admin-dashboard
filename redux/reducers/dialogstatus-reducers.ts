@@ -62,7 +62,7 @@ const dialogStatusReducer: Reducer<DialogStatus> = (state = originalState, actio
         settings_update: 'inactive',
       };
       return originalState;
-    case 'SETINGS_DIALOG_UPDATE':
+    case 'SETTINGS_DIALOG_UPDATE':
       originalState = {
         users_create: 'inactive',
         users_update: 'inactive',
