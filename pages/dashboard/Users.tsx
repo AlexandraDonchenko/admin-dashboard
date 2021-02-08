@@ -21,7 +21,6 @@ const Users: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
   const users = useSelector((state) => state.userReducer.users);
-  const [refresh, setRefresh] = useState<String>('');
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
   const cancelDialog = (event) => {
@@ -31,7 +30,7 @@ const Users: React.FunctionComponent<Props> = () => {
   };
   useEffect(() => {
     setUsersToDisplay(users);
-  }, [refresh]);
+  }, [users]);
   const updateInput = (inputName) => {
     const filtered = users.filter((user) => {
       const fullName = `${user.firstname}${user.lastname}`;
@@ -96,8 +95,8 @@ const Users: React.FunctionComponent<Props> = () => {
     setLastName('');
     setEmail('');
     setGroupName('');
+    setUsersToDisplay(users);
     cancelDialog(event);
-    setRefresh('Refresh');
   };
 
   return (
