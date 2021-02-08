@@ -62,9 +62,14 @@ const Groups: React.FunctionComponent<Props> = () => {
   const handleAccessFromHour = (event) => { setAccessFromHour(event.target.value); };
   const handleAccessToHour = (event) => { setAccessToHour(event.target.value); };
   const handleDoors = (event) => {
-    console.log('DOOOOOOOORS', event.target.value);
-    setDoors([...doors, event.target.value]);
-    console.log('DOOOOOOOORS after', doors);
+    console.log(event.target.value);
+    if (doors.includes(event.target.value)) {
+      setDoors(doors.filter((door) => door !== Number(event.target.value)));
+      console.log('DOOOOOOOORS after', doors);
+    } else {
+      setDoors([...doors, Number(event.target.value)]);
+      console.log('DOOOOOOOORS after', doors);
+    }
   };
   const pickedGroup = useSelector((state) => state.choosenCardReducer.picked);
   const showCreateGroupDialog = () => {
