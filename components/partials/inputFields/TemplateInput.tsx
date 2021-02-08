@@ -42,7 +42,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
         return (
           radioOptions.map((option) => (
             <span key={option}>
-              <input className={styles.radio} key={option} name={labelText} type="radio" onChange={onChangeAction} value={value} />
+              <input className={styles.radio} key={option.doorName} name={labelText} type="radio" onChange={onChangeAction} value={value} />
               <label className={styles.radioLabel} key={`${option}-label`} htmlFor={labelText}>{option}</label>
               <br />
             </span>
@@ -57,9 +57,9 @@ const TemplateInput: React.FunctionComponent<Props> = ({
       case 'checkbox':
         return (
           checkboxOptions.map((option) => (
-            <span key={option}>
-              <input className={styles.checkbox} key={option} name={labelText} type="checkbox" onChange={onChangeAction} value={value} />
-              <label className={styles.radioLabel} key={`${option}-label`} htmlFor={labelText}>{option}</label>
+            <span key={option.did}>
+              <input className={styles.checkbox} key={option.did} name={option.did} type="checkbox" onChange={onChangeAction} value={option.did} />
+              <label className={styles.radioLabel} key={`${option.doorName}-label`} htmlFor={labelText}>{option.doorName}</label>
               <br />
             </span>
           ))

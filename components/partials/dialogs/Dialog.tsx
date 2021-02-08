@@ -4,14 +4,12 @@ import styles from '../../../styles/Dialog.module.scss';
 
 interface Props { }
 
-const Dialog: React.FunctionComponent<Props> = ({ children, active }) => {
-  const pickedUser = useSelector((state) => state.choosenUserReducer.user);
+const Dialog: React.FunctionComponent<Props> = ({ children, active }) =>
+// const pickedUser = useSelector((state) => state.choosenCardReducer.picked);
 
-  return (
+  (
     <div id={styles.dialog} className={active === true ? styles.active : ''}>
       {children}
     </div>
   );
-};
-
 export default Dialog;

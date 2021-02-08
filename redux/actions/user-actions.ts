@@ -17,7 +17,10 @@ const chooseUser = (userObj) => ({ type: 'CHOOSE_USER', payload: userObj });
 
 const updateUser = (aid, userObj) => (dispatch) => {
   putUser(aid, userObj)
-    .then((data) => dispatch({ type: 'UPDATE_USER', payload: { data, aid } }));
+    .then((data) => {
+      console.log(data);
+      dispatch({ type: 'UPDATE_USER', payload: { data, aid } });
+    });
 };
 
 const removeUser = (aid) => (dispatch) => {
