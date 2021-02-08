@@ -15,6 +15,7 @@ interface Props { }
 const Issues: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
+  const issues = useSelector((state) => )
 
   const solveIssue = () => {
     dispatch(activateBlur());

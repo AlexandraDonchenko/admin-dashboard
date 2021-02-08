@@ -73,6 +73,9 @@ export function deleteUser(aid) {
     },
   });
 }
+export function getIssues() {
+  return fetching(`${baseUrl}status/issues`);
+}
 
 function fetching(url, options) {
   return fetch(url, options)

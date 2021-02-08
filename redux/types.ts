@@ -55,6 +55,14 @@ export interface Logs {
 export interface DialogBlur {
   status: String;
 }
+export interface Issue {
+    type: string,
+    active: boolean,
+    reportedBy: string
+}
+export interface Issues {
+    issues: Issue[]
+}
 
 export interface DialogStatus {
   users: String;

@@ -9,6 +9,7 @@ import logsReducer from './logs-reducers';
 import dialogblurReducer from './dialogblur-reducers';
 import dialogStatusReducer from './dialogstatus-reducers';
 import choosenCardReducer from './choosen-card-reducer';
+import issueReducer from './issue-reducers';
 
 export default combineReducers({
   loginReducer,
@@ -18,6 +19,7 @@ export default combineReducers({
   groupReducer,
   doorReducer,
   logsReducer,
+  issueReducer,
   dialogblurReducer,
   dialogStatusReducer,
   choosenCardReducer,
