@@ -15,8 +15,8 @@ export interface Clicked {
 }
 export interface User {
     id: number,
-    firstname: string,
-    lastname: string,
+    firstName: string,
+    lastName: string,
     email: string,
     isActive: Boolean,
     group: string
