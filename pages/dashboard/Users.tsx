@@ -90,6 +90,11 @@ const Users: React.FunctionComponent<Props> = () => {
 
   const handleUpdateSubmit = (event, aid) => {
     event.preventDefault();
+    if (firstName === '') setFirstName(pickedUser.firstName);
+    if (lastName === '') setFirstName(pickedUser.lastName);
+    if (email === '') setFirstName(pickedUser.email);
+    if (group === null) setFirstName(pickedUser.group);
+    if (isActive === undefined) setFirstName(pickedUser.isActive);
     dispatch(updateUser(pickedUser.aid, {
       firstName,
       lastName,
@@ -100,7 +105,7 @@ const Users: React.FunctionComponent<Props> = () => {
     setFirstName('');
     setLastName('');
     setEmail('');
-    setGroupName('');
+    setGroupName(null);
     setUsersToDisplay(users);
     cancelDialog(event);
   };
@@ -117,9 +122,9 @@ const Users: React.FunctionComponent<Props> = () => {
       </Dialog>
       <Dialog active={dialogStatus.users_update === 'active'}>
         <TemplateForm buttonText="Update User" onSubmitAction={(event) => handleUpdateSubmit(event)}>
-          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} placeholder={firstName} />
-          <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} placeholder={lastName} />
-          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} placeholder={email} />
+          <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} placeholder={pickedUser.firstName} />
+          <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} placeholder={pickedUser.lastName} />
+          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} placeholder={pickedUser.email} />
           <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', gid: 22 }, { value: 'Student', id: 23 }]} onChangeAction={handleGroup} value={group} />
           <TemplateInput labelText="Status" type="radio" radioOptions={['active', 'inactive']} value={isActive} onChangeAction={handleActive} />
         </TemplateForm>
