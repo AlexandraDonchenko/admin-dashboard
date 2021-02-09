@@ -1,10 +1,12 @@
 import React from 'react';
 import defaultStyles from '../../../styles/cardWrapper.module.scss';
 import groupStyles from '../../../styles/GroupCard.module.scss';
+import { Group } from '../../../redux/types';
 
 interface Props {
-  groupName: string
-  group:any
+  groupName: string,
+  group: Group,
+  options: any
 }
 
 const GroupCard: React.FunctionComponent<Props> = ({
@@ -18,7 +20,7 @@ const GroupCard: React.FunctionComponent<Props> = ({
       <p className={groupStyles.groupName}>{groupName}</p>
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} onClick={(event) => options.update(event, group)} src="/media/icons/cardOptions/edit.svg" />
+      <img className={defaultStyles.action} onClick={(event) => options.update(event, group)} src="/media/icons/cardOptions/edit.svg" alt="" />
     </div>
   </div>
 );
