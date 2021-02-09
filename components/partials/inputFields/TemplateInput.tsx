@@ -43,7 +43,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
       case 'question':
         return <p className={styles.question}>{question}</p>;
       case 'text':
-        return <input className={cx(styles.input, styles.text)} type="text" onChange={handleText} value={value} placeholder={placeholder} />;
+        return <input className={cx(styles.input, styles.text)} type="text" onChange={onChangeAction} value={value} placeholder={placeholder} />;
       case 'password':
         return <input className={cx(styles.input, styles.password)} type="password" onChange={onChangeAction} value={value} />;
       case 'file':

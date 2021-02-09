@@ -27,10 +27,22 @@ const Users: React.FunctionComponent<Props> = () => {
     event.preventDefault();
     dispatch(showDialog('RESET'));
     dispatch(deactivateBlur());
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setGroupName(null);
+    setUsersToDisplay(users);
   };
+  const pickedUser = useSelector((state) => state.choosenCardReducer.picked);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [group, setGroupName] = useState<Number| null>();
+  const [isActive, setIsActiove] = useState<Boolean>(false);
   useEffect(() => {
     setUsersToDisplay(users);
-  }, [users]);
+    dispatch(chooseUser(pickedUser));
+  }, [users, pickedUser]);
   const updateInput = (inputName) => {
     const filtered = users.filter((user) => {
       const fullName = `${user.firstname}${user.lastname}`;
@@ -39,35 +51,32 @@ const Users: React.FunctionComponent<Props> = () => {
     setInput(inputName);
     setUsersToDisplay(filtered);
   };
-  const pickedUser = useSelector((state) => state.choosenCardReducer.picked);
+
   const showCreateUserDialog = () => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_CREATE'));
   };
 
   const showUpdateUserDialog = (event, user) => {
+    dispatch(chooseUser(user));
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_UPDATE'));
-    dispatch(chooseUser(user));
   };
 
-  // INITIALIZE STATE FOR INPUT FIELDS
-  const [firstName, setFirstName] = useState(pickedUser.firstName);
-  const [lastName, setLastName] = useState(pickedUser.lastName);
-  const [email, setEmail] = useState(pickedUser.email);
-  const [group, setGroupName] = useState<Number| null>(pickedUser.group);
-  const [isActive, setIsActiove] = useState<Boolean>(pickedUser.isActive);
-
   // FUNCTION TO UPDATE INPUT FIELDS
-  const handleFirstName = (text) => { setFirstName(text); };
-  const handleLasttName = (text) => { setLastName(text); };
-  const handleEmail = (text) => { setEmail(text); };
-
+  const handleFirstName = (event) => {
+    setFirstName(event.target.value);
+  };
+  const handleLasttName = (event) => {
+    setLastName(event.target.value);
+  };
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  };
   const handleGroup = (event) => {
     setGroupName(Number(event.target.value));
   };
   const handleActive = (event) => {
-    console.log(event.target.value);
     setIsActiove(event.target.value === 'active');
   };
 
@@ -83,22 +92,24 @@ const Users: React.FunctionComponent<Props> = () => {
     setLastName('');
     setEmail('');
     setGroupName(null);
+    setUsersToDisplay(users);
     cancelDialog(event);
   };
 
   const handleUpdateSubmit = (event, aid) => {
     event.preventDefault();
-    dispatch(updateUser(pickedUser.aid, {
-      firstName,
-      lastName,
-      email,
-      group,
-      isActive,
-    }));
-    // setFirstName('');
-    // setLastName('');
-    // setEmail('');
-    // setGroupName(null);
+    const userObj = {
+      firstName: firstName === '' ? pickedUser.firstName : firstName,
+      lastName: lastName === '' ? pickedUser.lastName : lastName,
+      email: email === '' ? pickedUser.email : email,
+      group: group === null ? pickedUser.group : group,
+    };
+
+    dispatch(updateUser(pickedUser.aid, userObj));
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setGroupName(null);
     setUsersToDisplay(users);
     cancelDialog(event);
   };
