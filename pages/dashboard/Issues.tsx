@@ -15,8 +15,9 @@ interface Props { }
 const Issues: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
-  const issues = useSelector((state) => )
-
+  const issues = useSelector((store) => store.issueReducer.issues);
+  const users = useSelector((store) => store.userReducer.users);
+  const filteredIssues = issues.filter((issue) => (issue.active ? issue : null));
   const solveIssue = () => {
     dispatch(activateBlur());
     dispatch(showDialog('ISSUES_DIALOG_UPDATE'));
@@ -25,14 +26,14 @@ const Issues: React.FunctionComponent<Props> = () => {
   return (
     <>
       <Dialog active={dialogStatus.issues_update === 'active'}>
-        <TemplateForm buttonText="Solve" addButtonAction="addIssue">
+        <TemplateForm buttonText="Solve" onSubmitAction={(event) => solveIssue(event, 'it is working')}>
           <TemplateInput labelText="" type="question" question="Are you sure?" />
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
         <SearchBar />
         <CardWrapper>
-          <IssueCard type="Camera" createdOn="3 hours ago" reportedBy="Leonardo Vittorio" options={{ solve: solveIssue }} />
+          {filteredIssues.map((issue) => <IssueCard type={issue.type} createdOn={issue.createdOn} reportedBy={users.find(({ aid }) => aid === issue.reportedBy).firstName} options={{ solve: solveIssue }} />)}
         </CardWrapper>
       </DashboardLayout>
     </>

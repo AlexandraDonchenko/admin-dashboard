@@ -74,7 +74,15 @@ export function deleteUser(aid) {
   });
 }
 export function getIssues() {
-  return fetching(`${baseUrl}status/issues`);
+  return fetching(`${baseUrl}/status/issues`);
+}
+export function putIssues(_id) {
+  return fetching(`${baseUrl}/status/issues/${_id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 }
 
 function fetching(url, options) {
