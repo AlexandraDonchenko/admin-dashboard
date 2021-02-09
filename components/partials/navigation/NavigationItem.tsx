@@ -1,17 +1,16 @@
 import React from 'react';
 import Link from 'next/Link';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  clickedOnDoors,
-  clickedOnGroups,
-  clickedOnIssues,
-  clickedOnLogs,
-  clickedOnOverview,
-  clickedOnUsers,
-} from '../../../redux/actions/clicked-actions';
 import styles from '../../../styles/DashboardDesktopNav.module.scss';
 
-interface Props { }
+interface Props {
+  linkName: string,
+  path: string,
+  action: string,
+  icon:string,
+  dispatcher: Function
+
+ }
 
 const NavigationItem: React.FunctionComponent<Props> = ({
   linkName, path, action, icon, dispatcher,
