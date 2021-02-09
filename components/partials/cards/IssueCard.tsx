@@ -6,7 +6,7 @@ interface Props {
   type: string,
   createdOn: Date,
   reportedBy: String,
-  options:any
+  options: any
 }
 
 const IssueCard: React.FunctionComponent<Props> = ({
