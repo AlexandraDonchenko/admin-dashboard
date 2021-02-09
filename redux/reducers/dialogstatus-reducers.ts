@@ -1,5 +1,5 @@
 import { Reducer } from 'react';
-import { Action } from '../types';
+import { Action, DialogStatus } from '../types';
 
 let originalState: DialogStatus = {
   users_create: 'inactive',
@@ -10,7 +10,7 @@ let originalState: DialogStatus = {
   settings_update: 'inactive',
 };
 
-const dialogStatusReducer: Reducer<DialogStatus> = (state = originalState, action: Action) => {
+const dialogStatusReducer: Reducer<DialogStatus, Action> = (state = originalState, action: Action) => {
   switch (action.type) {
     case 'USERS_DIALOG_CREATE':
       originalState = {

@@ -2,14 +2,11 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import defaultStyles from '../../../styles/cardWrapper.module.scss';
 import userStyles from '../../../styles/UserCard.module.scss';
-
-import { createUser, chooseUser } from '../../../redux/actions/user-actions';
+import { User } from '../../../redux/types';
 
 interface Props {
-  firstname:string;
-  lastname:string;
-  email:string;
-  group:string;
+  user: User
+  options: any
 }
 
 const UserCard: React.FunctionComponent<Props> = ({
@@ -27,9 +24,9 @@ const UserCard: React.FunctionComponent<Props> = ({
     </div>
     <div className={defaultStyles.actionsWrapper}>
       {user.isActive
-        ? <img className={defaultStyles.action} src="/media/icons/cardOptions/active.svg" />
-        : <img className={defaultStyles.action} src="/media/icons/cardOptions/inactive.svg" />}
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" onClick={(event) => options.update(event, user)} />
+        ? <img className={defaultStyles.action} src="/media/icons/cardOptions/active.svg" alt="" />
+        : <img className={defaultStyles.action} src="/media/icons/cardOptions/inactive.svg" alt="" />}
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" onClick={(event) => options.update(event, user)} alt="" />
     </div>
   </div>
 );

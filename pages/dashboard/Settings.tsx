@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
@@ -7,7 +7,6 @@ import AdminCard from '../../components/partials/cards/AdminCard';
 import { showDialog } from '../../redux/actions/dialogstatus-actions';
 import TemplateInput from '../../components/partials/inputFields/TemplateInput';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
-import SearchBar from '../../components/partials/searchBar/searchBar';
 import Dialog from '../../components/partials/dialogs/Dialog';
 import { activateBlur, deactivateBlur } from '../../redux/actions/dialogblur-actions';
 
@@ -27,11 +26,6 @@ const Settings: React.FunctionComponent<Props> = () => {
   // SHOWS THE DIALOG
   const showUpdateAdminDialog = (event, user) => {
     dispatch(activateBlur());
-    // dispatch(updateUser(user.aid, {
-    //   firstName,
-    //   lastName,
-    //   email,
-    // }));
     dispatch(showDialog('SETTINGS_DIALOG_UPDATE'));
   };
 
@@ -52,15 +46,15 @@ const Settings: React.FunctionComponent<Props> = () => {
   // ACTION AFTER PRESSING THE BUTTON IN THE SUBMIT
   const handleUpdateSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateUser(pickedUser.aid, {
-      firstName,
-      lastName,
-      email,
-      group,
-    }));
+    adminData.firstName = firstName;
+    adminData.lastName = lastName;
+    adminData.email = email;
+    adminData.password = password;
+    adminData.theme = theme;
     setFirstName('');
     setLastName('');
     setEmail('');
+    setPassword('');
     cancelDialog(event);
   };
 
@@ -86,7 +80,7 @@ const Settings: React.FunctionComponent<Props> = () => {
       </Dialog>
       <DashboardLayout>
         <CardWrapper>
-          <AdminCard admin={adminData} key={adminData.aid} options={{ update: showUpdateAdminDialog }} />
+          <AdminCard admin={adminData} key={adminData.email} options={{ update: showUpdateAdminDialog }} />
         </CardWrapper>
       </DashboardLayout>
     </>

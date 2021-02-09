@@ -1,46 +1,46 @@
 /* eslint-disable camelcase */
 
 export interface Theme {
-    theme: String
+  theme: String
 }
 export interface Action {
-    type:string,
-    payload:any
+  type:string,
+  payload:any
 }
 export interface Logged {
-    logged: boolean;
+  logged: boolean;
 }
 export interface Clicked {
-    clicked: string;
+  clicked: string;
 }
 export interface User {
-    id: number,
-    firstname: string,
-    lastname: string,
-    email: string,
-    isActive: Boolean,
-    group: string
+  aid: number,
+  firstName: string,
+  lastName: string,
+  email: string,
+  isActive: Boolean,
+  group: string
 }
 export interface Users {
-    users: User[];
+  users: User[];
 }
 export interface Group {
-    id: number,
-    groupName: string,
-    description, string,
-    access_from_hour: number,
-    access_to_hour: number
+  gid: number,
+  groupName: string,
+  description, string,
+  access_from_hour: number,
+  access_to_hour: number
 }
 export interface Groups {
-    groups: Group[];
+  groups: Group[];
 }
 export interface Door {
-    id: number,
-    name:string,
-    endPoint: string
+  did: number,
+  doorName:string,
+  endPoint: string
 }
 export interface Doors{
-    doors: Door[]
+  doors: Door[]
 }
 export interface Log{
     id:number,
@@ -49,33 +49,38 @@ export interface Log{
   date: string
 }
 export interface Logs {
-    logs: Log[];
+  logs: Log[];
 }
 
 export interface DialogBlur {
   status: String;
 }
 export interface Issue {
-    type: string,
-    active: boolean,
-    reportedBy: string
+  _id:number,
+  type: string,
+  active: boolean,
+  reportedBy: string
 }
 export interface Issues {
-    issues: Issue[]
+  issues: Issue[]
 }
 
 export interface DialogStatus {
-  users: String;
-  groups: String;
-  doors: String;
-  logs: String;
-  issues: String;
-  settings: String;
+  users_create: string,
+  users_update: string,
+  groups_create: string,
+  groups_update: string,
+  issues_update: string,
+  settings_update: string,
 }
 export interface Admin {
-    firstName: string,
-    lastName:string,
-    email: string,
-    password: string,
-    theme: string
+  firstName: string,
+  lastName:string,
+  email: string,
+  password: string,
+  theme: string
+}
+export interface Time {
+  value:string,
+  id:number
 }

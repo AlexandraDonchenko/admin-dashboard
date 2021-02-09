@@ -8,7 +8,8 @@ const choosenCardReducer: Reducer<User, Action> = (state = originalState, action
     case 'CHOOSE_USER': originalState = { picked: action.payload };
       return originalState;
     case 'CHOOSE_GROUP': originalState = { picked: action.payload };
-      console.log(originalState);
+      return originalState;
+    case 'CHOOSE_ISSUE': originalState = { picked: action.payload };
       return originalState;
     default: return state;
   }

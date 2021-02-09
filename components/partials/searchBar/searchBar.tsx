@@ -4,6 +4,7 @@ import styles from '../../../styles/SearchBar.module.scss';
 interface Props {
     input:string,
     updateInput:Function
+    addButtonAction?: any
 }
 
 const SearchBar: React.FunctionComponent<Props> = ({
@@ -20,7 +21,7 @@ const SearchBar: React.FunctionComponent<Props> = ({
       </div>
       {addButtonAction !== undefined
         && (
-          <button className={styles.addButton} onClick={addButtonAction} className={styles.addButton}>
+          <button type="button" className={styles.addButton} onClick={addButtonAction}>
             <img className={styles.searchIcon} src="/media/icons/searchBar/add.svg" alt="add" />
           </button>
         )}

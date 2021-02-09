@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import DoorCard from '../../components/partials/cards/DoorCard';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
-import Door from '../../redux/types';
+import { Door } from '../../redux/types';
 import SearchBar from '../../components/partials/searchBar/searchBar';
 import Dialog from '../../components/partials/dialogs/Dialog';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
@@ -15,7 +15,8 @@ interface Props { }
 
 const Doors: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
-
+  const [door, setDoor] = useState('');
+  const [endpoint, setEndpoint] = useState('');
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
 
   const doors = useSelector((state) => state.doorReducer.doors);
@@ -31,7 +32,12 @@ const Doors: React.FunctionComponent<Props> = () => {
     setInput(inputName);
     setFilteredDoors(filtered);
   };
-
+  const handleDoorName = (event) => {
+    setDoor(event.target.value);
+  };
+  const handleDoorEndpoint = (event) => {
+    setDoor(event.target.value);
+  };
   const addDoor = () => {
     dispatch(activateBlur());
     dispatch(showDialog('DOORS_DIALOG'));
@@ -40,16 +46,16 @@ const Doors: React.FunctionComponent<Props> = () => {
   return (
     <>
       <Dialog active={dialogStatus.doors === 'active'}>
-        <TemplateForm buttonText="Add Door">
-          <TemplateInput labelText="Name of Door" type="text" />
-          <TemplateInput labelText="Endpoint" type="text" />
+        <TemplateForm buttonText="Add Door" onSubmitAction="addDoor">
+          <TemplateInput labelText="Name of Door" type="text" onChangeAction={handleDoorName} value={door} />
+          <TemplateInput labelText="Endpoint" type="text" onChangeAction={handleDoorEndpoint} value={endpoint} />
         </TemplateForm>
       </Dialog>
       <DashboardLayout>
 
-        <SearchBar updateInput={updateDoors} input={input} />
+        <SearchBar updateInput={updateDoors} input={input} addButtonAction={addDoor} />
         <CardWrapper>
-          {filteredDoors.map((door) => <DoorCard doorName={door.doorName} />)}
+          {filteredDoors.map((pickedDoor) => <DoorCard doorName={pickedDoor.doorName} />)}
         </CardWrapper>
       </DashboardLayout>
     </>
