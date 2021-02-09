@@ -6,10 +6,12 @@ import { User } from '../../../redux/types';
 
 interface Props {
   user: User
+  options: any
 }
 
 const UserCard: React.FunctionComponent<Props> = ({
   user,
+  options,
 }) => (
 
   <div className={defaultStyles.cardWrapper}>
