@@ -11,7 +11,7 @@ import SearchBar from '../../components/partials/searchBar/searchBar';
 import Dialog from '../../components/partials/dialogs/Dialog';
 import { User } from '../../redux/types';
 import {
-  createUser, chooseUser, updateUser, removeUser,
+  createUser, chooseUser, updateUser,
 } from '../../redux/actions/user-actions';
 import { activateBlur, deactivateBlur } from '../../redux/actions/dialogblur-actions';
 
@@ -55,7 +55,8 @@ const Users: React.FunctionComponent<Props> = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [group, setGroupName] = useState<Number>();
+  const [group, setGroupName] = useState<Number| null>();
+  const [isActive, setIsActiove] = useState<Boolean>(false);
 
   // FUNCTION TO UPDATE INPUT FIELDS
   const handleFirstName = (event) => { setFirstName(event.target.value); };
@@ -64,6 +65,10 @@ const Users: React.FunctionComponent<Props> = () => {
 
   const handleGroup = (event) => {
     setGroupName(Number(event.target.value));
+  };
+  const handleActive = (event) => {
+    console.log(event.target.value);
+    setIsActiove(event.target.value === 'active');
   };
 
   const pickedUser = useSelector((state) => state.choosenCardReducer.picked);
@@ -79,7 +84,7 @@ const Users: React.FunctionComponent<Props> = () => {
     setFirstName('');
     setLastName('');
     setEmail('');
-    setGroupName('');
+    setGroupName(null);
     cancelDialog(event);
   };
 
@@ -90,6 +95,7 @@ const Users: React.FunctionComponent<Props> = () => {
       lastName,
       email,
       group,
+      isActive,
     }));
     setFirstName('');
     setLastName('');
@@ -115,7 +121,7 @@ const Users: React.FunctionComponent<Props> = () => {
           <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} placeholder={lastName} />
           <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} placeholder={email} />
           <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', gid: 22 }, { value: 'Student', id: 23 }]} onChangeAction={handleGroup} value={group} />
-          <TemplateInput labelText="Status" type="radio" radioOptions={['active', 'inactive']} />
+          <TemplateInput labelText="Status" type="radio" radioOptions={['active', 'inactive']} value={isActive} onChangeAction={handleActive} />
         </TemplateForm>
       </Dialog>
       <Dialog active={dialogStatus.users_delete === 'active'}>

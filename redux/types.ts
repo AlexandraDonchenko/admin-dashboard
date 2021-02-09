@@ -35,8 +35,8 @@ export interface Groups {
     groups: Group[];
 }
 export interface Door {
-    id: number,
-    name:string,
+    did: number,
+    doorName:string,
     endPoint: string
 }
 export interface Doors{

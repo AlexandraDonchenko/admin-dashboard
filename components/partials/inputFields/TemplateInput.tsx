@@ -1,15 +1,18 @@
 import React from 'react';
 import cx from 'classnames';
 import styles from '../../../styles/TemplateInput.module.scss';
+import { Doors } from '../../../redux/types';
 
 interface Props {
   type?: string,
   labelText?: string,
   question?: string,
-  dropdownOptions?: [],
-  radioOptions?: [],
+  dropdownOptions?: string[],
+  radioOptions?: string[],
   onChangeAction: any,
-  value: any
+  value: any,
+  checkBoxOptions?: Doors,
+  placeholder?: string
 }
 
 const TemplateInput: React.FunctionComponent<Props> = ({
@@ -19,15 +22,14 @@ const TemplateInput: React.FunctionComponent<Props> = ({
   dropdownOptions,
   radioOptions,
   onChangeAction,
-  onSubmitAction,
-  checkboxOptions,
+  checkBoxOptions,
   placeholder,
   value,
 }) => {
   const handleSubmit = (event) => {
     onChangeAction(event);
   };
-  const renderType = (type) => {
+  const renderType = () => {
     switch (type) {
       case 'question':
         return <p className={styles.question}>{question}</p>;
@@ -46,7 +48,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
         return (
           radioOptions.map((option) => (
             <span key={option}>
-              <input className={styles.radio} key={option.doorName} name={labelText} type="radio" onChange={onChangeAction} value={value} />
+              <input className={styles.radio} key={option} name={labelText} type="radio" onChange={onChangeAction} value={option} />
               <label className={styles.radioLabel} key={`${option}-label`} htmlFor={labelText}>{option}</label>
               <br />
             </span>
@@ -60,9 +62,9 @@ const TemplateInput: React.FunctionComponent<Props> = ({
         );
       case 'checkbox':
         return (
-          checkboxOptions.map((option) => (
+          checkBoxOptions.doors.map((option) => (
             <span key={option.did}>
-              <input className={styles.checkbox} key={option.did} name={option.did} type="checkbox" onChange={handleSubmit} value={option.did} />
+              <input className={styles.checkbox} key={option.did} name={option.doorName} type="checkbox" onChange={handleSubmit} value={option.did} />
               <label className={styles.radioLabel} key={`${option.doorName}-label`} htmlFor={labelText}>{option.doorName}</label>
               <br />
             </span>
