@@ -31,10 +31,86 @@ const Overview: React.FunctionComponent<Props> = () => {
     dispatch(fetchIssues());
   }, []);
 
-  console.log('users', logs);
+  console.log(logs);
+
+  // const logs = [
+  //   {
+  //     date: 'Tue Feb 09 2021 19:14:29 GMT+0100',
+  //     _id: '60216889fc8d308da4559369',
+  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
+  //     enteredDoor: 1,
+  //     __v: 0,
+  //   },
+  //   {
+  //     date: 'Tue Feb 09 2021 19:14:29 GMT+0100',
+  //     _id: '60216889fc8d308da4559369',
+  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
+  //     enteredDoor: 1,
+  //     __v: 0,
+  //   },
+  //   {
+  //     date: 'Tue Feb 09 2021 19:14:29 GMT+0100',
+  //     _id: '60216889fc8d308da4559369',
+  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
+  //     enteredDoor: 1,
+  //     __v: 0,
+  //   },
+  //   {
+  //     date: 'Tue Feb 09 2021 18:14:29 GMT+0100',
+  //     _id: '60216889fc8d308da4559369',
+  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
+  //     enteredDoor: 1,
+  //     __v: 0,
+  //   },
+  //   {
+  //     date: 'Tue Feb 09 2021 18:54:29 GMT+0100',
+  //     _id: '60216889fc8d308da4559369',
+  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
+  //     enteredDoor: 1,
+  //     __v: 0,
+  //   },
+  //   {
+  //     date: 'Tue Feb 09 2020 19:54:29 GMT+0100',
+  //     _id: '60216889fc8d308da4559369',
+  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
+  //     enteredDoor: 1,
+  //     __v: 0,
+  //   },
+
+  // ];
+
+  const getGraphData = (logs) => {
+    // GET THE CURRENT HOUR
+    const today = new Date();
+    let currentHour = today.getHours();
+    if (currentHour < 10) {
+      currentHour = `0${currentHour}`;
+    }
+    // GET AN ARRAY WITH ARRAY'S WITH USER FROM THE LAST HOURS
+    const logsFromToday = logs.filter((log) => new Date(log.date).getDate() == today.getDate() && new Date(log.date).getMonth() == today.getMonth() && new Date(log.date).getFullYear() == today.getFullYear());
+    const logsBeforeOneHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour);
+    const logsBeforeTwoHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour - 1);
+    const logsBeforeThreeHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour - 2);
+    const logsBeforeFourHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour - 3);
+    const logsBeforeFiveHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour - 4);
+    const logsBeforeSixHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour - 5);
+    return {
+      currentHour,
+      hours: {
+        logsBeforeOneHour,
+        logsBeforeTwoHour,
+        logsBeforeThreeHour,
+        logsBeforeFourHour,
+        logsBeforeFiveHour,
+        logsBeforeSixHour,
+      },
+    };
+  };
+  const graphData = getGraphData(logs);
+  console.log(graphData);
 
   const data = {
-    labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+    labels: [graphData.currentHour - 5, graphData.currentHour - 4, graphData.currentHour - 3, graphData.currentHour - 2, graphData.currentHour - 1, graphData.currentHour],
     datasets: [
       {
         label: '',
@@ -56,7 +132,7 @@ const Overview: React.FunctionComponent<Props> = () => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [65, 59, 80, 81, 56, 55, 40],
+        data: [graphData.hours.logsBeforeSixHour.length, graphData.hours.logsBeforeFiveHour.length, graphData.hours.logsBeforeFourHour.length, graphData.hours.logsBeforeThreeHour.length, graphData.hours.logsBeforeTwoHour.length, graphData.hours.logsBeforeOneHour.length],
         scaleLabel: {
           fontColor: '#B00E23',
           labelString: 'hello world',

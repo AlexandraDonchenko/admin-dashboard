@@ -46,7 +46,7 @@ export interface Log{
     id:number,
     enteredBy: number,
     enteredDoor: number,
-    date: Date
+  date: string
 }
 export interface Logs {
     logs: Log[];
