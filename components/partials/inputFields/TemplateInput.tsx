@@ -29,12 +29,21 @@ const TemplateInput: React.FunctionComponent<Props> = ({
   const handleSubmit = (event) => {
     onChangeAction(event);
   };
+  const handleText = (event) => {
+    const text = event.target.value;
+    if (text === '' && placeholder) {
+      onChangeAction(placeholder);
+    } else {
+      onChangeAction(text);
+    }
+  };
+
   const renderType = () => {
     switch (type) {
       case 'question':
         return <p className={styles.question}>{question}</p>;
       case 'text':
-        return <input className={cx(styles.input, styles.text)} type="text" onChange={onChangeAction} value={value} placeholder={placeholder} />;
+        return <input className={cx(styles.input, styles.text)} type="text" onChange={handleText} value={value} placeholder={placeholder} />;
       case 'password':
         return <input className={cx(styles.input, styles.password)} type="password" onChange={onChangeAction} value={value} />;
       case 'file':

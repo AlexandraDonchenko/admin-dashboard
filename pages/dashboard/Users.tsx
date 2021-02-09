@@ -39,7 +39,7 @@ const Users: React.FunctionComponent<Props> = () => {
     setInput(inputName);
     setUsersToDisplay(filtered);
   };
-
+  const pickedUser = useSelector((state) => state.choosenCardReducer.picked);
   const showCreateUserDialog = () => {
     dispatch(activateBlur());
     dispatch(showDialog('USERS_DIALOG_CREATE'));
@@ -52,16 +52,16 @@ const Users: React.FunctionComponent<Props> = () => {
   };
 
   // INITIALIZE STATE FOR INPUT FIELDS
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [group, setGroupName] = useState<Number| null>();
-  const [isActive, setIsActiove] = useState<Boolean>(false);
+  const [firstName, setFirstName] = useState(pickedUser.firstName);
+  const [lastName, setLastName] = useState(pickedUser.lastName);
+  const [email, setEmail] = useState(pickedUser.email);
+  const [group, setGroupName] = useState<Number| null>(pickedUser.group);
+  const [isActive, setIsActiove] = useState<Boolean>(pickedUser.isActive);
 
   // FUNCTION TO UPDATE INPUT FIELDS
-  const handleFirstName = (event) => { setFirstName(event.target.value); };
-  const handleLasttName = (event) => { setLastName(event.target.value); };
-  const handleEmail = (event) => { setEmail(event.target.value); };
+  const handleFirstName = (text) => { setFirstName(text); };
+  const handleLasttName = (text) => { setLastName(text); };
+  const handleEmail = (text) => { setEmail(text); };
 
   const handleGroup = (event) => {
     setGroupName(Number(event.target.value));
@@ -70,8 +70,6 @@ const Users: React.FunctionComponent<Props> = () => {
     console.log(event.target.value);
     setIsActiove(event.target.value === 'active');
   };
-
-  const pickedUser = useSelector((state) => state.choosenCardReducer.picked);
 
   const handleCreateSubmit = (event, id) => {
     event.preventDefault();
@@ -90,11 +88,6 @@ const Users: React.FunctionComponent<Props> = () => {
 
   const handleUpdateSubmit = (event, aid) => {
     event.preventDefault();
-    if (firstName === '') setFirstName(pickedUser.firstName);
-    if (lastName === '') setFirstName(pickedUser.lastName);
-    if (email === '') setFirstName(pickedUser.email);
-    if (group === null) setFirstName(pickedUser.group);
-    if (isActive === undefined) setFirstName(pickedUser.isActive);
     dispatch(updateUser(pickedUser.aid, {
       firstName,
       lastName,
@@ -102,10 +95,10 @@ const Users: React.FunctionComponent<Props> = () => {
       group,
       isActive,
     }));
-    setFirstName('');
-    setLastName('');
-    setEmail('');
-    setGroupName(null);
+    // setFirstName('');
+    // setLastName('');
+    // setEmail('');
+    // setGroupName(null);
     setUsersToDisplay(users);
     cancelDialog(event);
   };
@@ -116,12 +109,12 @@ const Users: React.FunctionComponent<Props> = () => {
         <TemplateForm buttonText="Add User" onSubmitAction={(event) => handleCreateSubmit(event, 'its working!')}>
           <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} placeholder={firstName} />
           <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} placeholder={lastName} />
-          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} placeholder={email} />
+          <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} />
           <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', id: 22 }, { value: 'Student', id: 23 }]} onChangeAction={handleGroup} value={group} />
         </TemplateForm>
       </Dialog>
       <Dialog active={dialogStatus.users_update === 'active'}>
-        <TemplateForm buttonText="Update User" onSubmitAction={(event) => handleUpdateSubmit(event)}>
+        <TemplateForm buttonText="Update User" onSubmitAction={(event) => handleUpdateSubmit(event, 'itworks')}>
           <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} placeholder={pickedUser.firstName} />
           <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} placeholder={pickedUser.lastName} />
           <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} placeholder={pickedUser.email} />
