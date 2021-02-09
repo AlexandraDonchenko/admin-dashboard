@@ -1,15 +1,11 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import defaultStyles from '../../../styles/cardWrapper.module.scss';
 import userStyles from '../../../styles/UserCard.module.scss';
-
-import { createUser, chooseUser } from '../../../redux/actions/user-actions';
+import { Admin } from '../../../redux/types';
 
 interface Props {
-  firstname: string;
-  lastname: string;
-  email: string;
-  group: string;
+  admin: Admin
+  options: any
 }
 
 const AdminCard: React.FunctionComponent<Props> = ({
@@ -24,7 +20,7 @@ const AdminCard: React.FunctionComponent<Props> = ({
       <p className={userStyles.lastname}>{admin.lastName}</p>
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" onClick={(event) => options.update(event, admin)} />
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" alt="" onClick={(event) => options.update(event, admin)} />
     </div>
   </div>
 );

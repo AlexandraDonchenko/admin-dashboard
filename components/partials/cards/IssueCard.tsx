@@ -3,6 +3,10 @@ import defaultStyles from '../../../styles/cardWrapper.module.scss';
 import issueStyles from '../../../styles/IssueCard.module.scss';
 
 interface Props {
+  type: string,
+  createdOn: Date,
+  reportedBy: String,
+  options: any
 }
 
 const IssueCard: React.FunctionComponent<Props> = ({
