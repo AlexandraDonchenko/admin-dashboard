@@ -1,13 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
 import styles from '../../../styles/TemplateInput.module.scss';
-import { Doors } from '../../../redux/types';
+import { Doors, Time } from '../../../redux/types';
 
 interface Props {
   type?: string,
   labelText?: string,
   question?: string,
-  dropdownOptions?: string[],
+  dropdownOptions?: Time[],
   radioOptions?: string[],
   onChangeAction: any,
   value: any,
@@ -28,14 +28,6 @@ const TemplateInput: React.FunctionComponent<Props> = ({
 }) => {
   const handleSubmit = (event) => {
     onChangeAction(event);
-  };
-  const handleText = (event) => {
-    const text = event.target.value;
-    if (text === '' && placeholder) {
-      onChangeAction(placeholder);
-    } else {
-      onChangeAction(text);
-    }
   };
 
   const renderType = () => {
@@ -93,7 +85,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
       </td>
       )}
       <td>
-        {renderType(type)}
+        {renderType()}
       </td>
     </tr>
 

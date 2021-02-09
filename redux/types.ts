@@ -79,3 +79,7 @@ export interface Admin {
     password: string,
     theme: string
 }
+export interface Time {
+    value:string,
+    id:number
+}
