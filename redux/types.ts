@@ -72,3 +72,10 @@ export interface DialogStatus {
   issues: String;
   settings: String;
 }
+export interface Admin {
+    firstName: string,
+    lastName:string,
+    email: string,
+    password: string,
+    theme: string
+}
