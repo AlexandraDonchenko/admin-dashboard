@@ -1,5 +1,5 @@
 import React from 'react';
-import defaultStyles from '../../../styles/cardWrapper.module.scss';
+import defaultStyles from '../../../styles/CardWrapper.module.scss';
 import groupStyles from '../../../styles/GroupCard.module.scss';
 import { Group } from '../../../redux/types';
 
