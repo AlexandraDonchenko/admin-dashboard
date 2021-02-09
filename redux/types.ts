@@ -43,10 +43,10 @@ export interface Doors{
   doors: Door[]
 }
 export interface Log{
-  _id:number,
-  enteredBy: number,
-  enteredDoor: number,
-  date: Date
+    id:number,
+    enteredBy: number,
+    enteredDoor: number,
+  date: string
 }
 export interface Logs {
   logs: Log[];
