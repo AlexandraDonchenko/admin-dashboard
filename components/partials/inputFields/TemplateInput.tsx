@@ -10,7 +10,7 @@ interface Props {
   dropdownOptions?: Time[],
   radioOptions?: string[],
   onChangeAction: any,
-  value: any,
+  value?: any,
   checkBoxOptions?: Doors,
   placeholder?: string
 }

@@ -1,6 +1,6 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { StringDecoder } from 'string_decoder';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import GroupCard from '../../components/partials/cards/GroupCard';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
@@ -123,18 +123,36 @@ const Groups: React.FunctionComponent<Props> = () => {
         <TemplateForm buttonText="Create Group" onSubmitAction={(event) => handleCreateSubmit(event, 'its working')}>
           <TemplateInput labelText="Name of Group" type="text" onChangeAction={handleGroupName} value={groupName} />
           <TemplateInput labelText="Description" type="text" onChangeAction={handleDescription} value={description} />
-          <TemplateInput labelText="Access from" type="dropdown" onChangeAction={handleAccessFromHour} value={accessFromHour} dropdownOptions={[{ display: '00:00', value: 0 }, { display: '01:00', value: 1 }, { display: '02:00', value: 2 }, { display: '03:00', value: 3 }, { display: '04:00', value: 4 }, { display: '05:00', value: 5 }, { display: '06:00', value: 6 }, { display: '07:00', value: 7 }, { display: '08:00', value: 8 }, { display: '09:00', value: 9 }, { display: '10:00', value: 10 }, { display: '11:00', value: 11 }, { display: '12:00', value: 12 }, { display: '13:00', value: 13 }, { display: '14:00', value: 14 }, { display: '15:00', value: 15 }, { display: '16:00', value: 16 }, { display: '17:00', value: 17 }, { display: '18:00', value: 18 }, { display: '19:00', value: 19 }, { display: '20:00', value: 20 }, { display: '21:00', value: 21 }, { display: '22:00', value: 22 }, { display: '23:00', value: 23 }, { display: '24:00', value: 24 }]} />
-          <TemplateInput labelText="Access to" type="dropdown" onChangeAction={handleAccessToHour} value={accessToHour} dropdownOptions={[{ display: '00:00', value: 0 }, { display: '01:00', value: 1 }, { display: '02:00', value: 2 }, { display: '03:00', value: 3 }, { display: '04:00', value: 4 }, { display: '05:00', value: 5 }, { display: '06:00', value: 6 }, { display: '07:00', value: 7 }, { display: '08:00', value: 8 }, { display: '09:00', value: 9 }, { display: '10:00', value: 10 }, { display: '11:00', value: 11 }, { display: '12:00', value: 12 }, { display: '13:00', value: 13 }, { display: '14:00', value: 14 }, { display: '15:00', value: 15 }, { display: '16:00', value: 16 }, { display: '17:00', value: 17 }, { display: '18:00', value: 18 }, { display: '19:00', value: 19 }, { display: '20:00', value: 20 }, { display: '21:00', value: 21 }, { display: '22:00', value: 22 }, { display: '23:00', value: 23 }, { display: '24:00', value: 24 }]} />
-          <TemplateInput labelText="Allowed doors" type="checkbox" onChangeAction={handleDoors} value={doors} checkboxOptions={dbDoors} />
+          <TemplateInput
+            labelText="Access from"
+            type="dropdown"
+            onChangeAction={handleAccessFromHour}
+            value={accessFromHour}
+            dropdownOptions={[{ value: '00:00', id: 0 }, { value: '01:00', id: 1 }, { value: '02:00', id: 2 }, { value: '03:00', id: 3 }, { value: '04:00', id: 4 }, { value: '05:00', id: 5 }, { value: '06:00', id: 6 }, { value: '07:00', id: 7 }, { value: '08:00', id: 8 }, { value: '09:00', id: 9 }, { value: '10:00', id: 10 }, { value: '11:00', id: 11 }, { value: '12:00', id: 12 }, { value: '13:00', id: 13 }, { value: '14:00', id: 14 }, { value: '15:00', id: 15 }, { value: '16:00', id: 16 }, { value: '17:00', id: 17 }, { value: '18:00', id: 18 }, { value: '19:00', id: 19 }, { value: '20:00', id: 20 }, { value: '21:00', id: 21 }, { value: '22:00', id: 22 }, { value: '23:00', id: 23 }, { value: '24:00', id: 24 }]}
+          />
+          <TemplateInput
+            labelText="Access to"
+            type="dropdown"
+            onChangeAction={handleAccessToHour}
+            value={accessToHour}
+            dropdownOptions={[{ value: '00:00', id: 0 }, { value: '01:00', id: 1 }, { value: '02:00', id: 2 }, { value: '03:00', id: 3 }, { value: '04:00', id: 4 }, { value: '05:00', id: 5 }, { value: '06:00', id: 6 }, { value: '07:00', id: 7 }, { value: '08:00', id: 8 }, { value: '09:00', id: 9 }, { value: '10:00', id: 10 }, { value: '11:00', id: 11 }, { value: '12:00', id: 12 }, { value: '13:00', id: 13 }, { value: '14:00', id: 14 }, { value: '15:00', id: 15 }, { value: '16:00', id: 16 }, { value: '17:00', id: 17 }, { value: '18:00', id: 18 }, { value: '19:00', id: 19 }, { value: '20:00', id: 20 }, { value: '21:00', id: 21 }, { value: '22:00', id: 22 }, { value: '23:00', id: 23 }, { value: '24:00', id: 24 }]}
+          />
+          <TemplateInput labelText="Allowed doors" type="checkbox" onChangeAction={handleDoors} value={doors} checkBoxOptions={dbDoors} />
         </TemplateForm>
       </Dialog>
       <Dialog active={dialogStatus.groups_update === 'active'}>
         <TemplateForm buttonText="Update Group" onSubmitAction={(event) => handleUpdateSubmit(event, 'its working')}>
           <TemplateInput labelText="Name of Group" type="text" onChangeAction={handleGroupName} value={groupName} />
           <TemplateInput labelText="Description" type="text" onChangeAction={handleDescription} value={description} />
-          <TemplateInput labelText="Access from" type="dropdown" onChangeAction={handleAccessFromHour} dropdownOptions={[{ display: '00:00', value: 0 }, { display: '01:00', value: 1 }, { display: '02:00', value: 2 }, { display: '03:00', value: 3 }, { display: '04:00', value: 4 }, { display: '05:00', value: 5 }, { display: '06:00', value: 6 }, { display: '07:00', value: 7 }, { display: '08:00', value: 8 }, { display: '09:00', value: 9 }, { display: '10:00', value: 10 }, { display: '11:00', value: 11 }, { display: '12:00', value: 12 }, { display: '13:00', value: 13 }, { display: '14:00', value: 14 }, { display: '15:00', value: 15 }, { display: '16:00', value: 16 }, { display: '17:00', value: 17 }, { display: '18:00', value: 18 }, { display: '19:00', value: 19 }, { display: '20:00', value: 20 }, { display: '21:00', value: 21 }, { display: '22:00', value: 22 }, { display: '23:00', value: 23 }, { display: '24:00', value: 24 }]} />
-          <TemplateInput labelText="Access to" type="dropdown" onChangeAction={handleAccessToHour} dropdownOptions={[{ display: '00:00', value: 0 }, { display: '01:00', value: 1 }, { display: '02:00', value: 2 }, { display: '03:00', value: 3 }, { display: '04:00', value: 4 }, { display: '05:00', value: 5 }, { display: '06:00', value: 6 }, { display: '07:00', value: 7 }, { display: '08:00', value: 8 }, { display: '09:00', value: 9 }, { display: '10:00', value: 10 }, { display: '11:00', value: 11 }, { display: '12:00', value: 12 }, { display: '13:00', value: 13 }, { display: '14:00', value: 14 }, { display: '15:00', value: 15 }, { display: '16:00', value: 16 }, { display: '17:00', value: 17 }, { display: '18:00', value: 18 }, { display: '19:00', value: 19 }, { display: '20:00', value: 20 }, { display: '21:00', value: 21 }, { display: '22:00', value: 22 }, { display: '23:00', value: 23 }, { display: '24:00', value: 24 }]} />
-          <TemplateInput labelText="Allowed doors" type="checkbox" onChangeAction={handleDoors} value={doors} checkboxOptions={dbDoors} />
+          <TemplateInput
+            labelText="Access from"
+            type="dropdown"
+            value={accessFromHour}
+            onChangeAction={handleAccessFromHour}
+            dropdownOptions={[{ value: '00:00', id: 0 }, { value: '01:00', id: 1 }, { value: '02:00', id: 2 }, { value: '03:00', id: 3 }, { value: '04:00', id: 4 }, { value: '05:00', id: 5 }, { value: '06:00', id: 6 }, { value: '07:00', id: 7 }, { value: '08:00', id: 8 }, { value: '09:00', id: 9 }, { value: '10:00', id: 10 }, { value: '11:00', id: 11 }, { value: '12:00', id: 12 }, { value: '13:00', id: 13 }, { value: '14:00', id: 14 }, { value: '15:00', id: 15 }, { value: '16:00', id: 16 }, { value: '17:00', id: 17 }, { value: '18:00', id: 18 }, { value: '19:00', id: 19 }, { value: '20:00', id: 20 }, { value: '21:00', id: 21 }, { value: '22:00', id: 22 }, { value: '23:00', id: 23 }, { value: '24:00', id: 24 }]}
+          />
+          <TemplateInput value={accessToHour} labelText="Access to" type="dropdown" onChangeAction={handleAccessToHour} dropdownOptions={[{ value: '00:00', id: 0 }, { value: '01:00', id: 1 }, { value: '02:00', id: 2 }, { value: '03:00', id: 3 }, { value: '04:00', id: 4 }, { value: '05:00', id: 5 }, { value: '06:00', id: 6 }, { value: '07:00', id: 7 }, { value: '08:00', id: 8 }, { value: '09:00', id: 9 }, { value: '10:00', id: 10 }, { value: '11:00', id: 11 }, { value: '12:00', id: 12 }, { value: '13:00', id: 13 }, { value: '14:00', id: 14 }, { value: '15:00', id: 15 }, { value: '16:00', id: 16 }, { value: '17:00', id: 17 }, { value: '18:00', id: 18 }, { value: '19:00', id: 19 }, { value: '20:00', id: 20 }, { value: '21:00', id: 21 }, { value: '22:00', id: 22 }, { value: '23:00', id: 23 }, { value: '24:00', id: 24 }]} />
+          <TemplateInput labelText="Allowed doors" type="checkbox" onChangeAction={handleDoors} value={doors} checkBoxOptions={dbDoors} />
 
         </TemplateForm>
       </Dialog>
