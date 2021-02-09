@@ -1,12 +1,14 @@
 import React from 'react';
 import defaultStyles from '../../../styles/cardWrapper.module.scss';
 import issueStyles from '../../../styles/IssueCard.module.scss';
+import { Issue } from '../../../redux/types';
 
 interface Props {
   type: string,
   createdOn: Date,
   reportedBy: String,
   options: any
+  issue: Issue
 }
 
 const IssueCard: React.FunctionComponent<Props> = ({
@@ -14,6 +16,7 @@ const IssueCard: React.FunctionComponent<Props> = ({
   createdOn,
   reportedBy,
   options,
+  issue,
 }) => (
   <div className={defaultStyles.cardWrapper}>
     <div className={defaultStyles.infoWrapper}>
@@ -23,7 +26,7 @@ const IssueCard: React.FunctionComponent<Props> = ({
       <p className={issueStyles.reportedBy}>{reportedBy}</p>
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/check.svg" onClick={options.solve} />
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/check.svg" onClick={(event) => options.solve(event, issue)} />
 
     </div>
   </div>

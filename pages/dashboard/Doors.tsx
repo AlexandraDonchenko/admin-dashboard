@@ -16,7 +16,7 @@ interface Props { }
 const Doors: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
   const [door, setDoor] = useState('');
-  const [endpoint, setEndpoint] = useSelector('');
+  const [endpoint, setEndpoint] = useState('');
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
 
   const doors = useSelector((state) => state.doorReducer.doors);

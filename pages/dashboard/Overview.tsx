@@ -22,6 +22,9 @@ const Overview: React.FunctionComponent<Props> = () => {
   const doors = useSelector((store) => store.doorReducer.doors);
   const issues = useSelector((store) => store.issueReducer.issues);
   const filteredIssues = issues.filter((issue) => (issue.active ? issue : null));
+  const dbDoors = useSelector((store) => store.doorReducer.doors);
+
+  console.log(dbDoors);
 
   useEffect(() => {
     dispatch(fetchDoors());

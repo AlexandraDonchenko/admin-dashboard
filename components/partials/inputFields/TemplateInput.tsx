@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import styles from '../../../styles/TemplateInput.module.scss';
-import { Doors, Time } from '../../../redux/types';
+import { Door, Time } from '../../../redux/types';
 
 interface Props {
   type?: string,
@@ -9,9 +9,9 @@ interface Props {
   question?: string,
   dropdownOptions?: Time[],
   radioOptions?: string[],
-  onChangeAction: any,
+  onChangeAction?: any,
   value?: any,
-  checkBoxOptions?: Doors,
+  checkBoxOptions?: Door[],
   placeholder?: string
 }
 
@@ -29,6 +29,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
   const handleSubmit = (event) => {
     onChangeAction(event);
   };
+  console.log(checkBoxOptions);
 
   const renderType = () => {
     switch (type) {
@@ -63,7 +64,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
         );
       case 'checkbox':
         return (
-          checkBoxOptions.doors.map((option) => (
+          checkBoxOptions.map((option) => (
             <span key={option.did}>
               <input className={styles.checkbox} key={option.did} name={option.doorName} type="checkbox" onChange={handleSubmit} value={option.did} />
               <label className={styles.radioLabel} key={`${option.doorName}-label`} htmlFor={labelText}>{option.doorName}</label>
