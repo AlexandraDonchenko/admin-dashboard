@@ -14,6 +14,8 @@ const TemplateForm: React.FunctionComponent<Props> = ({
   const cancelDialog = (event) => {
     event.preventDefault();
     dispatch(showDialog('RESET'));
+    console.log('event', event);
+
     dispatch(deactivateBlur());
   };
 
