@@ -14,7 +14,7 @@ export interface Clicked {
     clicked: string;
 }
 export interface User {
-    id: number,
+    aid: number,
     firstName: string,
     lastName: string,
     email: string,
@@ -43,7 +43,7 @@ export interface Doors{
     doors: Door[]
 }
 export interface Log{
-    id:number,
+    _id:number,
     enteredBy: number,
     enteredDoor: number,
     date: Date

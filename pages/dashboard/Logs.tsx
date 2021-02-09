@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
-import Log from '../../redux/types';
+import { Log } from '../../redux/types';
 import LogCard from '../../components/partials/cards/LogCard';
 import SearchBar from '../../components/partials/searchBar/searchBar';
 

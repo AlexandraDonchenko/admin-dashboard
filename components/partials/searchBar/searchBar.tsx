@@ -4,7 +4,7 @@ import styles from '../../../styles/SearchBar.module.scss';
 interface Props {
     input:string,
     updateInput:Function
-    addButtonAction: any
+    addButtonAction?: any
 }
 
 const SearchBar: React.FunctionComponent<Props> = ({

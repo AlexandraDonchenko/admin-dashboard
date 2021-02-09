@@ -7,7 +7,7 @@ interface Props {
   type?: string,
   labelText?: string,
   question?: string,
-  dropdownOptions?: Time[],
+  dropdownOptions?: any,
   radioOptions?: string[],
   onChangeAction?: any,
   value?: any,

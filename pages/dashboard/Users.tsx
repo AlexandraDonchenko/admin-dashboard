@@ -133,9 +133,6 @@ const Users: React.FunctionComponent<Props> = () => {
           <TemplateInput labelText="Status" type="radio" radioOptions={['active', 'inactive']} value={isActive} onChangeAction={handleActive} />
         </TemplateForm>
       </Dialog>
-      <Dialog active={dialogStatus.users_delete === 'active'}>
-        <TemplateForm buttonText="Delete User" onSubmitAction={(event) => handleDeleteSubmit(event)} />
-      </Dialog>
       <DashboardLayout>
         <SearchBar updateInput={updateInput} input={input} addButtonAction={showCreateUserDialog} />
         <CardWrapper>
