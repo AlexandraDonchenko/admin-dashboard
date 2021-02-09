@@ -21,7 +21,7 @@ const Groups: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
 
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
-  const groups = useSelector((store) => store.groupReducer.groups);
+  const groups = useSelector((store) => store.groupReducer.groups.sort((a, b) => ((a.groupName > b.groupName) ? 1 : -1)));
   const dbDoors = useSelector((store) => store.doorReducer.doors);
 
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
@@ -52,7 +52,6 @@ const Groups: React.FunctionComponent<Props> = () => {
 
   // FUNCTION TO UPDATE INPUT FIELDS
   const handleGroupName = (event) => {
-    console.log(event.target.value);
     setGroupName(event.target.value);
   };
   useEffect(() => {
@@ -100,13 +99,14 @@ const Groups: React.FunctionComponent<Props> = () => {
 
   const handleUpdateSubmit = (event, aid) => {
     event.preventDefault();
-    dispatch(updateGroup(pickedGroup.gid, {
-      groupName,
-      description,
-      accessFromHour,
-      accessToHour,
-      doors,
-    }));
+    const groupObj = {
+      groupName: groupName === '' ? pickedGroup.firstName : groupName,
+      description: description === '' ? pickedGroup.description : description,
+      accessFromHour: accessFromHour === null ? pickedGroup.accessFromHour : accessFromHour,
+      accessToHour: accessToHour === null ? pickedGroup.accessToHour : accessToHour,
+      doors: doors === [] ? pickedGroup.doors : doors,
+    };
+    dispatch(updateGroup(pickedGroup.gid, groupObj));
     setGroupName('');
     setDescription('');
     setAccessFromHour(0);
@@ -141,8 +141,8 @@ const Groups: React.FunctionComponent<Props> = () => {
       </Dialog>
       <Dialog active={dialogStatus.groups_update === 'active'}>
         <TemplateForm buttonText="Update Group" onSubmitAction={(event) => handleUpdateSubmit(event, 'its working')}>
-          <TemplateInput labelText="Name of Group" type="text" onChangeAction={handleGroupName} value={groupName} />
-          <TemplateInput labelText="Description" type="text" onChangeAction={handleDescription} value={description} />
+          <TemplateInput labelText="Name of Group" type="text" onChangeAction={handleGroupName} placeholder={groupName} value={groupName} />
+          <TemplateInput labelText="Description" type="text" onChangeAction={handleDescription} placeholder={description} value={description} />
           <TemplateInput
             labelText="Access from"
             type="dropdown"

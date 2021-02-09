@@ -20,7 +20,7 @@ interface Props { }
 const Users: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
-  const users = useSelector((state) => state.userReducer.users);
+  const users = useSelector((state) => state.userReducer.users.sort((a, b) => ((a.firstName > b.firstName) ? 1 : -1)));
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
   const cancelDialog = (event) => {
@@ -31,7 +31,7 @@ const Users: React.FunctionComponent<Props> = () => {
     setLastName('');
     setEmail('');
     setGroupName(null);
-    setUsersToDisplay(users);
+    setUsersToDisplay(users.sort());
   };
   const pickedUser = useSelector((state) => state.choosenCardReducer.picked);
   const [firstName, setFirstName] = useState('');
