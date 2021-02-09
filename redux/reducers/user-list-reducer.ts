@@ -12,6 +12,7 @@ const userReducer: Reducer<Users, Action> = (state = originalState, action) => {
     case 'POST_USER': originalState = { users: [...state.users, action.payload] };
       return originalState;
     case 'UPDATE_USER': originalState = { users: [...state.users.filter((user) => (user.aid !== action.payload.aid)), action.payload.data] };
+
       return originalState;
     case 'DELETE_USER': originalState = { users: [...state.users.filter((user) => (user.aid !== action.payload.aid), action.payload.data)] };
       return originalState;

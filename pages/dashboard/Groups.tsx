@@ -76,9 +76,11 @@ const Groups: React.FunctionComponent<Props> = () => {
   };
 
   const showUpdateGroupDialog = (event, group) => {
+    console.log('THIIIIS IS GROUUUP', group);
     dispatch(activateBlur());
     dispatch(showDialog('GROUPS_DIALOG_UPDATE'));
     dispatch(chooseGroup(group));
+    console.log(pickedGroup);
   };
 
   const handleCreateSubmit = (event, id) => {
