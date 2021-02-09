@@ -11,6 +11,7 @@ import { fetchUsers } from '../../redux/actions/user-actions';
 import { fetchGroups } from '../../redux/actions/group-actions';
 import { fetchDoors } from '../../redux/actions/door-actions';
 import fetchLogs from '../../redux/actions/log-actions';
+import { fetchIssues } from '../../redux/actions/issue-actions';
 
 interface Props { }
 
@@ -19,12 +20,15 @@ const Overview: React.FunctionComponent<Props> = () => {
   const users = useSelector((store) => store.userReducer.users);
   const logs = useSelector((store) => store.logsReducer.logs);
   const doors = useSelector((store) => store.doorReducer.doors);
+  const issues = useSelector((store) => store.issueReducer.issues);
+  const filteredIssues = issues.filter((issue) => (issue.active ? issue : null));
 
   useEffect(() => {
     dispatch(fetchDoors());
     dispatch(fetchGroups());
     dispatch(fetchUsers());
     dispatch(fetchLogs());
+    dispatch(fetchIssues());
   }, []);
 
   return (
@@ -37,7 +41,7 @@ const Overview: React.FunctionComponent<Props> = () => {
               <InfoCard number={users.length} text="active users" />
               <InfoCard number={0} text="open invitations" />
               <InfoCard number={logs.length} text="daily openings" />
-              <InfoCard number={0} text="open issues" />
+              <InfoCard number={filteredIssues.length} text="open issues" />
               {' '}
             </div>
             <CardWrapper>
