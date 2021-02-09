@@ -4,10 +4,12 @@ import groupStyles from '../../../styles/GroupCard.module.scss';
 
 interface Props {
   groupName: string
+  group:any
 }
 
 const GroupCard: React.FunctionComponent<Props> = ({
   groupName,
+  group,
   options,
 }) => (
   <div className={defaultStyles.cardWrapper}>
@@ -16,7 +18,7 @@ const GroupCard: React.FunctionComponent<Props> = ({
       <p className={groupStyles.groupName}>{groupName}</p>
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} onClick={options.update} src="/media/icons/cardOptions/edit.svg" />
+      <img className={defaultStyles.action} onClick={(event) => options.update(event, group)} src="/media/icons/cardOptions/edit.svg" />
     </div>
   </div>
 );

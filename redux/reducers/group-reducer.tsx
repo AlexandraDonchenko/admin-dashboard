@@ -9,7 +9,7 @@ const groupReducer: Reducer <Groups, Action> = (state = initialState, action) =>
       return initialState;
     case 'POST_GROUP': initialState = { groups: [...state.groups, action.payload] };
       return initialState;
-    case 'UPDATE_GROUP': initialState = { groups: [...state.groups.filter((group) => (group.gid !== action.payload.gid), action.payload)] };
+    case 'UPDATE_GROUP': initialState = { groups: [...state.groups.filter((group) => (group.gid !== action.payload.gid)), action.payload] };
       return initialState;
     default: return initialState;
   }

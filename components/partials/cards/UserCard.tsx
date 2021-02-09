@@ -26,7 +26,7 @@ const UserCard: React.FunctionComponent<Props> = ({
       {/* <p className={userStyles.group}>{user.group.groupName}</p> */}
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      {user.isAcitve
+      {user.isActive
         ? <img className={defaultStyles.action} src="/media/icons/cardOptions/active.svg" />
         : <img className={defaultStyles.action} src="/media/icons/cardOptions/inactive.svg" />}
       <img className={defaultStyles.action} src="/media/icons/cardOptions/edit.svg" onClick={(event) => options.update(event, user)} />

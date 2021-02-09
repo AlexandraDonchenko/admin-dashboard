@@ -8,7 +8,8 @@ interface Props {
   question?: string,
   dropdownOptions?: [],
   radioOptions?: [],
-  onChangeAction: Function,
+  onChangeAction: any,
+  value: any
 }
 
 const TemplateInput: React.FunctionComponent<Props> = ({
@@ -23,6 +24,9 @@ const TemplateInput: React.FunctionComponent<Props> = ({
   placeholder,
   value,
 }) => {
+  const handleSubmit = (event) => {
+    onChangeAction(event);
+  };
   const renderType = (type) => {
     switch (type) {
       case 'question':
@@ -58,7 +62,7 @@ const TemplateInput: React.FunctionComponent<Props> = ({
         return (
           checkboxOptions.map((option) => (
             <span key={option.did}>
-              <input className={styles.checkbox} key={option.did} name={option.did} type="checkbox" onChange={onChangeAction} value={option.did} />
+              <input className={styles.checkbox} key={option.did} name={option.did} type="checkbox" onChange={handleSubmit} value={option.did} />
               <label className={styles.radioLabel} key={`${option.doorName}-label`} htmlFor={labelText}>{option.doorName}</label>
               <br />
             </span>
