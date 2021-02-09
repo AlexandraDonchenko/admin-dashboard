@@ -29,7 +29,6 @@ const TemplateInput: React.FunctionComponent<Props> = ({
   const handleSubmit = (event) => {
     onChangeAction(event);
   };
-  console.log(checkBoxOptions);
 
   const renderType = () => {
     switch (type) {

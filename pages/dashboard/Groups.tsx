@@ -23,7 +23,6 @@ const Groups: React.FunctionComponent<Props> = () => {
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
   const groups = useSelector((store) => store.groupReducer.groups);
   const dbDoors = useSelector((store) => store.doorReducer.doors);
-  console.log(dbDoors);
 
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
   const [input, setInput] = useState<string>('');
