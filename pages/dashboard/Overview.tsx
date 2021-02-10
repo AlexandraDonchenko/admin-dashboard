@@ -25,6 +25,10 @@ const Overview: React.FunctionComponent<Props> = () => {
   const issues = useSelector((store) => store.issueReducer.issues);
   const filteredIssues = issues.filter((issue) => (issue.active ? issue : null));
 
+
+  const activeUsers = users.filter((user) => user.isActive);
+
+
   useEffect(() => {
     dispatch(fetchDoors());
     dispatch(fetchGroups());
@@ -33,6 +37,7 @@ const Overview: React.FunctionComponent<Props> = () => {
     dispatch(fetchIssues());
   }, []);
 
+
   const getGraphData = (logsForGraphData) => {
     // GET THE CURRENT HOUR
     const today = new Date();
@@ -40,6 +45,9 @@ const Overview: React.FunctionComponent<Props> = () => {
     if (currentHour < 10) {
       currentHour = `0${currentHour}`;
     }
+
+
+
     // GET AN ARRAY WITH ARRAY'S WITH USER FROM THE LAST HOURS
     const logsFromToday: Log[] = logsForGraphData.filter((log) => (
       new Date(log.date).getDate() === today.getDate()
@@ -68,7 +76,19 @@ const Overview: React.FunctionComponent<Props> = () => {
 
   const graphData = getGraphData(logs);
 
+  const options = {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          min: 0,
+        },
+      }],
+    },
+  };
+
   const data = {
+
     labels: [
       graphData.currentHour - 5,
       graphData.currentHour - 4,
@@ -76,10 +96,14 @@ const Overview: React.FunctionComponent<Props> = () => {
       graphData.currentHour - 2,
       graphData.currentHour - 1,
       graphData.currentHour],
+
     datasets: [
       {
-        label: '',
+        data: [graphData.hours.logsBeforeSixHour.length, graphData.hours.logsBeforeFiveHour.length, graphData.hours.logsBeforeFourHour.length, graphData.hours.logsBeforeThreeHour.length, graphData.hours.logsBeforeTwoHour.length, graphData.hours.logsBeforeOneHour.length],
+        // data: [5, 7, 3],
+        label: 'Recent Entries',
         fill: false,
+        startAtZero: true,
         lineTension: 0.2,
         backgroundColor: '#ffffff',
         borderColor: '#B00E23',
@@ -97,6 +121,7 @@ const Overview: React.FunctionComponent<Props> = () => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
+
         data: [
           graphData.hours.logsBeforeSixHour.length,
           graphData.hours.logsBeforeFiveHour.length,
@@ -107,7 +132,9 @@ const Overview: React.FunctionComponent<Props> = () => {
         scaleLabel: {
           fontColor: '#B00E23',
           labelString: 'hello world',
+
         },
+
       },
 
     ],
@@ -120,15 +147,15 @@ const Overview: React.FunctionComponent<Props> = () => {
 
           <div>
             <div className={styles.cardBox}>
-              <InfoCard number={users.length} text="active users" />
-              <InfoCard number={0} text="open invitations" />
+              <InfoCard number={activeUsers.length} text="active users" />
+              <InfoCard number={users.length - activeUsers.length} text="open invitations" />
               <InfoCard number={logs.length} text="daily openings" />
               <InfoCard number={filteredIssues.length} text="open issues" />
               {' '}
             </div>
             <CardWrapper>
               <div className={styles.chartWrapper}>
-                <Line data={data} />
+                <Line data={data} options={options} />
               </div>
             </CardWrapper>
 

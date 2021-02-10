@@ -16,7 +16,7 @@ const GroupCard: React.FunctionComponent<Props> = ({
 }) => (
   <div className={defaultStyles.cardWrapper}>
     <div className={defaultStyles.infoWrapper}>
-      <img className={defaultStyles.image} src="/media/icons/cardOptions/avatar.svg" alt="" />
+      <img className={defaultStyles.image} src="/media/icons/cardOptions/avatar.svg" alt="avatar" />
       <p className={groupStyles.groupName}>{groupName}</p>
     </div>
     <div className={defaultStyles.actionsWrapper}>
