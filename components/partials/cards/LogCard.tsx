@@ -18,7 +18,7 @@ const LogCard: React.FunctionComponent<Props> = ({
 }) => (
   <div className={defaultStyles.cardWrapper}>
     <div className={defaultStyles.infoWrapper}>
-      <img className={defaultStyles.image} src="src=/media/icons/cardOptions/issue.svg" alt="avatar" />
+      <img className={defaultStyles.image} src="/media/icons/cardOptions/avatar.svg" alt="avatar" />
       <p className={logStyles.firstname}>{`${firstname} ${lastname}`}</p>
       <p className={logStyles.doorName}>{doorName}</p>
       <p className={logStyles.createdOn}>{createdOn}</p>
