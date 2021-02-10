@@ -29,7 +29,7 @@ const Groups: React.FunctionComponent<Props> = () => {
 
   const filterGroups = (inputName) => {
     const filtered = groups.filter((group) => {
-      const { name } = group;
+      const name = group.groupName;
       return name.toLowerCase().includes(inputName.toLowerCase());
     });
     setFilteredGroups(filtered);
