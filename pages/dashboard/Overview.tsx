@@ -22,7 +22,7 @@ const Overview: React.FunctionComponent<Props> = () => {
   const doors = useSelector((store) => store.doorReducer.doors);
   const issues = useSelector((store) => store.issueReducer.issues);
   const filteredIssues = issues.filter((issue) => (issue.active ? issue : null));
-
+  const activeUsers = users.filter((user) => user.isActive);
   useEffect(() => {
     dispatch(fetchDoors());
     dispatch(fetchGroups());
@@ -30,54 +30,6 @@ const Overview: React.FunctionComponent<Props> = () => {
     dispatch(fetchLogs());
     dispatch(fetchIssues());
   }, []);
-
-  console.log(logs);
-
-  // const logs = [
-  //   {
-  //     date: 'Tue Feb 09 2021 19:14:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-  //   {
-  //     date: 'Tue Feb 09 2021 19:14:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-  //   {
-  //     date: 'Tue Feb 09 2021 19:14:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-  //   {
-  //     date: 'Tue Feb 09 2021 18:14:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-  //   {
-  //     date: 'Tue Feb 09 2021 18:54:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-  //   {
-  //     date: 'Tue Feb 09 2020 19:54:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-
-  // ];
 
   const getGraphData = (logs) => {
     // GET THE CURRENT HOUR
@@ -148,8 +100,8 @@ const Overview: React.FunctionComponent<Props> = () => {
 
           <div>
             <div className={styles.cardBox}>
-              <InfoCard number={users.length} text="active users" />
-              <InfoCard number={0} text="open invitations" />
+              <InfoCard number={activeUsers.length} text="active users" />
+              <InfoCard number={users.length - activeUsers.lengths} text="open invitations" />
               <InfoCard number={logs.length} text="daily openings" />
               <InfoCard number={filteredIssues.length} text="open issues" />
               {' '}

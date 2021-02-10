@@ -143,8 +143,8 @@ const Groups: React.FunctionComponent<Props> = () => {
       </Dialog>
       <Dialog active={dialogStatus.groups_update === 'active'}>
         <TemplateForm buttonText="Update Group" onSubmitAction={(event) => handleUpdateSubmit(event, 'its working')}>
-          <TemplateInput labelText="Name of Group" type="text" onChangeAction={handleGroupName} placeholder={groupName} value={groupName} />
-          <TemplateInput labelText="Description" type="text" onChangeAction={handleDescription} placeholder={description} value={description} />
+          <TemplateInput labelText="Name of Group" type="text" onChangeAction={handleGroupName} value={groupName} placeholder={pickedGroup.groupName} />
+          <TemplateInput labelText="Description" type="text" onChangeAction={handleDescription} value={description} placeholder={pickedGroup.description} />
           <TemplateInput
             labelText="Access from"
             type="dropdown"
