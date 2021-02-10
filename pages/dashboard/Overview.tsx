@@ -111,6 +111,7 @@ const Overview: React.FunctionComponent<Props> = () => {
 
   const data = {
     labels: [graphData.currentHour - 5, graphData.currentHour - 4, graphData.currentHour - 3, graphData.currentHour - 2, graphData.currentHour - 1, graphData.currentHour],
+
     datasets: [
       {
         label: '',
@@ -132,6 +133,7 @@ const Overview: React.FunctionComponent<Props> = () => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
+
         data: [graphData.hours.logsBeforeSixHour.length, graphData.hours.logsBeforeFiveHour.length, graphData.hours.logsBeforeFourHour.length, graphData.hours.logsBeforeThreeHour.length, graphData.hours.logsBeforeTwoHour.length, graphData.hours.logsBeforeOneHour.length],
         scaleLabel: {
           fontColor: '#B00E23',
@@ -139,6 +141,21 @@ const Overview: React.FunctionComponent<Props> = () => {
         },
       },
     ],
+    options: {
+      legend: {
+        display: false,
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            max: 50,
+            min: 0,
+            stepSize: 3,
+          },
+        }],
+      },
+
+    },
   };
 
   return (
@@ -161,7 +178,7 @@ const Overview: React.FunctionComponent<Props> = () => {
             </CardWrapper>
 
             <CardWrapper>
-              {logs.map((log) => (
+              {/* {logs.map((log) => (
                 <LogCard
                   key={log._id}
                   firstname={users.find(({ aid }) => aid === log.enteredBy).firstName}
@@ -169,7 +186,7 @@ const Overview: React.FunctionComponent<Props> = () => {
                   doorName={doors.find(({ did }) => did === log.enteredDoor).doorName}
                   createdOn={moment(log.date).format('MMM Do YY')}
                 />
-              ))}
+              ))} */}
             </CardWrapper>
           </div>
         </DashboardLayout>
