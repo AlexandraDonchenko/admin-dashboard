@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
@@ -12,6 +13,7 @@ import { fetchGroups } from '../../redux/actions/group-actions';
 import { fetchDoors } from '../../redux/actions/door-actions';
 import fetchLogs from '../../redux/actions/log-actions';
 import { fetchIssues } from '../../redux/actions/issue-actions';
+import { Log } from '../../redux/types';
 
 interface Props { }
 
@@ -23,8 +25,6 @@ const Overview: React.FunctionComponent<Props> = () => {
   const issues = useSelector((store) => store.issueReducer.issues);
   const filteredIssues = issues.filter((issue) => (issue.active ? issue : null));
 
-  console.log(logs);
-
   useEffect(() => {
     dispatch(fetchDoors());
     dispatch(fetchGroups());
@@ -33,21 +33,26 @@ const Overview: React.FunctionComponent<Props> = () => {
     dispatch(fetchIssues());
   }, []);
 
-  const getGraphData = (logs) => {
+  const getGraphData = (logsForGraphData) => {
     // GET THE CURRENT HOUR
     const today = new Date();
-    let currentHour = today.getHours();
+    let currentHour: any = today.getHours();
     if (currentHour < 10) {
       currentHour = `0${currentHour}`;
     }
     // GET AN ARRAY WITH ARRAY'S WITH USER FROM THE LAST HOURS
-    const logsFromToday = logs.filter((log) => new Date(log.date).getDate() == today.getDate() && new Date(log.date).getMonth() == today.getMonth() && new Date(log.date).getFullYear() == today.getFullYear());
+    const logsFromToday: Log[] = logsForGraphData.filter((log) => (
+      new Date(log.date).getDate() === today.getDate()
+      && new Date(log.date).getMonth() === today.getMonth()
+      && new Date(log.date).getFullYear() === today.getFullYear()));
+
     const logsBeforeOneHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour);
     const logsBeforeTwoHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour - 1);
     const logsBeforeThreeHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour - 2);
     const logsBeforeFourHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour - 3);
     const logsBeforeFiveHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour - 4);
     const logsBeforeSixHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour - 5);
+
     return {
       currentHour,
       hours: {
@@ -60,11 +65,17 @@ const Overview: React.FunctionComponent<Props> = () => {
       },
     };
   };
+
   const graphData = getGraphData(logs);
-  console.log(graphData);
 
   const data = {
-    labels: [graphData.currentHour - 5, graphData.currentHour - 4, graphData.currentHour - 3, graphData.currentHour - 2, graphData.currentHour - 1, graphData.currentHour],
+    labels: [
+      graphData.currentHour - 5,
+      graphData.currentHour - 4,
+      graphData.currentHour - 3,
+      graphData.currentHour - 2,
+      graphData.currentHour - 1,
+      graphData.currentHour],
     datasets: [
       {
         label: '',
@@ -86,12 +97,19 @@ const Overview: React.FunctionComponent<Props> = () => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [graphData.hours.logsBeforeSixHour.length, graphData.hours.logsBeforeFiveHour.length, graphData.hours.logsBeforeFourHour.length, graphData.hours.logsBeforeThreeHour.length, graphData.hours.logsBeforeTwoHour.length, graphData.hours.logsBeforeOneHour.length],
+        data: [
+          graphData.hours.logsBeforeSixHour.length,
+          graphData.hours.logsBeforeFiveHour.length,
+          graphData.hours.logsBeforeFourHour.length,
+          graphData.hours.logsBeforeThreeHour.length,
+          graphData.hours.logsBeforeTwoHour.length,
+          graphData.hours.logsBeforeOneHour.length],
         scaleLabel: {
           fontColor: '#B00E23',
           labelString: 'hello world',
         },
       },
+
     ],
   };
 
