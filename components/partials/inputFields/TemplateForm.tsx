@@ -1,19 +1,25 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styles from '../../../styles/TemplateForm.module.scss';
 import { showDialog } from '../../../redux/actions/dialogstatus-actions';
-import { activateBlur, deactivateBlur } from '../../../redux/actions/dialogblur-actions';
+import { deactivateBlur } from '../../../redux/actions/dialogblur-actions';
 
-interface Props { }
+interface Props {
+  onSubmitAction: any,
+  buttonText: string,
+
+}
 
 const TemplateForm: React.FunctionComponent<Props> = ({
-  children, onSubmitAction, buttonText, cancel,
+  children, onSubmitAction, buttonText,
 }) => {
   const dispatch = useDispatch('');
 
   const cancelDialog = (event) => {
     event.preventDefault();
     dispatch(showDialog('RESET'));
+    console.log('event', event);
+
     dispatch(deactivateBlur());
   };
 
@@ -23,8 +29,8 @@ const TemplateForm: React.FunctionComponent<Props> = ({
         <tbody>
           {children}
           <tr>
-            <td colSpan="2">
-              <button className={styles.buttonWhite} onClick={() => cancelDialog(event)}>Cancel</button>
+            <td colSpan={2}>
+              <button type="button" className={styles.buttonWhite} onClick={(event) => cancelDialog(event)}>Cancel</button>
               <input className={styles.buttonRed} type="submit" value={buttonText} />
             </td>
           </tr>

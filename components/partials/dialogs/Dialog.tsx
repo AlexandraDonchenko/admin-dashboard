@@ -2,7 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from '../../../styles/Dialog.module.scss';
 
-interface Props { }
+interface Props {
+  active:boolean
+ }
 
 const Dialog: React.FunctionComponent<Props> = ({ children, active }) =>
 // const pickedUser = useSelector((state) => state.choosenCardReducer.picked);

@@ -8,4 +8,5 @@ const deactivateIssue = (_id) => (dispatch) => {
   putIssues(_id)
     .then((data) => dispatch({ type: 'DEACTIVATE_ISSUE', payload: _id }));
 };
-export { fetchIssues, deactivateIssue };
+const chooseIssue = (issueObj) => ({ type: 'CHOOSE_ISSUE', payload: issueObj });
+export { fetchIssues, deactivateIssue, chooseIssue };
