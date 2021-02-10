@@ -10,14 +10,17 @@ const fetchUsers = () => (dispatch) => {
 };
 const createUser = (userObj) => (dispatch) => {
   console.log(userObj);
-
   postUser(userObj)
-    .then((data) => dispatch({ type: 'POST_USER', payload: data }));
+    .then((data) => {
+      console.log('THIS IS DATA', userObj);
+      dispatch({ type: 'POST_USER', payload: data });
+    });
 };
 
 const chooseUser = (userObj) => ({ type: 'CHOOSE_USER', payload: userObj });
 
 const updateUser = (aid, userObj) => (dispatch) => {
+  console.log(userObj);
   putUser(aid, userObj)
     .then((data) => {
       dispatch({ type: 'UPDATE_USER', payload: { data, aid } });

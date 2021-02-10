@@ -19,7 +19,7 @@ export interface User {
   lastName: string,
   email: string,
   isActive: Boolean,
-  group: string
+  group: Group
 }
 export interface Users {
   users: User[];

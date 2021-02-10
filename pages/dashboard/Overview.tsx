@@ -22,7 +22,7 @@ const Overview: React.FunctionComponent<Props> = () => {
   const doors = useSelector((store) => store.doorReducer.doors);
   const issues = useSelector((store) => store.issueReducer.issues);
   const filteredIssues = issues.filter((issue) => (issue.active ? issue : null));
-
+  const activeUsers = users.filter((user) => user.isActive);
   useEffect(() => {
     dispatch(fetchDoors());
     dispatch(fetchGroups());
@@ -30,6 +30,7 @@ const Overview: React.FunctionComponent<Props> = () => {
     dispatch(fetchLogs());
     dispatch(fetchIssues());
   }, []);
+
 
   const formatTime = (number) => {
     if (number < 10) {
@@ -39,6 +40,7 @@ const Overview: React.FunctionComponent<Props> = () => {
     }
     return number;
   };
+
 
   const getGraphData = (logs) => {
     // GET THE CURRENT HOUR
@@ -130,8 +132,8 @@ const Overview: React.FunctionComponent<Props> = () => {
 
           <div>
             <div className={styles.cardBox}>
-              <InfoCard number={users.length} text="active users" />
-              <InfoCard number={0} text="open invitations" />
+              <InfoCard number={activeUsers.length} text="active users" />
+              <InfoCard number={users.length - activeUsers.length} text="open invitations" />
               <InfoCard number={logs.length} text="daily openings" />
               <InfoCard number={filteredIssues.length} text="open issues" />
               {' '}
