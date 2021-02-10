@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react';
+import React, { useDebugValue, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import DashboardLayout from '../../components/partials/layouts/DashboardLayout';
 import CardWrapper from '../../components/partials/cards/cardWrapper';
@@ -9,29 +9,27 @@ import TemplateInput from '../../components/partials/inputFields/TemplateInput';
 import TemplateForm from '../../components/partials/inputFields/TemplateForm';
 import SearchBar from '../../components/partials/searchBar/searchBar';
 import Dialog from '../../components/partials/dialogs/Dialog';
-import { User } from '../../redux/types';
+import { Group, User } from '../../redux/types';
 import {
   createUser, chooseUser, updateUser,
 } from '../../redux/actions/user-actions';
 import { activateBlur, deactivateBlur } from '../../redux/actions/dialogblur-actions';
+import Groups from './Groups';
 
 interface Props { }
 
 const Users: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
+  const groups = useSelector((state) => state.groupReducer.groups);
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
-  const users = useSelector((state) => state.userReducer.users);
+  const users = useSelector((state) => state.userReducer.users.sort((a, b) => ((a.firstName > b.firstName) ? 1 : -1)));
   const [usersToDisplay, setUsersToDisplay] = useState<User[]>(users);
   const [input, setInput] = useState<string>('');
   const cancelDialog = (event) => {
     event.preventDefault();
     dispatch(showDialog('RESET'));
     dispatch(deactivateBlur());
-    setFirstName('');
-    setLastName('');
-    setEmail('');
-    setGroupName(null);
-    setUsersToDisplay(users);
+    setUsersToDisplay(users.sort());
   };
   const pickedUser = useSelector((state) => state.choosenCardReducer.picked);
   const [firstName, setFirstName] = useState('');
@@ -45,7 +43,7 @@ const Users: React.FunctionComponent<Props> = () => {
   }, [users, pickedUser]);
   const updateInput = (inputName) => {
     const filtered = users.filter((user) => {
-      const fullName = `${user.firstname}${user.lastname}`;
+      const fullName = `${user.firstName}${user.lastName}`;
       return fullName.toLowerCase().includes(inputName.toLowerCase());
     });
     setInput(inputName);
@@ -86,12 +84,11 @@ const Users: React.FunctionComponent<Props> = () => {
       firstName,
       lastName,
       email,
-      group,
+      group: group || 2,
     }));
     setFirstName('');
     setLastName('');
     setEmail('');
-    setGroupName(null);
     setUsersToDisplay(users);
     cancelDialog(event);
   };
@@ -102,14 +99,14 @@ const Users: React.FunctionComponent<Props> = () => {
       firstName: firstName === '' ? pickedUser.firstName : firstName,
       lastName: lastName === '' ? pickedUser.lastName : lastName,
       email: email === '' ? pickedUser.email : email,
-      group: group === null ? pickedUser.group : group,
+      group: group == null || undefined ? pickedUser.group : group,
+      isActive,
     };
 
     dispatch(updateUser(pickedUser.aid, userObj));
     setFirstName('');
     setLastName('');
     setEmail('');
-    setGroupName(null);
     setUsersToDisplay(users);
     cancelDialog(event);
   };
@@ -121,7 +118,7 @@ const Users: React.FunctionComponent<Props> = () => {
           <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} placeholder={firstName} />
           <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} placeholder={lastName} />
           <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} />
-          <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', id: 22 }, { value: 'Student', id: 23 }]} onChangeAction={handleGroup} value={group} />
+          <TemplateInput labelText="Group" onChangeAction={handleGroup} type="dropdown" dropdownOptions={groups.map((groupFromDb) => ({ value: groupFromDb.groupName, id: groupFromDb.gid }))} />
         </TemplateForm>
       </Dialog>
       <Dialog active={dialogStatus.users_update === 'active'}>
@@ -129,7 +126,7 @@ const Users: React.FunctionComponent<Props> = () => {
           <TemplateInput labelText="Firstname" type="text" onChangeAction={handleFirstName} value={firstName} placeholder={pickedUser.firstName} />
           <TemplateInput labelText="Lastname" type="text" onChangeAction={handleLasttName} value={lastName} placeholder={pickedUser.lastName} />
           <TemplateInput labelText="Email" type="text" onChangeAction={handleEmail} value={email} placeholder={pickedUser.email} />
-          <TemplateInput labelText="Group" type="dropdown" dropdownOptions={[{ value: 'Teacher Assistant', id: 21 }, { value: 'Teacher', gid: 22 }, { value: 'Student', id: 23 }]} onChangeAction={handleGroup} value={group} />
+          <TemplateInput labelText="Group" type="dropdown" onChangeAction={handleGroup} dropdownOptions={groups.map((groupFromDb) => ({ value: groupFromDb.groupName, id: groupFromDb.gid }))} />
           <TemplateInput labelText="Status" type="radio" radioOptions={['active', 'inactive']} value={isActive} onChangeAction={handleActive} />
         </TemplateForm>
       </Dialog>
