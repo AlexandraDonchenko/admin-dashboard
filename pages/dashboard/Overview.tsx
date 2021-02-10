@@ -101,7 +101,7 @@ const Overview: React.FunctionComponent<Props> = () => {
           <div>
             <div className={styles.cardBox}>
               <InfoCard number={activeUsers.length} text="active users" />
-              <InfoCard number={users.length - activeUsers.lengths} text="open invitations" />
+              <InfoCard number={users.length - activeUsers.length} text="open invitations" />
               <InfoCard number={logs.length} text="daily openings" />
               <InfoCard number={filteredIssues.length} text="open issues" />
               {' '}
