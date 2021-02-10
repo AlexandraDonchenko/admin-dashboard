@@ -23,6 +23,8 @@ const Overview: React.FunctionComponent<Props> = () => {
   const issues = useSelector((store) => store.issueReducer.issues);
   const filteredIssues = issues.filter((issue) => (issue.active ? issue : null));
 
+  console.log(logs);
+
   useEffect(() => {
     dispatch(fetchDoors());
     dispatch(fetchGroups());
@@ -30,54 +32,6 @@ const Overview: React.FunctionComponent<Props> = () => {
     dispatch(fetchLogs());
     dispatch(fetchIssues());
   }, []);
-
-  console.log(logs);
-
-  // const logs = [
-  //   {
-  //     date: 'Tue Feb 09 2021 19:14:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-  //   {
-  //     date: 'Tue Feb 09 2021 19:14:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-  //   {
-  //     date: 'Tue Feb 09 2021 19:14:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-  //   {
-  //     date: 'Tue Feb 09 2021 18:14:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-  //   {
-  //     date: 'Tue Feb 09 2021 18:54:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-  //   {
-  //     date: 'Tue Feb 09 2020 19:54:29 GMT+0100',
-  //     _id: '60216889fc8d308da4559369',
-  //     enteredBy: '354ed99d-bceb-43d5-8f64-a800a16f3cbc',
-  //     enteredDoor: 1,
-  //     __v: 0,
-  //   },
-
-  // ];
 
   const getGraphData = (logs) => {
     // GET THE CURRENT HOUR
