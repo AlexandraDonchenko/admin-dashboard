@@ -43,7 +43,7 @@ const Users: React.FunctionComponent<Props> = () => {
   }, [users, pickedUser]);
   const updateInput = (inputName) => {
     const filtered = users.filter((user) => {
-      const fullName = `${user.firstname}${user.lastname}`;
+      const fullName = `${user.firstName}${user.lastName}`;
       return fullName.toLowerCase().includes(inputName.toLowerCase());
     });
     setInput(inputName);
