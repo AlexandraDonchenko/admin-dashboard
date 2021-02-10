@@ -22,7 +22,9 @@ const Overview: React.FunctionComponent<Props> = () => {
   const doors = useSelector((store) => store.doorReducer.doors);
   const issues = useSelector((store) => store.issueReducer.issues);
   const filteredIssues = issues.filter((issue) => (issue.active ? issue : null));
+
   const activeUsers = users.filter((user) => user.isActive);
+
   useEffect(() => {
     dispatch(fetchDoors());
     dispatch(fetchGroups());
@@ -30,6 +32,7 @@ const Overview: React.FunctionComponent<Props> = () => {
     dispatch(fetchLogs());
     dispatch(fetchIssues());
   }, []);
+
 
 
   const formatTime = (number) => {
@@ -40,6 +43,7 @@ const Overview: React.FunctionComponent<Props> = () => {
     }
     return number;
   };
+
 
 
   const getGraphData = (logs) => {
