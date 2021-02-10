@@ -25,9 +25,7 @@ const Overview: React.FunctionComponent<Props> = () => {
   const issues = useSelector((store) => store.issueReducer.issues);
   const filteredIssues = issues.filter((issue) => (issue.active ? issue : null));
 
-
   const activeUsers = users.filter((user) => user.isActive);
-
 
   useEffect(() => {
     dispatch(fetchDoors());
@@ -37,7 +35,6 @@ const Overview: React.FunctionComponent<Props> = () => {
     dispatch(fetchIssues());
   }, []);
 
-
   const getGraphData = (logsForGraphData) => {
     // GET THE CURRENT HOUR
     const today = new Date();
@@ -45,8 +42,6 @@ const Overview: React.FunctionComponent<Props> = () => {
     if (currentHour < 10) {
       currentHour = `0${currentHour}`;
     }
-
-
 
     // GET AN ARRAY WITH ARRAY'S WITH USER FROM THE LAST HOURS
     const logsFromToday: Log[] = logsForGraphData.filter((log) => (
@@ -100,7 +95,6 @@ const Overview: React.FunctionComponent<Props> = () => {
     datasets: [
       {
         data: [graphData.hours.logsBeforeSixHour.length, graphData.hours.logsBeforeFiveHour.length, graphData.hours.logsBeforeFourHour.length, graphData.hours.logsBeforeThreeHour.length, graphData.hours.logsBeforeTwoHour.length, graphData.hours.logsBeforeOneHour.length],
-        // data: [5, 7, 3],
         label: 'Recent Entries',
         fill: false,
         startAtZero: true,
@@ -121,14 +115,6 @@ const Overview: React.FunctionComponent<Props> = () => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-
-        data: [
-          graphData.hours.logsBeforeSixHour.length,
-          graphData.hours.logsBeforeFiveHour.length,
-          graphData.hours.logsBeforeFourHour.length,
-          graphData.hours.logsBeforeThreeHour.length,
-          graphData.hours.logsBeforeTwoHour.length,
-          graphData.hours.logsBeforeOneHour.length],
         scaleLabel: {
           fontColor: '#B00E23',
           labelString: 'hello world',
