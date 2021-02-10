@@ -31,13 +31,22 @@ const Overview: React.FunctionComponent<Props> = () => {
     dispatch(fetchIssues());
   }, []);
 
+
+  const formatTime = (number) => {
+    if (number < 10) {
+      number = `0${number}:00`;
+    } else {
+      number = `${number}:00`;
+    }
+    return number;
+  };
+
+
   const getGraphData = (logs) => {
     // GET THE CURRENT HOUR
     const today = new Date();
-    let currentHour = today.getHours();
-    if (currentHour < 10) {
-      currentHour = `0${currentHour}`;
-    }
+    const currentHour = today.getHours();
+
     // GET AN ARRAY WITH ARRAY'S WITH USER FROM THE LAST HOURS
     const logsFromToday = logs.filter((log) => new Date(log.date).getDate() == today.getDate() && new Date(log.date).getMonth() == today.getMonth() && new Date(log.date).getFullYear() == today.getFullYear());
     const logsBeforeOneHour = logsFromToday.filter((log) => new Date(log.date).getHours() === currentHour);
@@ -61,12 +70,36 @@ const Overview: React.FunctionComponent<Props> = () => {
   const graphData = getGraphData(logs);
   console.log(graphData);
 
+  const options = {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          min: 0,
+        },
+      }],
+    },
+  };
+
   const data = {
-    labels: [graphData.currentHour - 5, graphData.currentHour - 4, graphData.currentHour - 3, graphData.currentHour - 2, graphData.currentHour - 1, graphData.currentHour],
+    labels: [formatTime(graphData.currentHour - 5), formatTime(graphData.currentHour - 4), formatTime(graphData.currentHour - 3), formatTime(graphData.currentHour - 2), formatTime(graphData.currentHour - 1), formatTime(graphData.currentHour)],
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+          },
+        }],
+      },
+    },
     datasets: [
       {
-        label: '',
+        data: [graphData.hours.logsBeforeSixHour.length, graphData.hours.logsBeforeFiveHour.length, graphData.hours.logsBeforeFourHour.length, graphData.hours.logsBeforeThreeHour.length, graphData.hours.logsBeforeTwoHour.length, graphData.hours.logsBeforeOneHour.length],
+        // data: [5, 7, 3],
+        label: 'Recent Entries',
         fill: false,
+        startAtZero: true,
         lineTension: 0.2,
         backgroundColor: '#ffffff',
         borderColor: '#B00E23',
@@ -84,11 +117,10 @@ const Overview: React.FunctionComponent<Props> = () => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [graphData.hours.logsBeforeSixHour.length, graphData.hours.logsBeforeFiveHour.length, graphData.hours.logsBeforeFourHour.length, graphData.hours.logsBeforeThreeHour.length, graphData.hours.logsBeforeTwoHour.length, graphData.hours.logsBeforeOneHour.length],
-        scaleLabel: {
-          fontColor: '#B00E23',
-          labelString: 'hello world',
+        ticks: {
+          beginAtZero: true,
         },
+
       },
     ],
   };
@@ -108,7 +140,7 @@ const Overview: React.FunctionComponent<Props> = () => {
             </div>
             <CardWrapper>
               <div className={styles.chartWrapper}>
-                <Line data={data} />
+                <Line data={data} options={options} />
               </div>
             </CardWrapper>
 

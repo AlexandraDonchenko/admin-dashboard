@@ -27,7 +27,6 @@ const IssueCard: React.FunctionComponent<Props> = ({
     </div>
     <div className={defaultStyles.actionsWrapper}>
       <img className={defaultStyles.action} src="/media/icons/cardOptions/check.svg" onClick={(event) => options.solve(event, issue)} />
-
     </div>
   </div>
 );
