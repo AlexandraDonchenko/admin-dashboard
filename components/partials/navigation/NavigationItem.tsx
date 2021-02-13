@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import Link from 'next/Link';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from '../../../styles/DashboardDesktopNav.module.scss';
 

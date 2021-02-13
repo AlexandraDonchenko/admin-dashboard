@@ -20,7 +20,7 @@ const Logs: React.FunctionComponent<Props> = () => {
 
   const filterLogs = (inputName) => {
     const filtered = logs.filter((log) => {
-      const search = `${users.find(({ aid }) => aid === log.enteredBy).firstname}${users.find(({ id }) => id === log.enteredBy).lastname}${doors.find(({ id }) => id === log.enteredDoor).name}`;
+      const search = `${users.find(({ aid }) => aid === log.enteredBy).firstName}${users.find((user) => user.aid === log.enteredBy).lastName}${doors.find((door) => door.did === log.enteredDoor).doorName}`;
       return search.toLowerCase().includes(inputName.toLowerCase());
     });
     setFilteredLogs(filtered);
