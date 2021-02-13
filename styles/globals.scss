@@ -6,16 +6,6 @@ body {
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-html {
-
-}
-
-
 * {
   box-sizing: border-box;
   outline: none;
@@ -39,6 +29,10 @@ html {
   -webkit-appearance: none;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
 .button-red {
   margin-top: 20px;
@@ -64,23 +58,22 @@ html {
   background-color: $white;
   outline: none;
   color: $red;
-
-@keyframes spin {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
 }
 
 @keyframes spin {
   from {transform:rotate(0deg);}
   to {transform:rotate(360deg);}
 }
-@keyframes spin {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
-}
-@keyframes spin {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
 
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }

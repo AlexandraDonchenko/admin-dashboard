@@ -8,11 +8,10 @@ const fetchUsers = () => (dispatch) => {
       dispatch({ type: 'GET_USERS', payload: data });
     });
 };
+
 const createUser = (userObj) => (dispatch) => {
-  console.log(userObj);
   postUser(userObj)
     .then((data) => {
-      console.log('THIS IS DATA', userObj);
       dispatch({ type: 'POST_USER', payload: data });
     });
 };
@@ -20,7 +19,6 @@ const createUser = (userObj) => (dispatch) => {
 const chooseUser = (userObj) => ({ type: 'CHOOSE_USER', payload: userObj });
 
 const updateUser = (aid, userObj) => (dispatch) => {
-  console.log(userObj);
   putUser(aid, userObj)
     .then((data) => {
       dispatch({ type: 'UPDATE_USER', payload: { data, aid } });

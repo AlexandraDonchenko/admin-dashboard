@@ -7,19 +7,18 @@ import { deactivateBlur } from '../../../redux/actions/dialogblur-actions';
 interface Props {
   onSubmitAction: any,
   buttonText: string,
-
 }
 
 const TemplateForm: React.FunctionComponent<Props> = ({
-  children, onSubmitAction, buttonText,
+  children,
+  onSubmitAction,
+  buttonText,
 }) => {
   const dispatch = useDispatch('');
 
   const cancelDialog = (event) => {
     event.preventDefault();
     dispatch(showDialog('RESET'));
-    console.log('event', event);
-
     dispatch(deactivateBlur());
   };
 

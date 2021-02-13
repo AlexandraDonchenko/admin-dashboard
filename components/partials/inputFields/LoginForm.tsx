@@ -2,9 +2,8 @@ import React from 'react';
 import styles from '../../../styles/LoginForm.module.scss';
 
 interface Props {
-  onSubmitAction: any
+  onSubmitAction: any,
   buttonText: string,
-
  }
 
 const LoginForm: React.FunctionComponent<Props> = ({

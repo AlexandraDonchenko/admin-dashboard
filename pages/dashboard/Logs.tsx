@@ -12,12 +12,9 @@ interface Props { }
 const Logs: React.FunctionComponent<Props> = () => {
   const logs = useSelector((store) => store.logsReducer.logs);
   const users = useSelector((store) => store.userReducer.users);
-
   const doors = useSelector((store) => store.doorReducer.doors);
-
   const [filteredLogs, setFilteredLogs] = useState<Log[]>(logs);
   const [input, setInput] = useState<string>('');
-
   const filterLogs = (inputName) => {
     const filtered = logs.filter((log) => {
       const search = `${users.find(({ aid }) => aid === log.enteredBy).firstName}${users.find((user) => user.aid === log.enteredBy).lastName}${doors.find((door) => door.did === log.enteredDoor).doorName}`;

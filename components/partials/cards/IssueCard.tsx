@@ -20,13 +20,13 @@ const IssueCard: React.FunctionComponent<Props> = ({
 }) => (
   <div className={defaultStyles.cardWrapper}>
     <div className={defaultStyles.infoWrapper}>
-      <img className={defaultStyles.image} src="/media/icons/cardOptions/issue.svg" alt="" />
+      <img className={defaultStyles.image} src="/media/icons/cardOptions/issue.svg" alt="issue" />
       <p className={issueStyles.type}>{type}</p>
       <p className={issueStyles.createdOn}>{createdOn}</p>
       <p className={issueStyles.reportedBy}>{reportedBy}</p>
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} src="/media/icons/cardOptions/check.svg" onClick={(event) => options.solve(event, issue)} />
+      <img className={defaultStyles.action} src="/media/icons/cardOptions/check.svg" alt="check" onClick={(event) => options.solve(event, issue)} />
     </div>
   </div>
 );

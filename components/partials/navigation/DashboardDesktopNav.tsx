@@ -1,6 +1,4 @@
-import Link from 'next/Link';
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import styles from '../../../styles/DashboardDesktopNav.module.scss';
 import NavigationItem from './NavigationItem';
 import {
