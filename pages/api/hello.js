@@ -1,23 +1,21 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-// const baseUrl = 'https://private-bcb07f-sesame2.apiary-mock.com';
 const baseUrl = 'http://localhost:5002';
 
-// export function getUsers() {
-//   return fetching(`${baseUrl}/api/users`);
-// }
 export function getUsers() {
   return fetching(`${baseUrl}/user/list`);
 }
+
 export function getDoors() {
   return fetching(`${baseUrl}/door/list`);
 }
+
 export function getGroups() {
   return fetching(`${baseUrl}/group/list`);
 }
+
 export function getLogs() {
   return fetching(`${baseUrl}/status/logs`);
 }
+
 export function postUser(userObj) {
   return fetching(`${baseUrl}/user/create`, {
     method: 'POST',
@@ -27,6 +25,7 @@ export function postUser(userObj) {
     body: JSON.stringify(userObj),
   });
 }
+
 export function postGroup(groupObj) {
   return fetching(`${baseUrl}/group/create`, {
     method: 'POST',
@@ -36,6 +35,7 @@ export function postGroup(groupObj) {
     body: JSON.stringify(groupObj),
   });
 }
+
 export function putGroup(gid, groupObj) {
   return fetching(`${baseUrl}/group/update/${gid}`, {
     method: 'PUT',
@@ -45,6 +45,7 @@ export function putGroup(gid, groupObj) {
     body: JSON.stringify(groupObj),
   });
 }
+
 export function postDoor(doorObj) {
   return fetching(`${baseUrl}/door/create`, {
     method: 'POST',
@@ -54,6 +55,7 @@ export function postDoor(doorObj) {
     body: JSON.stringify(doorObj),
   });
 }
+
 export function putUser(aid, userObj) {
   return fetching(`${baseUrl}/user/update/${aid}`, {
     method: 'PUT',
@@ -72,9 +74,11 @@ export function deleteUser(aid) {
     },
   });
 }
+
 export function getIssues() {
   return fetching(`${baseUrl}/status/issues`);
 }
+
 export function putIssues(_id) {
   return fetching(`${baseUrl}/status/issues/${_id}`, {
     method: 'PUT',

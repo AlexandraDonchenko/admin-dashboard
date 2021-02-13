@@ -16,34 +16,29 @@ const Settings: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch();
   const dialogStatus = useSelector((state) => state.dialogStatusReducer);
 
-  // ACTION WHEN PRESSING THE CANCEL BUTTON IN THE DIALOG
   const cancelDialog = (event) => {
     event.preventDefault();
     dispatch(showDialog('RESET'));
     dispatch(deactivateBlur());
   };
 
-  // SHOWS THE DIALOG
   const showUpdateAdminDialog = (event, user) => {
     dispatch(activateBlur());
     dispatch(showDialog('SETTINGS_DIALOG_UPDATE'));
   };
 
-  // INITIALIZE STATE FOR INPUT FIELDS
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [theme, setTheme] = useState('');
 
-  // FUNCTION TO UPDATE INPUT FIELDS
   const handleFirstName = (event) => { setFirstName(event.target.value); };
   const handleLasttName = (event) => { setLastName(event.target.value); };
   const handleEmail = (event) => { setEmail(event.target.value); };
   const handlePassword = (event) => { setPassword(event.target.value); };
   const handleTheme = (event) => { setTheme(event.target.value); };
 
-  // ACTION AFTER PRESSING THE BUTTON IN THE SUBMIT
   const handleUpdateSubmit = (event) => {
     event.preventDefault();
     adminData.firstName = firstName;
@@ -58,7 +53,6 @@ const Settings: React.FunctionComponent<Props> = () => {
     cancelDialog(event);
   };
 
-  // MOCKDATA FOR THE ADMIN
   const adminData = {
     firstName: 'Valia',
     lastName: 'Ampatzi',

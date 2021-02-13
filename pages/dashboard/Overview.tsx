@@ -24,7 +24,6 @@ const Overview: React.FunctionComponent<Props> = () => {
   const doors = useSelector((store) => store.doorReducer.doors);
   const issues = useSelector((store) => store.issueReducer.issues);
   const filteredIssues = issues.filter((issue) => (issue.active ? issue : null));
-
   const activeUsers = users.filter((user) => user.isActive);
 
   useEffect(() => {
@@ -36,14 +35,12 @@ const Overview: React.FunctionComponent<Props> = () => {
   }, []);
 
   const getGraphData = (logsForGraphData) => {
-    // GET THE CURRENT HOUR
     const today = new Date();
     let currentHour: any = today.getHours();
     if (currentHour < 10) {
       currentHour = `0${currentHour}`;
     }
 
-    // GET AN ARRAY WITH ARRAY'S WITH USER FROM THE LAST HOURS
     const logsFromToday: Log[] = logsForGraphData.filter((log) => (
       new Date(log.date).getDate() === today.getDate()
       && new Date(log.date).getMonth() === today.getMonth()

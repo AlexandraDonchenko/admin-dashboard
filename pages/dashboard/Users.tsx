@@ -61,7 +61,6 @@ const Users: React.FunctionComponent<Props> = () => {
     dispatch(showDialog('USERS_DIALOG_UPDATE'));
   };
 
-  // FUNCTION TO UPDATE INPUT FIELDS
   const handleFirstName = (event) => {
     setFirstName(event.target.value);
   };

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styles from '../../../styles/CardWrapper.module.scss';
 
 interface Props {
+  children: ReactNode
 }
 
 const cardWrapper: React.FunctionComponent<Props> = ({ children }) => (

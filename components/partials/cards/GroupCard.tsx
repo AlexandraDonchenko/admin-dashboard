@@ -20,7 +20,7 @@ const GroupCard: React.FunctionComponent<Props> = ({
       <p className={groupStyles.groupName}>{groupName}</p>
     </div>
     <div className={defaultStyles.actionsWrapper}>
-      <img className={defaultStyles.action} onClick={(event) => options.update(event, group)} src="/media/icons/cardOptions/edit.svg" alt="" />
+      <img className={defaultStyles.action} onClick={(event) => options.update(event, group)} src="/media/icons/cardOptions/edit.svg" alt="edit" />
     </div>
   </div>
 );

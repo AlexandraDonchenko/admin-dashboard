@@ -41,16 +41,11 @@ const Groups: React.FunctionComponent<Props> = () => {
     dispatch(deactivateBlur());
   };
 
-  // INITIALIZE STATE FOR INPUT FIELDS
   const [groupName, setGroupName] = useState('');
   const [description, setDescription] = useState('');
   const [accessFromHour, setAccessFromHour] = useState(0);
   const [accessToHour, setAccessToHour] = useState(0);
   const [doors, setDoors] = useState([]);
-
-  // INITIALIZE STATE FOR REFRESH
-
-  // FUNCTION TO UPDATE INPUT FIELDS
   const handleGroupName = (event) => {
     setGroupName(event.target.value);
   };
@@ -72,13 +67,10 @@ const Groups: React.FunctionComponent<Props> = () => {
     dispatch(activateBlur());
     dispatch(showDialog('GROUPS_DIALOG_CREATE'));
   };
-
   const showUpdateGroupDialog = (event, group) => {
-    console.log('THIIIIS IS GROUUUP', group);
     dispatch(activateBlur());
     dispatch(showDialog('GROUPS_DIALOG_UPDATE'));
     dispatch(chooseGroup(group));
-    console.log(pickedGroup);
   };
 
   const handleCreateSubmit = (event, id) => {

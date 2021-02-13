@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -16,10 +16,9 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ children }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const dialogblur = useSelector((state) => state.dialogblurReducer);
-  const activateDialogerBlur = () => { dispatch(activateBlur()); };
-  const deactivateDialogerBlur = () => { dispatch(deactivateBlur()); };
   const logged = useSelector((state) => state.loginReducer.logged);
   const href = '/Login';
+
   useEffect(() => {
     if (!logged) { router.push(href); }
   }, []);
